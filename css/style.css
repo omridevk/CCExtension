@@ -1,7 +1,7 @@
 @import url('foundation.css');
 
 body {
-  
+
   background: url("/img/bg-texture-01.jpg");
   font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
   font-size: 100%;
@@ -19,3 +19,6 @@ body {
   width:80px;
   height:50px;
 }
+
+meta.foundation-data-attribute-namespace {
+  font-family: false; }

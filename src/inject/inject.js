@@ -1,11 +1,34 @@
 $(document).ready(function() {
 
-	(function() {
+	var findJira = function() {
+		var els = {};
+		var options = ["SUP"];
+		console.log(options);
+		for (var i = 0; i < options.length; i++ ) {
+			els.fields = $('div:contains("' + options[i] + '")');
+			if (els.fields.length >= 1) {
+				var el = $(els.fields[els.fields.length-1]);
+				var jiraNumber = ($(els.fields[els.fields.length-1]).text());
+				// $(el).empty();
+				var link = "https://kaltura.atlassian.net/browse/" + jiraNumber;
+				var newLink = $("<a />", {
+	    			name : "link",
+	    			target: "_blank",
+	    			href : link,
+	    			text : jiraNumber
+				});	
+				$(el).replaceWith(newLink);		
+			}
+		}
+	};
 
+	(function() {
+		
 		//only execute the code below if the location is in salesforce.
 		var currentLocation = document.URL;
 		var pattern = /salesforce/;
 		if (pattern.test(currentLocation)) { 
+			findJira();
 			var caseData = {};
 			caseData.div = $('#cas2_ileinner');
 			if (caseData.div.length > 0) {
@@ -19,22 +42,23 @@ $(document).ready(function() {
 			}
 		}
 	})();
-	(function() {
-		var currentLocation = document.URL;
-		var pattern = /admin/;
-		var hint = $('.hint');
-		if (pattern.test(currentLocation)) {
-			if ($('#password')[0] != undefined && hint.length < 1) {
-				setTimeout(
-					function() 
-					{
-						var z = document.getElementById("submit").click();
-					}, 5000);
+
+	// (function() {
+	// 	var currentLocation = document.URL;
+	// 	var pattern = /admin/;
+	// 	var hint = $('.hint');
+	// 	if (pattern.test(currentLocation)) {
+	// 		if ($('#password')[0] != undefined && hint.length < 1) {
+	// 			setTimeout(
+	// 				function() 
+	// 				{
+	// 					var z = document.getElementById("submit").click();
+	// 				}, 5000);
 				
-			
-			}
-		}
-	})();
+	// 		}
+	// 	}
+	// })();
+
 	if (document.URL === 'https://kaltura.atlassian.net/secure/CreateIssue.jspa') { 
 		//execute script if open JIRA page is loaded
 		(function() {
@@ -53,7 +77,6 @@ $(document).ready(function() {
 					$('#priority-field').val('2-' + items.caseData.priority);
 				}
 				 //set SF Case Link field
-
 				
 				//Check for Class of service
 				if (items.caseData.accountClass === "Platinum") {

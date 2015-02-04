@@ -32,6 +32,7 @@
       ],
       "js": [
         "js/jquery/jquery.min.js",
+        "js/foundation/foundation.min.js",
         "src/inject/inject.js"
       ]
     }

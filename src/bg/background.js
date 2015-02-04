@@ -12,6 +12,8 @@ chrome.extension.onMessage.addListener(
     sendResponse();
   });
 
+Foundation.set_namespace = function() {};
+$(document).foundation();
 var myApp = angular.module('myApp', []);
 
 myApp.controller('customerCareCtrl', function ($scope) {
