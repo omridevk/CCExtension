@@ -1,0 +1,21 @@
+@import url('foundation.css');
+
+body {
+  
+  background: url("/img/bg-texture-01.jpg");
+  font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;
+  font-size: 100%;
+}
+#status {
+  /* avoid an excessively wide status text */
+  white-space: pre;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 400px;
+}
+
+#logo {
+  margin:16px;
+  width:80px;
+  height:50px;
+}
