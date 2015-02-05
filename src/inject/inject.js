@@ -66,8 +66,9 @@ $(document).ready(function() {
 				var allKeys = Object.keys(items);
 				$('#project-field').val('Support (SUP)');
 				$('#issuetype-field').val('Ticket').delay(100);
-				$('#issuetype-field').focus();
-				$('[name="Next"]').trigger('click');				
+				//focus issue field type - making sure that when clicking next the field will use the auto-complete
+				$('#issuetype-field').focus(); 
+				$('[name="Next"]').trigger('click');	//click next for user when creating a new jira			
 				$('#customfield_10101').val(items.caseData.accountName); //set account name field
 				$('#customfield_10102').val(items.caseData.caseNumber); //set the case number field
 				$('#customfield_10600').val(items.caseData.caseURL); //set SF Case Link field
