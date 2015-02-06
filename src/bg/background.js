@@ -6,24 +6,14 @@
 
 
 //example of using a message handler from the inject scripts
-chrome.extension.onMessage.addListener(
-  function(request, sender, sendResponse) {
-  	chrome.pageAction.show(sender.tab.id);
-    sendResponse();
-  });
-
-Foundation.set_namespace = function() {};
-$(document).foundation();
-var myApp = angular.module('myApp', []);
-
-myApp.controller('customerCareCtrl', function ($scope) {
-  $scope.openJira = function() {
-    if ($scope.jira != undefined) {
-      var url = 'https://kaltura.atlassian.net/browse/' + $scope.jira;
-      window.open(url, '_blank');
-    }
-  }
-});
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+      console.log(sender.tab ?
+      "from a content script:" + sender.tab.url :
+          "from the extension");
+      if (request.greeting == "hello")
+        sendResponse({farewell: "goodbye"});
+    });
 
 
 function getCurrentTabUrl(callback) {
@@ -36,19 +26,3 @@ function getCurrentTabUrl(callback) {
   console.log(queryInfo);
 }
 
-
-myApp.directive('myEnter', function () {
-    return function (scope, element, attrs) {
-        element.bind("keydown keypress", function (event) {
-            if(event.which === 13) {
-                scope.$apply(function (){
-                    scope.$eval(attrs.myEnter);
-                });
-
-                event.preventDefault();
-            }
-        });
-    };
-});
-
-// window.open(url, '_blank')

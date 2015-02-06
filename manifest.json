@@ -20,7 +20,10 @@
     "default_popup": "src/browser_action/browser_action.html"
   },
   "permissions": [
-          "storage"
+    "storage",
+    "clipboardRead",
+    "clipboardWrite",
+    "tabs"
   ],
   "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
   "content_scripts": [
@@ -32,6 +35,7 @@
       "js": [
         "js/jquery/jquery.min.js",
         "js/foundation/foundation.min.js",
+        "js/autolinker/Autolinker.js",
         "src/inject/inject.js"
       ]
     }

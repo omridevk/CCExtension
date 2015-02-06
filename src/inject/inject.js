@@ -1,34 +1,69 @@
 $(document).ready(function() {
+	var options = ["SUP-", "F-CS-", "PLAT-", "FEC-", "SUPPS-"];
 
-	var findJira = function() {
-		var els = {};
-		var options = ["SUP"];
-		console.log(options);
-		for (var i = 0; i < options.length; i++ ) {
-			els.fields = $('div:contains("' + options[i] + '")');
-			if (els.fields.length >= 1) {
-				var el = $(els.fields[els.fields.length-1]);
-				var jiraNumber = ($(els.fields[els.fields.length-1]).text());
-				// $(el).empty();
-				var link = "https://kaltura.atlassian.net/browse/" + jiraNumber;
-				var newLink = $("<a />", {
-	    			name : "link",
-	    			target: "_blank",
-	    			href : link,
-	    			text : jiraNumber
-				});	
-				$(el).replaceWith(newLink);		
-			}
-		}
+
+
+	var findJiraComment = function() {
+			$('td:contains("Created By")').each(function () {
+				this.innerHTML = Autolinker.link( this.innerHTML );
+				if (this.innerText.length > 140 && this.innerText.length < 400) {
+					this.innerHTML = Autolinker.link( this.innerHTML );
+					var pattern = /Link:/;
+					if (pattern.test(this.innerText)) {
+					}
+				}
+			})
+
+
 	};
 
+	var findJiraField = function() {
+		var currentLocation = document.URL;
+		var pattern = /salesforce/;
+		if (pattern.test(currentLocation)) {
+			findJiraComment();
+			var els = {};
+			for (var i = 0; i < options.length; i++) {
+				$('div:contains("' + options[i] + '")').each(function () {
+					if (this.innerText.length < 15) {
+						console.log(this);
+						var jiraNumber = this.innerText;
+						$(this).empty();
+						jiraNumber = jiraNumber.split(" ");
+						//console.log(jiraNumber.length);
+						for (var i = 0; i < jiraNumber.length; i++) {
+							jiraNumber[i] = jiraNumber[i].replace('\,', '');
+							var link = "https://kaltura.atlassian.net/browse/" + jiraNumber[i];
+							var newLink = $("<a />", {
+								name: "link",
+								target: "_blank",
+								href: link,
+								text: jiraNumber[i]
+							});
+							$(this).append(newLink);
+						}
+					}
+				});
+
+			}
+		}
+		return this;
+	};
+
+	chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
+		console.log(response.farewell);
+		if (response.farewell == "goodbye")
+			findJiraField();
+			findJiraComment();
+			setInterval(findJiraField, 5000);
+		});
+
 	(function() {
-		
 		//only execute the code below if the location is in salesforce.
 		var currentLocation = document.URL;
 		var pattern = /salesforce/;
 		if (pattern.test(currentLocation)) { 
-			findJira();
+			//findJira();
 			var caseData = {};
 			caseData.div = $('#cas2_ileinner');
 			if (caseData.div.length > 0) {
@@ -43,21 +78,20 @@ $(document).ready(function() {
 		}
 	})();
 
-	// (function() {
-	// 	var currentLocation = document.URL;
-	// 	var pattern = /admin/;
-	// 	var hint = $('.hint');
-	// 	if (pattern.test(currentLocation)) {
-	// 		if ($('#password')[0] != undefined && hint.length < 1) {
-	// 			setTimeout(
-	// 				function() 
-	// 				{
-	// 					var z = document.getElementById("submit").click();
-	// 				}, 5000);
-				
-	// 		}
-	// 	}
-	// })();
+	(function() {
+		var currentLocation = document.URL;
+		var pattern = /admin/;
+		var hint = $('.hint');
+		if (pattern.test(currentLocation)) {
+			if ($('#password')[0] != undefined && hint.length < 1) {
+				setTimeout(
+					function()
+					{
+						var z = document.getElementById("submit").click();
+					}, 200);
+			}
+		}
+	})();
 
 	if (document.URL === 'https://kaltura.atlassian.net/secure/CreateIssue.jspa') { 
 		//execute script if open JIRA page is loaded

@@ -9,7 +9,6 @@ myApp.controller('customerCareCtrl', function ($scope) {
 	}
 });
 
-$(document).foundation();
 myApp.directive('myEnter', function () { //directive that listen to "Enter" keypress
     return function (scope, element, attrs) {
         element.bind("keydown keypress", function (event) {
