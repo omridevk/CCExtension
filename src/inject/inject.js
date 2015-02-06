@@ -4,17 +4,15 @@ $(document).ready(function() {
 
 
 	var findJiraComment = function() {
-			$('td:contains("Created By")').each(function () {
+		$('td:contains("Created By")').each(function () {
+			this.innerHTML = Autolinker.link( this.innerHTML );
+			if (this.innerText.length > 140 && this.innerText.length < 400) {
 				this.innerHTML = Autolinker.link( this.innerHTML );
-				if (this.innerText.length > 140 && this.innerText.length < 400) {
-					this.innerHTML = Autolinker.link( this.innerHTML );
-					var pattern = /Link:/;
-					if (pattern.test(this.innerText)) {
-					}
+				var pattern = /Link:/;
+				if (pattern.test(this.innerText)) {
 				}
-			})
-
-
+			}
+		})
 	};
 
 	var findJiraField = function() {
@@ -26,11 +24,9 @@ $(document).ready(function() {
 			for (var i = 0; i < options.length; i++) {
 				$('div:contains("' + options[i] + '")').each(function () {
 					if (this.innerText.length < 15) {
-						console.log(this);
 						var jiraNumber = this.innerText;
 						$(this).empty();
 						jiraNumber = jiraNumber.split(" ");
-						//console.log(jiraNumber.length);
 						for (var i = 0; i < jiraNumber.length; i++) {
 							jiraNumber[i] = jiraNumber[i].replace('\,', '');
 							var link = "https://kaltura.atlassian.net/browse/" + jiraNumber[i];
@@ -47,11 +43,9 @@ $(document).ready(function() {
 
 			}
 		}
-		return this;
 	};
 
 	chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
-		console.log(response.farewell);
 		if (response.farewell == "goodbye")
 			findJiraField();
 			findJiraComment();
