@@ -1,3 +1,14 @@
+/*!
+ * filename: inject.js
+ * Kaltura Customer Care's Chrome Extension
+ * 0.0.1
+ *
+ * Copyright(c) 2015 Omri Katz <omri.katz@kaltura.com>
+ * MIT Licensed. http://www.opensource.org/licenses/mit-license.php
+ *
+ * http://corp.kaltura.com
+ */
+
 $(document).ready(function() {
 	var options = ["SUP-", "F-CS-", "PLAT-", "FEC-", "SUPPS-"];
 
