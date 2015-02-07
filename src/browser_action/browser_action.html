@@ -11,41 +11,50 @@
  */
  -->
 <html ng-app="myApp">
-  <head>
-    <script src="/js/angular/angular.min.js"></script>
-    <script src="/js/jquery/jquery.min.js"></script>
-
-     <script src="/app.js"></script>
-    <link rel="stylesheet" type="text/css" href="/css/styles.css">
-    <!--<link rel="stylesheet" type="text/css" href="/css/foundation.css">-->
-
-    <title>Kaltura Customer Care's Chrome Extension</title>
-    <style>
-
-      /*@import url('/css/styles.css');*/
-
-
-    </style>
-
-
-  </head>
-  <body ng-controller="customerCareCtrl">   
-    <div style="width:400px">
-      <img src="/img/Kaltura.svg" id="logo"/>
-      <div class="row">
-        <div class="large-12 columns">
-          <h4>Search for a JIRA ticket</h4>
-          <div class="row collapse">
-            <div class="small-10 columns">
-              <input autofocus my-enter="openJira()" class="textbox" type="text" ng-model="jira" placeholder="JIRA Number">
-            </div>
-            <div class="small-2 columns">
-              <a href="#" class="button  postfix" ng-click="openJira()">Go</a>
-            </div>
+<head>
+  <script src="/js/angular/angular.min.js"></script>
+  <script src="/js/jquery/jquery.min.js"></script>
+  <script src="/js/foundation/foundation.min.js"></script>
+  <script src="/app.js"></script>
+  <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  <title>Kaltura Customer Care's Chrome Extension</title>
+</head>
+<body ng-controller="customerCareCtrl">
+<div id="wrapper">
+  <img src="/img/Kaltura.svg" id="logo"/>
+  <ul class="tabs" data-tab>
+    <li class="tab-title active"><a href="#panel1">Jira</a></li>
+    <li class="tab-title"><a href="#panel2">Coming Soon</a></li>
+  </ul>
+  <div class="row tabs-content">
+    <div class="large-12 columns content active" id="panel1">
+      <h4>Search for a JIRA ticket</h4>
+      <div class="row collapse">
+        <div class="small-10 columns">
+          <input autofocus my-enter="openJira()" class="textbox" type="text" ng-model="jira" placeholder="JIRA Number">
+        </div>
+        <div class="small-2 columns">
+          <a href="#" class="button  postfix" ng-click="openJira()">Go</a>
+        </div>
+      </div>
+      <div class="row collapse">
+        <div class="small-10 columns">
+          <h4>Turn Autolinking On or Off</h4>
+        </div>
+        <div class="small-2 columns">
+          <div class="switch">
+            <input id="exampleCheckboxSwitch" type="checkbox">
+            <label for="exampleCheckboxSwitch"></label>
           </div>
-        </div> <!-- End of large-12 colums -->
-      </div> <!-- End of Row -->
-    </div>
-  </body>
-</html>
+        </div>
+      </div>
+    </div> <!-- End of panel 1 -->
 
+    <div class="large-12 columns content" id="panel2">
+      <h2>Coming Soon</h2>
+    </div>
+  </div> <!-- End of Row -->
+</div> <!-- Enf of Wrapper -->
+
+</body>
+</html>

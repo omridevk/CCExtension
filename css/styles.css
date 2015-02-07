@@ -1,7 +1,16 @@
 @import url('/css/foundation.css');
+
+@import url('/css/responsive-tabs.css');
+
 html {
   height:auto;
   width: auto;
+}
+
+#wrapper {
+  height:auto;
+  min-width: 400px;
+  margin: 10px;
 }
 body {
   background: url("/img/bg-texture-01.jpg");
@@ -17,7 +26,7 @@ body {
 
 }
 #logo {
-  margin:16px;
+  margin: 10px 0px 20px 0px;
   width:80px;
   height:50px;
 }

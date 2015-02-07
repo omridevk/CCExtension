@@ -34,12 +34,18 @@ $(document).ready(function() {
 			var els = {};
 			for (var i = 0; i < options.length; i++) {
 				$('div:contains("' + options[i] + '")').each(function () {
-					if (this.innerText.length < 15) {
+					if (this.innerText.length < 30) {
+						console.log(this.has);
 						var jiraNumber = this.innerText;
+
 						$(this).empty();
-						jiraNumber = jiraNumber.split(" ");
+						jiraNumber = jiraNumber.split(",");
 						for (var i = 0; i < jiraNumber.length; i++) {
-							jiraNumber[i] = jiraNumber[i].replace('\,', '');
+							console.log(jiraNumber[i]);
+							if (jiraNumber[i].indexOf(',') != -1 ) {
+								jiraNumber[i] = jiraNumber[i].replace('\,', '');
+
+							}
 							var link = "https://kaltura.atlassian.net/browse/" + jiraNumber[i];
 							var newLink = $("<a />", {
 								name: "link",

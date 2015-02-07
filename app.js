@@ -12,6 +12,8 @@
 var myApp = angular.module('myApp', []);
 
 myApp.controller('customerCareCtrl', function ($scope) {
+    Foundation.global.namespace = '';
+    $scope.activeFoundation = $(document).foundation();
 	$scope.openJira = function() {
 		if (typeof $scope.jira != 'undefined') {
 			var url = 'https://kaltura.atlassian.net/browse/' + $scope.jira;
