@@ -50,7 +50,7 @@ $(document).ready(function() {
 								name: "link",
 								target: "_blank",
 								href: link,
-								text: jiraNumber[i]
+								text: jiraNumber[i] + " "
 							});
 							$(this).append(newLink);
 						}
