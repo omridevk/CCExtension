@@ -10,41 +10,38 @@
  */
 
 $(document).ready(function() {
-	var options = ["SUP-", "F-CS-", "PLAT-", "FEC-", "SUPPS-"];
-
+	var options = ["SUP-", "PLAT-", "FEC-", "SUPPS-", "KMS-"];
 
 
 	var findJiraComment = function() {
-		$('td:contains("Created By")').each(function () {
-			this.innerHTML = Autolinker.link( this.innerHTML );
-			if (this.innerText.length > 140 && this.innerText.length < 400) {
+		setTimeout(function() {
+			$('td:contains("Created By")').each(function () {
+			if (this.innerText.length > 140 && this.innerText.length < 450) {
 				this.innerHTML = Autolinker.link( this.innerHTML );
 				var pattern = /Link:/;
 				if (pattern.test(this.innerText)) {
 				}
 			}
-		})
+		});
+		}, 1500);	
 	};
 
 	var findJiraField = function() {
+		setTimeout(function() {
 		var currentLocation = document.URL;
 		var pattern = /salesforce/;
 		if (pattern.test(currentLocation)) {
-			findJiraComment();
 			var els = {};
 			for (var i = 0; i < options.length; i++) {
 				$('div:contains("' + options[i] + '")').each(function () {
+					$(document).ready(findJiraComment).delay(400);
 					if (this.innerText.length < 30) {
-						console.log(this.has);
 						var jiraNumber = this.innerText;
-
 						$(this).empty();
 						jiraNumber = jiraNumber.split(",");
 						for (var i = 0; i < jiraNumber.length; i++) {
-							console.log(jiraNumber[i]);
 							if (jiraNumber[i].indexOf(',') != -1 ) {
 								jiraNumber[i] = jiraNumber[i].replace('\,', '');
-
 							}
 							var link = "https://kaltura.atlassian.net/browse/" + jiraNumber[i];
 							var newLink = $("<a />", {
@@ -57,16 +54,17 @@ $(document).ready(function() {
 						}
 					}
 				});
-
 			}
 		}
+		}, 1500);
 	};
 
 	chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
 		if (response.farewell == "goodbye")
-			findJiraField();
 			findJiraComment();
-			setInterval(findJiraField, 5000);
+
+			findJiraField();
+			$(window).resize(findJiraField);
 		});
 
 	(function() {
