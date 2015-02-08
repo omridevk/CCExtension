@@ -12,7 +12,6 @@
 $(document).ready(function() {
 	var options = ["SUP-", "PLAT-", "FEC-", "SUPPS-", "KMS-"];
 
-
 	var findJiraComment = function() {
 		setTimeout(function() {
 			$('td:contains("Created By")').each(function () {
@@ -40,8 +39,11 @@ $(document).ready(function() {
 						$(this).empty();
 						jiraNumber = jiraNumber.split(",");
 						for (var i = 0; i < jiraNumber.length; i++) {
+							jiraNumber[i] = jiraNumber[i].replace(' ', '');
 							if (jiraNumber[i].indexOf(',') != -1 ) {
 								jiraNumber[i] = jiraNumber[i].replace('\,', '');
+								
+								console.log(jiraNumber);
 							}
 							var link = "https://kaltura.atlassian.net/browse/" + jiraNumber[i];
 							var newLink = $("<a />", {
@@ -62,7 +64,6 @@ $(document).ready(function() {
 	chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
 		if (response.farewell == "goodbye")
 			findJiraComment();
-
 			findJiraField();
 			$(window).resize(findJiraField);
 		});
