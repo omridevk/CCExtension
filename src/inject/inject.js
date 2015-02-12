@@ -116,10 +116,18 @@ $(document).ready(function() {
 				$('#customfield_10101').val(items.caseData.accountName); //set account name field
 				$('#customfield_10102').val(items.caseData.caseNumber); //set the case number field
 				$('#customfield_10600').val(items.caseData.caseURL); //set SF Case Link field
-				if (items.caseData.priority === 'High') {
-					$('#priority-field').val('2-' + items.caseData.priority);
+				if (items.caseData.priority === 'High') { //Ticket high priority
+					 $('#priority-field').val('2-' + items.caseData.priority);
+					 $('[name=priority]').val( 12 );
+				} else if (items.caseData.priority === 'Medium') {
+					$('option:selected', 'select[name="priority"]').removeAttr('selected');
+					$('[name=priority]').val( 13 );
+					$('#priority-field').val('3-' + items.caseData.priority, true);
+				} else if (items.caseData.priority === 'Low') {
+					$('[name=priority]').val( 14 );
+					$('#priority-field').val('3-' + items.caseData.priority);
 				} else {
-					$('#priority-field').val('2-' + items.caseData.priority);
+					$('[name=priority]').val( 15 );
 				}
 				 //set SF Case Link field
 				
