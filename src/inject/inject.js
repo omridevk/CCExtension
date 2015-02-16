@@ -10,7 +10,7 @@
  */
 
 $(document).ready(function() {
-	var options = ["SUP-", "PLAT-", "FEC-", "SUPPS-", "KMS-"];
+	var options = ["SUP-", "PLAT-", "FEC-", "SUPPS-", "KMS-", "F-CS"];
 
 	var findJiraComment = function() {
 		setTimeout(function() {
@@ -34,23 +34,22 @@ $(document).ready(function() {
 			for (var i = 0; i < options.length; i++) {
 				$('div:contains("' + options[i] + '")').each(function () {
 					$(document).ready(findJiraComment).delay(400);
-					if (this.innerText.length < 30) {
+					var editCommentClass = $(this).attr("class");
+					if (this.innerText.length < 30 && editCommentClass != "pbSubsection" && editCommentClass != "requiredInput") {
 						var jiraNumber = this.innerText;
 						$(this).empty();
 						jiraNumber = jiraNumber.split(",");
-						for (var i = 0; i < jiraNumber.length; i++) {
-							jiraNumber[i] = jiraNumber[i].replace(' ', '');
-							if (jiraNumber[i].indexOf(',') != -1 ) {
-								jiraNumber[i] = jiraNumber[i].replace('\,', '');
-								
-								console.log(jiraNumber);
+						for (var j = 0; j < jiraNumber.length; j++) {
+							jiraNumber[j] = jiraNumber[j].replace(' ', '');
+							if (jiraNumber[j].indexOf(',') != -1 ) {
+								jiraNumber[j] = jiraNumber[j].replace('\,', '');
 							}
-							var link = "https://kaltura.atlassian.net/browse/" + jiraNumber[i];
+							var link = options[i] === "F-CS" ? "https://control.akamai.com/resolve/caseview/caseDetails.jsp?caseId=" + jiraNumber[j] : "https://kaltura.atlassian.net/browse/" + jiraNumber[j];
 							var newLink = $("<a />", {
 								name: "link",
 								target: "_blank",
 								href: link,
-								text: jiraNumber[i] + " "
+								text: jiraNumber[j] + " "
 							});
 							$(this).append(newLink);
 						}
