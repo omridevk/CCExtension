@@ -20,6 +20,12 @@ myApp.controller('customerCareCtrl', function ($scope) {
 			window.open(url, '_blank');
 		}
 	}
+    $scope.openSalesforce = function() {
+        if (typeof $scope.salesforce != 'undefined') {
+            var url = 'https://na5.salesforce.com/_ui/search/ui/UnifiedSearchResults?searchType=2&sen=a1d&sen=a0S&sen=00a&sen=005&sen=001&sen=500&sen=003&str=' + $scope.salesforce;
+            window.open(url, '_blank');
+        }
+    }
 });
 
 myApp.directive('myEnter', function () { //directive that listen to "Enter" keypress

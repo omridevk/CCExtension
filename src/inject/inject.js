@@ -12,6 +12,23 @@
 $(document).ready(function() {
 	var options = ["SUP-", "PLAT-", "FEC-", "SUPPS-", "KMS-", "F-CS"];
 
+	function main () {
+	  // ...
+		var testius = document.getElementsByTagName('iframe')[0];
+		if (typeof kmc != 'undefined' ) {
+			var t = kmc.vars.ks;
+			console.log(t);
+			console.log(testius.contentWindow.kalturaIframePackageData);
+		  // ...
+		}
+	}
+
+
+	var script = document.createElement('script');
+	script.appendChild(document.createTextNode('('+ main +')();'));
+	(document.body || document.head || document.documentElement).appendChild(script);
+	
+
 	var findJiraComment = function() {
 		setTimeout(function() {
 			$('td:contains("Created By")').each(function () {
