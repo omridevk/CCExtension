@@ -32,8 +32,8 @@ $(document).ready(function() {
 		var scrollPosition = $(window).scrollTop();
 		console.log("scroll down in pixels: " + scrollPosition);
 		$("<div>", {
-			'class': "iviewer_image_mask",
 			css: {
+				"width" : playerPosition.width / 2,
 				"color" :"RED",
 				"position":"absolute",
 				"top": playerPosition.top + scrollPosition,
