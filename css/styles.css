@@ -3,13 +3,22 @@
 @import url('/css/responsive-tabs.css');
 
 html {
-  height:auto;
+  height:200px;
   width: auto;
+}
+
+.tabs dd > a, .tabs .tab-title > a {
+  padding: 0.60rem 1.2rem;
+}
+
+
+.button, .tabs-content{
+  margin:0;
 }
 
 #wrapper {
   height:auto;
-  min-width: 400px;
+  min-width: 300px;
   margin: 10px;
 }
 body {
