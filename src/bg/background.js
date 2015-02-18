@@ -15,6 +15,12 @@ chrome.runtime.onMessage.addListener(
         sendResponse({farewell: "goodbye"});
     });
 
+chrome.tabs.onActiveChanged.addListener (
+  function(info) {
+    var tabId = info.tabId,
+      windowId = info.windowId;
+      console.log(tabId);
+  });
 
 function getCurrentTabUrl(callback) {
   // Query filter to be passed to chrome.tabs.query - see
