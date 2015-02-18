@@ -13,32 +13,28 @@ $(document).ready(function() {
 	var options = ["SUP-", "PLAT-", "FEC-", "SUPPS-", "KMS-", "F-CS"];
 
 	function main () {
-	  // ...
-		var testius = document.getElementsByTagName('iframe')[0];
+		var iframe = document.getElementsByTagName('iframe')[0];
+		console.log(iframe.contentWindow.kalturaIframePackageData);
 		if (typeof kmc != 'undefined' ) {
-			var t = kmc.vars.ks;
-			console.log(t);
-			console.log(testius.contentWindow.kalturaIframePackageData);
-		  // ...
+			var ks = kmc.vars.ks;
+			prompt("The KS is:", ks);
 		}
 	}
 
-chrome.runtime.onMessage.addListener(
-	function(request, sender, sendResponse) {
-		console.log(sender.tab ?
-			"from a content script:" + sender.tab.url :
-			"from the extension");
-		if (request.greeting == "hello")
-			sendResponse({farewell: "goodbye"});
-});
+
+	chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
+	   if (msg.action == 'getKs') {
+	   		getKs();
+	   }
+	});
 
 
+	function getKs() {
+		var script = document.createElement('script');
+		script.appendChild(document.createTextNode('('+ main +')();'));
+		(document.body || document.head || document.documentElement).appendChild(script);
+	}
 
-
-	var script = document.createElement('script');
-	script.appendChild(document.createTextNode('('+ main +')();'));
-	(document.body || document.head || document.documentElement).appendChild(script);
-	
 
 	var findJiraComment = function() {
 		setTimeout(function() {
@@ -88,12 +84,7 @@ chrome.runtime.onMessage.addListener(
 		}, 1500);
 	};
 
-	chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
-		if (response.farewell == "goodbye")
-			findJiraComment();
-			findJiraField();
-			$(window).resize(findJiraField);
-		});
+
 
 	(function() {
 		//only execute the code below if the location is in salesforce.
@@ -129,6 +120,14 @@ chrome.runtime.onMessage.addListener(
 			}
 		}
 	})();
+
+
+	chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
+	if (response.farewell == "goodbye")
+		findJiraComment();
+		findJiraField();
+		$(window).resize(findJiraField);
+	});
 
 	if (document.URL === 'https://kaltura.atlassian.net/secure/CreateIssue.jspa') { 
 		//execute script if open JIRA page is loaded
