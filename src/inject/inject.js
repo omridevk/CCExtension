@@ -20,7 +20,29 @@ $(document).ready(function() {
 	}
 
 	function getPlayerInfo () {
+
 		var iframe = document.getElementsByTagName('iframe')[0];
+		var playerPosition = iframe.getBoundingClientRect();
+
+		var bodyRect = document.body.getBoundingClientRect(),
+		elemRect = iframe.getBoundingClientRect(),
+		offset   = elemRect.top - bodyRect.top;
+		console.log('Element is ' + offset + ' vertical pixels from <body>');
+		console.log(playerPosition);
+		var scrollPosition = $(window).scrollTop();
+		console.log("scroll down in pixels: " + scrollPosition);
+		$("<div>", {
+			'class': "iviewer_image_mask",
+			css: {
+				"color" :"RED",
+				"position":"absolute",
+				"top": playerPosition.top + scrollPosition,
+				"bottom": playerPosition.bottom,
+				"left": playerPosition.left,
+				"right": playerPosition.right
+			},
+			text: "entry id is:" + iframe.contentWindow.kalturaIframePackageData.playerConfig.entryId
+		}).appendTo('body');
 		console.log(iframe.contentWindow.kalturaIframePackageData);
 	}
 
