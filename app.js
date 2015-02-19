@@ -11,6 +11,12 @@
 
 var myApp = angular.module('myApp', []);
 
+chrome.contextMenus.create({
+  id: 'open',
+  title: chrome.i18n.getMessage('openContextMenuTitle'),
+  contexts: ['link'],
+});
+
 
 myApp.controller('customerCareCtrl', function ($scope) {
 

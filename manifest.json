@@ -33,6 +33,7 @@
     }
   },
   "permissions": [
+    "contextMenus",
     "storage",
     "clipboardRead",
     "clipboardWrite",

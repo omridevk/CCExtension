@@ -15,20 +15,28 @@ chrome.runtime.onMessage.addListener(
         sendResponse({farewell: "goodbye"});
     });
 
-chrome.tabs.onActiveChanged.addListener (
-  function(info) {
-    var tabId = info.tabId,
-      windowId = info.windowId;
-      console.log(tabId);
-  });
+// chrome.tabs.onActiveChanged.addListener (
+//   function(info) {
+//     var tabId = info.tabId,
+//       windowId = info.windowId;
+//       console.log(tabId);
+//   });
 
-function getCurrentTabUrl(callback) {
-  // Query filter to be passed to chrome.tabs.query - see
-  // https://developer.chrome.com/extensions/tabs#method-query
-  var queryInfo = {
-    active: true,
-    currentWindow: true
-  };
-  console.log(queryInfo);
-}
+// function getCurrentTabUrl(callback) {
+//   // Query filter to be passed to chrome.tabs.query - see
+//   // https://developer.chrome.com/extensions/tabs#method-query
+//   var queryInfo = {
+//     active: true,
+//     currentWindow: true
+//   };
+//   console.log(queryInfo);
+// }
+
+chrome.contextMenus.create({
+    "title": "Buzz This",
+    "contexts": ["video", ""],
+    "onclick" : function(info,tab) {
+      console.log('Select link: ' + info.selectionText);
+    }
+  });
 

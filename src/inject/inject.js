@@ -113,88 +113,27 @@ $(document).ready(function() {
 		}, 1500);
 	};
 
-
-
 	(function() {
-		var btnOpenJira = document.getElementsByName('open_jira');
-		$(btnOpenJira).click(function() {
-			
+		$('[name="open_jira"]').click(function() {	
 			var caseData = {};
 			caseData.div = $('#cas2_ileinner');
 			chrome.storage.local.clear();
 			caseData.caseNumber = caseData.div[0].innerHTML;
-			console.log(caseData);
+			
 			caseData.accountName = $('#cas4_ileinner')[0].innerText; 
 			caseData.priority = $('#cas8_ileinner')[0].innerText;
 			caseData.accountClass = $('#00N70000002RDrn_ileinner')[0].innerText;
 			caseData.caseURL = document.URL;
-		    chrome.storage.local.set({'caseData': caseData});
-	    	if (document.URL === 'https://kaltura.atlassian.net/secure/CreateIssue.jspa') { 
-			//execute script if open JIRA page is loaded
-			(function() {
-			    chrome.storage.local.get(null, function(items) {    	
-					var allKeys = Object.keys(items);
-					$('#project-field').val('Support (SUP)');
-					$('#issuetype-field').val('Ticket').delay(100);
-					//focus issue field type - making sure that when clicking next the field will use the auto-complete
-					$('#issuetype-field').focus(); 
-					$('[name="Next"]').trigger('click');	//click next for user when creating a new jira			
-					$('#customfield_10101').val(items.caseData.accountName); //set account name field
-					$('#customfield_10102').val(items.caseData.caseNumber); //set the case number field
-					$('#customfield_10600').val(items.caseData.caseURL); //set SF Case Link field
-					$('option:selected', 'select[name="priority"]').removeAttr('selected');
-					if (items.caseData.priority === 'High') { //Set Ticket high priority
-						 $('#priority-field').val('2-' + items.caseData.priority);
-						 $('[name=priority]').val( 12 );
-					} else if (items.caseData.priority === 'Medium') {
-						$('[name=priority]').val( 13 );
-						$('#priority-field').val('3-' + items.caseData.priority, true);
-					} else if (items.caseData.priority === 'Low') {
-						$('[name=priority]').val( 14 );
-						$('#priority-field').val('3-' + items.caseData.priority);
-					} else {
-						$('[name=priority]').val( 15 );
-					}
-					 //set SF Case Link field
-					
-					//Check for Class of service
-					if (items.caseData.accountClass === "Platinum") {
-						$('#customfield_10103-1').prop('checked',true);
-					} else if (items.caseData.accountClass === "Gold") {
-						$('#customfield_10103-2').prop('checked',true);
-					} else {
-						$('#customfield_10103-3').prop('checked',true);
-					}
-				}); 
-			})(); 	
-		}
+			// var url = "https://google.com";
+				
+		    chrome.storage.local.set({'caseData': caseData}, function() {
+		    		var url = "https://kaltura.atlassian.net/secure/CreateIssue!default.jspa"
+    				myWindow = window.open(url, "myWindow", "width=600, height=600");    // Opens a new window
+    				myWindow.focus();
+				
+			});
+		    console.log(caseData);
 		});
-
-		// This part is currently out-dated and we moved it up to the start of the file
-		
-		// var btnOpenJira = document.getElementsByName('open_jira');
-		//only execute the code below if the location is in salesforce.
-		// var currentLocation = document.URL;
-		// var pattern = /salesforce/;
-		// if (pattern.test(currentLocation)) {
-			// var btnOpenJira = document.getElementsByName('open_jira');
-			// $(btnOpenJira).click(saveTicketInformation);
-			//findJira();
-			// var saveTicketInformation = function() {
-			// 	console.log("hello");
-			// 	var caseData = {};
-			// 	caseData.div = $('#cas2_ileinner');
-			// 	if (caseData.div.length > 0) {
-			// 		chrome.storage.local.clear();
-			// 		caseData.caseNumber = caseData.div[0].innerHTML;
-			// 		caseData.accountName = $('#cas4_ileinner')[0].innerText; 
-			// 		caseData.priority = $('#cas8_ileinner')[0].innerText;
-			// 		caseData.accountClass = $('#00N70000002RDrn_ileinner')[0].innerText;
-			// 		caseData.caseURL = document.URL;
-			// 	    chrome.storage.local.set({'caseData': caseData});
-			// 	}
-			// }
-		// }
 	})();
 
 	(function() {
@@ -203,11 +142,9 @@ $(document).ready(function() {
 		var hint = $('.hint');
 		if (pattern.test(currentLocation)) {
 			if ($('#password')[0] != undefined && hint.length < 1) {
-				setTimeout(
-					function()
-					{
-						var z = document.getElementById("submit").click();
-					}, 200);
+				setTimeout(function() {
+					var z = document.getElementById("submit").click();
+				}, 200);
 			}
 		}
 	})();
@@ -220,7 +157,7 @@ $(document).ready(function() {
 		$(window).resize(findJiraField);
 	});
 
-	if (document.URL === 'https://kaltura.atlassian.net/secure/CreateIssue.jspa') { 
+	// if (document.URL === 'https://kaltura.atlassian.net/secure/CreateIssue.jspa') { 
 		//execute script if open JIRA page is loaded
 		(function() {
 		    chrome.storage.local.get(null, function(items) {    	
@@ -257,16 +194,8 @@ $(document).ready(function() {
 					$('#customfield_10103-3').prop('checked',true);
 				}
 			}); 
-			
-			
 		})(); 	
-	}
-
-
-
-
-
-
+	// }
 
 
 });
