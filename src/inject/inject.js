@@ -127,7 +127,16 @@ $(document).ready(function() {
 	};
 
 	(function() {
-		$('[name="open_jira"]').click(function() {	
+		
+		var lastButton =  $('[name="open_jira"]');
+		var newButton = $('<input/>').attr({
+			type: "button",
+			id: "jiraButton",
+			class: "btn",
+			value: "Open Jira"
+		});
+		$(lastButton).replaceWith(newButton);
+		$('#jiraButton').click(function() {	
 			var caseData = {};
 			caseData.div = $('#cas2_ileinner');
 			chrome.storage.local.clear();
@@ -138,7 +147,7 @@ $(document).ready(function() {
 			caseData.accountClass = $('#00N70000002RDrn_ileinner')[0].innerText;
 			caseData.caseURL = document.URL;
 			// var url = "https://google.com";
-				
+			
 		    chrome.storage.local.set({'caseData': caseData}, function() {
 		    		var url = "https://kaltura.atlassian.net/secure/CreateIssue!default.jspa"
     				myWindow = window.open(url, "myWindow", "width=600, height=600");    // Opens a new window
@@ -169,12 +178,15 @@ $(document).ready(function() {
 		findJiraField();
 		$(window).resize(findJiraField);
 	});
+	var test = document.URL.indexOf('CreateIssue'); 
 
-	// if (document.URL === 'https://kaltura.atlassian.net/secure/CreateIssue.jspa') { 
+	if (document.URL.indexOf('CreateIssue') != -1) { 
 		//execute script if open JIRA page is loaded
-		(function() {
+			console.log("dasdadadadsaa");
 		    chrome.storage.local.get(null, function(items) { 
-		    	if (!items) {
+		    	console.log(items);
+		    		console.log("test test test ");
+		    		console.log("hello world");
 					var allKeys = Object.keys(items);
 					$('#project-field').val('Support (SUP)');
 					$('#issuetype-field').val('Ticket').delay(100);
@@ -207,10 +219,10 @@ $(document).ready(function() {
 					} else {
 						$('#customfield_10103-3').prop('checked',true);
 					}
-				}
+				
 			}); 
-		})(); 	
-	// }
+			
+	 }
 
 
 });
