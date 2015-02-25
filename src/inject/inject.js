@@ -10,6 +10,7 @@
  */
 
 $(document).ready(function() {
+	// Type of tickets to add href to. 
 	var options = ["SUP-", "PLAT-", "FEC-", "SUPPS-", "KMS-", "F-CS"];
 
 	function getKs () {
@@ -19,21 +20,18 @@ $(document).ready(function() {
 		}
 	}
 
+
+	//collect player information and add an overlay div on the player to display the information.
 	function getPlayerInfo () {
 		var iframes = document.getElementsByTagName('iframe');
-		console.log(iframes.length);
 		for (var i = 0; i < iframes.length; i++ ) {
+			//get the player position
 			var playerPosition = iframes[i].getBoundingClientRect();
-			var bodyRect = document.body.getBoundingClientRect(),
-			elemRect = iframes[i].getBoundingClientRect(),
-			offset   = elemRect.top - bodyRect.top;
-			console.log('Element is ' + offset + ' vertical pixels from <body>');
-			console.log(playerPosition);
-			console.log(iframes[i].contentWindow.kalturaIframePackageData.playerConfig.widgetId);
+
+			// get the scroll position from the top in pixels.
 			var scrollPosition = $(window).scrollTop();
+
 			var partnerId = iframes[i].contentWindow.kalturaIframePackageData.playerConfig.widgetId.replace('_', '');
-			console.log(iframes[i].contentWindow.kalturaIframePackageData.playerConfig.widgetId);
-			console.log("scroll down in pixels: " + scrollPosition);
 			$("<div>", {
 				id: "panelBox" + i,
 				css: {
@@ -54,11 +52,10 @@ $(document).ready(function() {
 			$("<p>", {
 				text:"Partner Id is:" + partnerId
 			}).appendTo('#panelBox' + i);
-			console.log(iframes[i].contentWindow.kalturaIframePackageData);
 		}
 	}
 
-
+	// Listening to events that comes from the popup window, and execute function based on the action chosen in the popup.js
 	chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
 	   if (msg.action == 'getKs') {
 	   		injectScript(getKs);
@@ -66,18 +63,19 @@ $(document).ready(function() {
 	   		injectScript(jQueryInject);
 	   		injectScript(getPlayerInfo);
 	   } else if (msg.action == "test") {
-	   		console.log("test hello test");
+	   		
 	   }
 	});
 
-
+	// Inject script tag and its content to a page in order to access the page JavaScript variables. 
+	// Choose which function to inject when calling the function.
 	function injectScript(func) {
 		var script = document.createElement('script');
 		script.appendChild(document.createTextNode('('+ func +')();'));
 		(document.body || document.head || document.documentElement).appendChild(script);
 	}
 
-
+	// Looking for links in Salesforce ticket comments and turn then into click-able links
 	var findJiraComment = function() {
 		setTimeout(function() {
 			$('td:contains("Created By")').each(function () {
@@ -91,16 +89,22 @@ $(document).ready(function() {
 		}, 1500);	
 	};
 
+
+	// Iterating over each ticket type options and turn it to a clickable link.
 	var findJiraField = function() {
 		setTimeout(function() {
 		var currentLocation = document.URL;
 		var pattern = /salesforce/;
+		// Execute the script bellow only if the location is in salesforce
 		if (pattern.test(currentLocation)) {
 			var els = {};
 			for (var i = 0; i < options.length; i++) {
 				$('div:contains("' + options[i] + '")').each(function () {
+					// Looking for links in Salesforce ticket comments and turn then into click-able links
 					$(document).ready(findJiraComment).delay(400);
+					//get the comment field's class - will be used to test if user Clicked edit comment
 					var editCommentClass = $(this).attr("class");
+					//do not execute the script bellow if user is editing a comment.
 					if (this.innerText.length < 30 && editCommentClass != "pbSubsection" && editCommentClass != "requiredInput") {
 						var jiraNumber = this.innerText;
 						$(this).empty();
@@ -127,36 +131,59 @@ $(document).ready(function() {
 	};
 
 	(function() {
-		
+		var btns = ["open_jira", "open_supps"]
 		var lastButton =  $('[name="open_jira"]');
-		var newButton = $('<input/>').attr({
-			type: "button",
-			id: "jiraButton",
-			class: "btn",
-			value: "Open Jira"
-		});
-		$(lastButton).replaceWith(newButton);
-		$('#jiraButton').click(function() {	
-			var caseData = {};
-			caseData.div = $('#cas2_ileinner');
-			chrome.storage.local.clear();
-			caseData.caseNumber = caseData.div[0].innerHTML;
-			
-			caseData.accountName = $('#cas4_ileinner')[0].innerText; 
-			caseData.priority = $('#cas8_ileinner')[0].innerText;
-			caseData.accountClass = $('#00N70000002RDrn_ileinner')[0].innerText;
-			caseData.caseURL = document.URL;
-			// var url = "https://google.com";
-			
+		var createNewBtn = function (btnType) {
+			var btnTypeText = btnType.split('_');
+			for (var j = 0; j < btnTypeText.length; j++) {
+				btnTypeText[j] = btnTypeText[j].charAt(0).toUpperCase() + btnTypeText[j].slice(1);
+			}
+			var newButton = $('<input/>').attr({
+				type: "button",
+				id: btnType,
+				class: "btn custom",
+				data: btnType,
+				value: btnTypeText[0] + ' ' + btnTypeText[1]
+			});
+			return newButton;
+		}
+		var btnsElm = [];
+		for (var i=0; i < btns.length; i++) {
+			var btn = createNewBtn(btns[i]);
+			btnsElm.push(btn);
+		}
+	
+		$(lastButton).replaceWith(btnsElm[0][0]);
+		console.log(btnsElm[0][0].id);
+		$('#' + btnsElm[0][0].id).after(btnsElm[1][0]);
+		$('.custom').click(function(event) {	
+			var caseData = saveTicketInformation();		
 		    chrome.storage.local.set({'caseData': caseData}, function() {
-		    		var url = "https://kaltura.atlassian.net/secure/CreateIssue!default.jspa"
+		    		if (event.target.id === "open_jira") {
+			    		var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=9";
+		    		} else {
+			    		var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=12201&issuetype=9";
+		    		}
     				myWindow = window.open(url, "myWindow", "width=600, height=600");    // Opens a new window
     				myWindow.focus();
-				
-			});
-		    console.log(caseData);
+
+			});	
 		});
 	})();
+
+
+	var saveTicketInformation = function(btnId) {
+		var caseData = {};
+		caseData.div = $('#cas2_ileinner');
+		chrome.storage.local.clear();
+		caseData.caseNumber = caseData.div[0].innerHTML;
+		caseData.btnId = btnId;
+		caseData.accountName = $('#cas4_ileinner')[0].innerText; 
+		caseData.priority = $('#cas8_ileinner')[0].innerText;
+		caseData.accountClass = $('#00N70000002RDrn_ileinner')[0].innerText;
+		caseData.caseURL = document.URL;
+		return caseData;
+	};
 
 	(function() {
 		var currentLocation = document.URL;
@@ -178,55 +205,43 @@ $(document).ready(function() {
 		findJiraField();
 		$(window).resize(findJiraField);
 	});
-	var test = document.URL.indexOf('CreateIssue'); 
 
-	if (document.URL.indexOf('CreateIssue') != -1) { 
-		//execute script if open JIRA page is loaded
-			console.log("dasdadadadsaa");
+		if (document.URL.indexOf('CreateIssue') != -1) { 
+			//execute script if open JIRA page is loaded
 		    chrome.storage.local.get(null, function(items) { 
-		    	console.log(items);
-		    		console.log("test test test ");
-		    		console.log("hello world");
-					var allKeys = Object.keys(items);
-					$('#project-field').val('Support (SUP)');
-					$('#issuetype-field').val('Ticket').delay(100);
-					//focus issue field type - making sure that when clicking next the field will use the auto-complete
-					$('#issuetype-field').focus(); 
-					$('[name="Next"]').trigger('click');	//click next for user when creating a new jira			
-					$('#customfield_10101').val(items.caseData.accountName); //set account name field
-					$('#customfield_10102').val(items.caseData.caseNumber); //set the case number field
-					$('#customfield_10600').val(items.caseData.caseURL); //set SF Case Link field
-					$('option:selected', 'select[name="priority"]').removeAttr('selected');
-					if (items.caseData.priority === 'High') { //Set Ticket high priority
-						 $('#priority-field').val('2-' + items.caseData.priority);
-						 $('[name=priority]').val( 12 );
-					} else if (items.caseData.priority === 'Medium') {
-						$('[name=priority]').val( 13 );
-						$('#priority-field').val('3-' + items.caseData.priority, true);
-					} else if (items.caseData.priority === 'Low') {
-						$('[name=priority]').val( 14 );
-						$('#priority-field').val('3-' + items.caseData.priority);
-					} else {
-						$('[name=priority]').val( 15 );
-					}
-					 //set SF Case Link field
-					
-					//Check for Class of service
-					if (items.caseData.accountClass === "Platinum") {
-						$('#customfield_10103-1').prop('checked',true);
-					} else if (items.caseData.accountClass === "Gold") {
-						$('#customfield_10103-2').prop('checked',true);
-					} else {
-						$('#customfield_10103-3').prop('checked',true);
-					}
+		    	if (document.URL.indexOf('init') != -1) {
+		    		$('.error').hide();
+		    	}
+				var allKeys = Object.keys(items);		
+				$('#customfield_10101').val(items.caseData.accountName); //set account name field
+				$('#customfield_10102').val(items.caseData.caseNumber); //set the case number field
+				$('#customfield_10600').val(items.caseData.caseURL); //set SF Case Link field
+				$('option:selected', 'select[name="priority"]').removeAttr('selected');
+				if (items.caseData.priority === 'High') { //Set Ticket high priority
+					 $('#priority-field').val('2-' + items.caseData.priority);
+					 $('[name=priority]').val( 12 );
+				} else if (items.caseData.priority === 'Medium') {
+					$('[name=priority]').val( 13 );
+					$('#priority-field').val('3-' + items.caseData.priority, true);
+				} else if (items.caseData.priority === 'Low') {
+					$('[name=priority]').val( 14 );
+					$('#priority-field').val('3-' + items.caseData.priority);
+				} else {
+					$('[name=priority]').val( 15 );
+				}
+				 //set SF Case Link field
 				
-			}); 
-			
-	 }
-
-
+				//Check for Class of service
+				if (items.caseData.accountClass === "Platinum") {
+					$('#customfield_10103-1').prop('checked',true);
+				} else if (items.caseData.accountClass === "Gold") {
+					$('#customfield_10103-2').prop('checked',true);
+				} else {
+					$('#customfield_10103-3').prop('checked',true);
+				}
+			});	
+		}
 });
-
 
 
 /*! jQuery v2.0.0 | (c) 2005, 2013 jQuery Foundation, Inc. | jquery.org/license
