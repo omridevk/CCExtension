@@ -216,18 +216,23 @@ $(document).ready(function() {
 				$('#customfield_10101').val(items.caseData.accountName); //set account name field
 				$('#customfield_10102').val(items.caseData.caseNumber); //set the case number field
 				$('#customfield_10600').val(items.caseData.caseURL); //set SF Case Link field
+				$('#customfield_10303').val(10416);
 				$('option:selected', 'select[name="priority"]').removeAttr('selected');
 				if (items.caseData.priority === 'High') { //Set Ticket high priority
 					 $('#priority-field').val('2-' + items.caseData.priority);
 					 $('[name=priority]').val( 12 );
+					 $('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_critical.gif');
 				} else if (items.caseData.priority === 'Medium') {
 					$('[name=priority]').val( 13 );
 					$('#priority-field').val('3-' + items.caseData.priority, true);
+					$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_major.gif');
 				} else if (items.caseData.priority === 'Low') {
 					$('[name=priority]').val( 14 );
 					$('#priority-field').val('3-' + items.caseData.priority);
+					$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_minor.gif');
 				} else {
 					$('[name=priority]').val( 15 );
+					$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_minor.gif');
 				}
 				 //set SF Case Link field
 				
