@@ -19,44 +19,85 @@ $(document).ready(function() {
 			prompt("The KS is:", ks);
 		}
 	}
-	function playerUpdatePlayheadHandler(data, id) {
-    		console.log(data);// data = the player's progress time in seconds
-    		// id = the ID of the player that fired the notification
-	}
 
 	//collect player information and add an overlay div on the player to display the information.
 	function getPlayerInfo () {
+
+		// if (typeof(kWidget) != "undefined")
+		kWidget.addReadyCallback(function( playerId ){
+			var kdp = document.getElementById( playerId );
+			// console.log(kWidget.uiConfScriptLoadList);
+			// alert('Entry name: '+ JSON.stringify(kdp.evaluate('{mediaProxy.selectedFlavorId}') ));
+			// binds an event and namespces it to "myPluginName"
+			kdp.kBind("bytesDownloadedChange", function( data, id ){
+				// console.log(data);
+				createInfo(data);
+			});
+		});
+
+
+		var createInfo = function(data) {
+		// data = JSON.stringify(data);
+			data.newValue = bytesToSize(data.newValue);
+			if ($('#downloadedBytes').length) {
+
+				var p = $("<p>", {
+					id: "downloadedBytes",
+					text:"Downloaded:" + data.newValue
+				});
+				$('#downloadedBytes').replaceWith(p);	
+			} else {
+				$("<p>", {
+					id: "downloadedBytes",
+					text:"Downloaded:" + data.newValue
+				}).appendTo('#panelBox0');
+			}
+		}
+
+
+
+		function bytesToSize(bytes) {
+		   	if(bytes == 0) return '0 Byte';
+			   var k = 1000;
+			   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+			   var i = Math.floor(Math.log(bytes) / Math.log(k));
+			   return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
+		}
+
+
 		var iframes = document.getElementsByTagName('iframe');
 
-		for (var i = 0; i < iframes.length -1; i++ ) {
+		for (var i = 0; i < iframes.length; i++ ) {
 			//get the player position
-			var playerPosition = iframes[i].getBoundingClientRect();
-			
-			// get the scroll position from the top in pixels.
-			var scrollPosition = $(window).scrollTop();
-
-			var partnerId = iframes[i].contentWindow.kalturaIframePackageData.playerConfig.widgetId.replace('_', '');
-			$("<div>", {
-				id: "panelBox" + i,
-				css: {
-					"height": playerPosition.height - 60 + "px",
-					"background": 'transparent',
-					"width" : playerPosition.width / 2,
-					"color" :"RED",
-					"position":"absolute",
-					"top": playerPosition.top + scrollPosition,
-					"bottom": playerPosition.bottom,
-					"left": playerPosition.left,
-					"right": playerPosition.right
-				},
-				text: "entry id is:" + iframes[i].contentWindow.kalturaIframePackageData.playerConfig.entryId
-			}).appendTo('body');
-			$("<p>", {
-				text:"uiConfId is:" + iframes[i].contentWindow.kalturaIframePackageData.playerConfig.uiConfId
-			}).appendTo('#panelBox' + i);
-			$("<p>", {
-				text:"Partner Id is:" + partnerId
-			}).appendTo('#panelBox' + i);
+			if (typeof(iframes[i].contentWindow.kalturaIframePackageData) != "undefined") {
+				var playerPosition = iframes[i].getBoundingClientRect();
+				// get the scroll position from the top in pixels.
+				var scrollPosition = $(window).scrollTop();
+				var partnerId = iframes[i].contentWindow.kalturaIframePackageData.playerConfig.widgetId.replace('_', '');
+				if (!$('#panelBox0').length) {
+					$("<div>", {
+						id: "panelBox" + i,
+						css: {
+							"height": playerPosition.height - 60 + "px",
+							"background": 'transparent',
+							"width" : playerPosition.width / 2,
+							"color" :"RED",
+							"position":"absolute",
+							"top": playerPosition.top + scrollPosition,
+							"bottom": playerPosition.bottom,
+							"left": playerPosition.left,
+							"right": playerPosition.right
+						},
+						text: "entry id is:" + iframes[i].contentWindow.kalturaIframePackageData.playerConfig.entryId
+					}).appendTo('body');
+					$("<p>", {
+						text:"uiConfId is:" + iframes[i].contentWindow.kalturaIframePackageData.playerConfig.uiConfId
+					}).appendTo('#panelBox' + i);
+					$("<p>", {
+						text:"Partner Id is:" + partnerId
+					}).appendTo('#panelBox' + i);
+				}
+			}
 		}
 	}
 
@@ -83,13 +124,14 @@ $(document).ready(function() {
 	// Looking for links in Salesforce ticket comments and turn then into click-able links
 	var findJiraComment = function() {
 		setTimeout(function() {
-			$('td:contains("Created By")').each(function () {
-			if (this.innerText.length > 140 && this.innerText.length < 450) {
+			$('.dataCell').each(function () {
+				console.log(this);
+			// if (this.innerText.length > 140 && this.innerText.length < 450) {
 				this.innerHTML = Autolinker.link( this.innerHTML );
 				var pattern = /Link:/;
 				if (pattern.test(this.innerText)) {
 				}
-			}
+			// }
 		});
 		}, 1500);	
 	};
@@ -98,79 +140,108 @@ $(document).ready(function() {
 	// Iterating over each ticket type options and turn it to a clickable link.
 	var findJiraField = function() {
 		setTimeout(function() {
-		var currentLocation = document.URL;
-		var pattern = /salesforce/;
-		// Execute the script bellow only if the location is in salesforce
-		if (pattern.test(currentLocation)) {
-			var els = {};
-			for (var i = 0; i < options.length; i++) {
-				$('div:contains("' + options[i] + '")').each(function () {
-					// Looking for links in Salesforce ticket comments and turn then into click-able links
-					$(document).ready(findJiraComment).delay(400);
-					//get the comment field's class - will be used to test if user Clicked edit comment
-					var editCommentClass = $(this).attr("class");
-					//do not execute the script bellow if user is editing a comment.
-					if (this.innerText.length < 30 && editCommentClass != "pbSubsection" && editCommentClass != "requiredInput") {
-						var jiraNumber = this.innerText;
-						$(this).empty();
-						jiraNumber = jiraNumber.split(",");
-						for (var j = 0; j < jiraNumber.length; j++) {
-							jiraNumber[j] = jiraNumber[j].replace(' ', '');
-							if (jiraNumber[j].indexOf(',') != -1 ) {
-								jiraNumber[j] = jiraNumber[j].replace('\,', '');
+			var currentLocation = document.URL;
+			var pattern = /salesforce/;
+
+			// Execute the script bellow only if the location is in salesforce
+			if (pattern.test(currentLocation)) {
+				var els = {};
+				for (var i = 0; i < options.length; i++) {
+					$('div:contains("' + options[i] + '")').each(function () {
+
+						// Looking for links in Salesforce ticket comments and turn then into click-able links
+						$(document).ready(findJiraComment).delay(400);
+						//get the comment field's class - will be used to test if user Clicked edit comment
+						var editCommentClass = $(this).attr("class");
+						//do not execute the script bellow if user is editing a comment.
+						if (this.innerText.length < 30 && editCommentClass != "pbSubsection" && editCommentClass != "requiredInput") {
+							if (!$(this).find('a').length) {
+							
+								var jiraNumber = this.innerText;
+								console.log(jiraNumber);
+								$(this).empty();
+								jiraNumber = jiraNumber.split(",");
+								for (var j = 0; j < jiraNumber.length; j++) {
+									jiraNumber[j] = jiraNumber[j].replace(' ', '');
+									if (jiraNumber[j].indexOf(',') != -1 ) {
+										jiraNumber[j] = jiraNumber[j].replace('\,', '');
+									}
+									var link = options[i] === "F-CS" ? 
+										"https://control.akamai.com/resolve/caseview/caseDetails.jsp?caseId=" + jiraNumber[j] : 
+										"https://kaltura.atlassian.net/browse/" + jiraNumber[j];
+									var newLink = $("<a />", {
+										name: "link",
+
+										target: "_blank",
+										href: link,
+										text: jiraNumber[j] + " "
+									});
+									$(this).append(newLink);
+								}
 							}
-							var link = options[i] === "F-CS" ? "https://control.akamai.com/resolve/caseview/caseDetails.jsp?caseId=" + jiraNumber[j] : "https://kaltura.atlassian.net/browse/" + jiraNumber[j];
-							var newLink = $("<a />", {
-								name: "link",
-								target: "_blank",
-								href: link,
-								text: jiraNumber[j] + " "
-							});
-							$(this).append(newLink);
 						}
-					}
-				});
+					});
+				}
 			}
-		}
 		}, 1500);
 	};
 
 	(function() {
-		var btns = ["open_jira", "open_supps"]
+		var btns = ["open_jira", "open_supps", "open_akamai"];
 		var lastButton =  $('[name="open_jira"]');
+		var btnsElm = [];
+		$('.pbButton').css({
+			'position' : 'relative',
+			'left': '-140px'
+		});
+
 		var createNewBtn = function (btnType) {
 			var btnTypeText = btnType.split('_');
+			var btnTypeTextNew = '';
 			for (var j = 0; j < btnTypeText.length; j++) {
+				
 				btnTypeText[j] = btnTypeText[j].charAt(0).toUpperCase() + btnTypeText[j].slice(1);
+				if (j != btnTypeText.length - 1) {
+					btnTypeText[j] += " ";
+				}
+
+				btnTypeTextNew += btnTypeText[j];
 			}
 			var newButton = $('<input/>').attr({
 				type: "button",
 				id: btnType,
 				class: "btn custom",
 				data: btnType,
-				value: btnTypeText[0] + ' ' + btnTypeText[1]
+				value: btnTypeTextNew
 			});
 			return newButton;
 		}
-		var btnsElm = [];
+		
 		for (var i=0; i < btns.length; i++) {
 			var btn = createNewBtn(btns[i]);
 			btnsElm.push(btn);
 		}
-	
+
+
 		$(lastButton).replaceWith(btnsElm[0][0]);
-		console.log(btnsElm[0][0].id);
-		$('#' + btnsElm[0][0].id).after(btnsElm[1][0]);
+		for (i=0; i < btnsElm.length - 1; i++) {
+			$('#' + btnsElm[i][0].id).after(btnsElm[i+1][0]);	
+		}
+		
 		$('.custom').click(function(event) {	
 			var caseData = saveTicketInformation();		
 		    chrome.storage.local.set({'caseData': caseData}, function() {
-		    		if (event.target.id === "open_jira") {
-			    		var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=9";
-		    		} else {
-			    		var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=12201&issuetype=9";
-		    		}
-    				myWindow = window.open(url, "myWindow", "width=600, height=600");    // Opens a new window
-    				myWindow.focus();
+	    		if (event.target.id === "open_jira") {
+		    		var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=9";
+	    		} else if (event.target.id === "open_supps") {
+		    		var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=12201&issuetype=9";
+	    		} else if (event.target.id === "open_akamai") {
+	    			var url = "https://control.akamai.com/resolve/charaka/CharakaServlet?action=open&requestType=nonPS&category=Technical%20Support_technical.support";
+	    		} else {
+	    			var url = "about:blank";
+	    		}
+				myWindow = window.open(url, "myWindow", "width=600, height=600");    // Opens a new window
+				myWindow.focus();
 
 			});	
 		});
@@ -246,8 +317,10 @@ $(document).ready(function() {
 					$('#customfield_10103-1').prop('checked',true);
 				} else if (items.caseData.accountClass === "Gold") {
 					$('#customfield_10103-2').prop('checked',true);
-				} else {
+				} else if (items.caseData.accountClass === "Silver") {
 					$('#customfield_10103-3').prop('checked',true);
+				} else {
+					$('#customfield_10103-3').prop('checked', true);
 				}
 			});	
 		}
