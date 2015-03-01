@@ -29,8 +29,11 @@ $(document).ready(function() {
 			// console.log(kWidget.uiConfScriptLoadList);
 			// alert('Entry name: '+ JSON.stringify(kdp.evaluate('{mediaProxy.selectedFlavorId}') ));
 			// binds an event and namespces it to "myPluginName"
-			kdp.kBind("bytesDownloadedChange", function( data, id ){
-				// console.log(data);
+			kdp.kBind("bytesDownloadedChange.test", function( data, id ){
+				if (isNaN(data.newValue)) {
+					kdp.kUnbind('.test')
+				}
+				
 				createInfo(data);
 			});
 		});
@@ -38,7 +41,8 @@ $(document).ready(function() {
 
 		var createInfo = function(data) {
 		// data = JSON.stringify(data);
-			data.newValue = bytesToSize(data.newValue);
+			
+			data.newValue = (isNaN(data.newValue)) ? "Only HTTP Streaming type is currently supported" : bytesToSize(data.newValue);
 			if ($('#downloadedBytes').length) {
 
 				var p = $("<td>", {
@@ -68,6 +72,7 @@ $(document).ready(function() {
 		var iframes = document.getElementsByTagName('iframe');
 
 		for (var i = 0; i < iframes.length; i++ ) {
+			$(iframes[i]).attr('allow-same-origin', true);
 			//get the player position
 			if (typeof(iframes[i].contentWindow.kalturaIframePackageData) != "undefined") {
 				var playerPosition = iframes[i].getBoundingClientRect();
