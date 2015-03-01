@@ -22,7 +22,7 @@ $(document).ready(function() {
 
 	//collect player information and add an overlay div on the player to display the information.
 	function getPlayerInfo () {
-
+		$()
 		// if (typeof(kWidget) != "undefined")
 		kWidget.addReadyCallback(function( playerId ){
 			var kdp = document.getElementById( playerId );
@@ -41,9 +41,9 @@ $(document).ready(function() {
 			data.newValue = bytesToSize(data.newValue);
 			if ($('#downloadedBytes').length) {
 
-				var p = $("<p>", {
+				var p = $("<td>", {
 					id: "downloadedBytes",
-					text:"Downloaded:" + data.newValue
+					text: data.newValue
 				});
 				$('#downloadedBytes').replaceWith(p);	
 			} else {
@@ -73,29 +73,73 @@ $(document).ready(function() {
 				var playerPosition = iframes[i].getBoundingClientRect();
 				// get the scroll position from the top in pixels.
 				var scrollPosition = $(window).scrollTop();
-				var partnerId = iframes[i].contentWindow.kalturaIframePackageData.playerConfig.widgetId.replace('_', '');
+				var streamingType = function(streamingType) {
+					if (streamingType === "hdnetworkmanifest") {
+						streamingType = "HTTP Streaming(HDS)";
+					} else if (streamingType === "hdnetwork") {
+						streamingType = "HTTP Streaming(Akamai)";
+					} else if (streamingType === "http") {
+						streamingType = "HTTP Progressive Download";
+					} else if (streamingType === "rtmp") {
+						streamingType = "RTMP Streaming";
+					} else if (streamingType === "auto") {
+						streamingType = "Auto";
+					} else {
+						streamingType = "RTMPE Streaming";
+					}
+					return streamingType;
+				}
+				var playerInformation = {
+					"Partner Id" : iframes[i].contentWindow.kalturaIframePackageData.playerConfig.widgetId.replace('_', ''),
+					"Entry Id" : iframes[i].contentWindow.kalturaIframePackageData.playerConfig.entryId,
+					"UiConf Id" : iframes[i].contentWindow.kalturaIframePackageData.playerConfig.uiConfId,
+					"Streaming Type" : streamingType(iframes[i].contentWindow.kalturaIframePackageData.playerConfig.vars.streamerType),
+					"Player Version" : preMwEmbedConfig.version,
+					"Downloaded" : '0 MB'
+				}
 				if (!$('#panelBox0').length) {
 					$("<div>", {
 						id: "panelBox" + i,
+						class: "extensionPanel",
 						css: {
-							"height": playerPosition.height - 60 + "px",
-							"background": 'transparent',
+							"height": playerPosition.height/2,
 							"width" : playerPosition.width / 2,
-							"color" :"RED",
-							"position":"absolute",
-							"top": playerPosition.top + scrollPosition,
+							"top": playerPosition.top + scrollPosition + 5,
 							"bottom": playerPosition.bottom,
-							"left": playerPosition.left,
+							"left": playerPosition.left + 5,
 							"right": playerPosition.right
-						},
-						text: "entry id is:" + iframes[i].contentWindow.kalturaIframePackageData.playerConfig.entryId
+						}
 					}).appendTo('body');
-					$("<p>", {
-						text:"uiConfId is:" + iframes[i].contentWindow.kalturaIframePackageData.playerConfig.uiConfId
+					$("<span>", {
+						id: "closeBtn",
+						text: "[x]",
+						css: {
+							"position" : "absolute",
+							"right" : "5px",
+							"cursor": "pointer"
+						}
 					}).appendTo('#panelBox' + i);
-					$("<p>", {
-						text:"Partner Id is:" + partnerId
-					}).appendTo('#panelBox' + i);
+					$('#closeBtn').click(function() {
+						$('#panelBox0').hide();
+					});
+
+					$.each(playerInformation, function(key, value) {
+						var tbl = $('<table></table>').attr({ id: "bob" });
+					    var row = $('<tr></tr>').attr({ class: ["class1", "class2", "class3"].join(' ') }).appendTo(tbl);
+					    $('<td class="customTd"></td>').text(key + " : ").appendTo(row);
+					    if (key === "Downloaded") {
+					    	$('<td id="downloadedBytes"></td>').text(value).appendTo(row);        	
+					    } else {
+					    $('<td></td>').text(value).appendTo(row);        
+						}
+					    tbl.appendTo($("#panelBox" + i));   
+						// $("<p>", {
+						// 	text: key + ": " + value
+						// }).appendTo('#panelBox' + i);
+					});
+
+				} else {
+					$('#panelBox' + i).show();
 				}
 			}
 		}

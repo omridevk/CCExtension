@@ -51,6 +51,9 @@
         "js/foundation/foundation.min.js",
         "js/autolinker/Autolinker.js",
         "src/inject/inject.js"
+      ],
+      "css": [
+        "css/injectStyles.css"
       ]
     }
   ]
