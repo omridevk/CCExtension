@@ -58,6 +58,19 @@ myApp.controller('customerCareCtrl', function ($scope) {
     }
 });
 
+chrome.contextMenus.create({
+
+    title: "Search: %s", 
+    contexts:["selection"], 
+    onclick: test,
+
+});
+
+var test = function() {
+     chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+           chrome.tabs.sendMessage(tabs[0].id, {action: "getKs"}, function(response) {});  
+        });
+}
 
 myApp.directive('myEnter', function () { //directive that listen to "Enter" keypress
     return function (scope, element, attrs) {

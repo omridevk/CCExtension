@@ -33,10 +33,13 @@ chrome.runtime.onMessage.addListener(
 // }
 
 chrome.contextMenus.create({
-    "title": "Buzz This",
-    "contexts": ["video", ""],
+    "title": "Player Stats",
+    "contexts": ["video", "frame"],
     "onclick" : function(info,tab) {
       console.log('Select link: ' + info.selectionText);
+      chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+           chrome.tabs.sendMessage(tabs[0].id, {action: "getPlayerInfo"}, function(response) {});  
+        });
     }
   });
 

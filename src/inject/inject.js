@@ -109,18 +109,19 @@ $(document).ready(function() {
 						css: {
 							"height": playerPosition.height/2,
 							"width" : playerPosition.width / 2,
-							"top": playerPosition.top + scrollPosition + 5,
+							"top": playerPosition.top + scrollPosition + 15,
 							"bottom": playerPosition.bottom,
-							"left": playerPosition.left + 5,
+							"left": playerPosition.left + 15,
 							"right": playerPosition.right
 						}
 					}).appendTo('body');
 					$("<span>", {
 						id: "closeBtn",
-						text: "[x]",
+						class: "boxclose",
 						css: {
 							"position" : "absolute",
-							"right" : "5px",
+							"right" : "18px",
+							"top" : "20px",
 							"cursor": "pointer"
 						}
 					}).appendTo('#panelBox' + i);
@@ -129,8 +130,8 @@ $(document).ready(function() {
 					});
 
 					$.each(playerInformation, function(key, value) {
-						var tbl = $('<table></table>').attr({ id: "bob" });
-					    var row = $('<tr></tr>').attr({ class: ["class1", "class2", "class3"].join(' ') }).appendTo(tbl);
+						var tbl = $('<table></table>');
+					    var row = $('<tr></tr>').attr({ class: ["panelTabel"].join(' ') }).appendTo(tbl);
 					    $('<td class="customTd"></td>').text(key + " : ").appendTo(row);
 					    if (key === "Downloaded") {
 					    	$('<td id="downloadedBytes"></td>').text(value).appendTo(row);        	
