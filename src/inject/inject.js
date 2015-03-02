@@ -242,7 +242,7 @@ $(document).ready(function() {
 		var btnsElm = [];
 		$('.pbButton').css({
 			'position' : 'relative',
-			'left': '-140px'
+			'left': '0px'
 		});
 
 		var createNewBtn = function (btnType) {
