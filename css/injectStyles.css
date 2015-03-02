@@ -13,6 +13,7 @@
 .customTd {
 	width:120px;
 	padding-left:10px;
+    word-wrap: break-word;
 }
 
 table:first-of-type .panelTabel td{

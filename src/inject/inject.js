@@ -20,12 +20,17 @@ $(document).ready(function() {
 		}
 	}
 
+
+
 	//collect player information and add an overlay div on the player to display the information.
 	function getPlayerInfo () {
+		var playerInformation = {};
 		// if (typeof(kWidget) != "undefined")
 		kWidget.addReadyCallback(function( playerId ){
 			var kdp = document.getElementById( playerId );
-			// alert('Entry name: '+ JSON.stringify(kdp.evaluate('{mediaProxy.selectedFlavorId}') ));
+			// alert('Entry name: '+ JSON.stringify(kdp.evaluate('{mediaProxy.entry.}') ));
+			playerInformation["Play Manifest"] = kdp.evaluate('{mediaProxy.entry.dataUrl}');
+			console.log(JSON.stringify(kdp.evaluate('{mediaProxy.entry}') ));
 			// binds an event and namespces it to "myPluginName"
 			kdp.kBind("bytesDownloadedChange.test", function( data, id ){
 				if (isNaN(data.newValue)) {
@@ -96,14 +101,21 @@ $(document).ready(function() {
 					}
 					return streamingType;
 				}
-				var playerInformation = {
-					"Partner Id" : iframes[i].contentWindow.kalturaIframePackageData.playerConfig.widgetId.replace('_', ''),
-					"Entry Id" : iframes[i].contentWindow.kalturaIframePackageData.playerConfig.entryId,
-					"UiConf Id" : iframes[i].contentWindow.kalturaIframePackageData.playerConfig.uiConfId,
-					"Streaming Type" : streamingType(iframes[i].contentWindow.kalturaIframePackageData.playerConfig.vars.streamerType),
-					"Player Version" : preMwEmbedConfig.version,
-					"Downloaded" : '0 MB'
-				}
+				// var playerInformation = {
+				// 	"Partner Id" : iframes[i].contentWindow.kalturaIframePackageData.playerConfig.widgetId.replace('_', ''),
+				// 	"Entry Id" : iframes[i].contentWindow.kalturaIframePackageData.playerConfig.entryId,
+				// 	"UiConf Id" : iframes[i].contentWindow.kalturaIframePackageData.playerConfig.uiConfId,
+				// 	"Streaming Type" : streamingType(iframes[i].contentWindow.kalturaIframePackageData.playerConfig.vars.streamerType),
+				// 	"Player Version" : preMwEmbedConfig.version,
+				// 	"Downloaded" : '0 MB'
+				// }
+				playerInformation["Partner Id"] = iframes[i].contentWindow.kalturaIframePackageData.playerConfig.widgetId.replace('_', '');
+				playerInformation["Entry Id"] = iframes[i].contentWindow.kalturaIframePackageData.playerConfig.entryId;
+				playerInformation["UiConf Id"] =  iframes[i].contentWindow.kalturaIframePackageData.playerConfig.uiConfId;
+				playerInformation["Streaming Type"] = streamingType(iframes[i].contentWindow.kalturaIframePackageData.playerConfig.vars.streamerType);
+				playerInformation["Player Version"] =  preMwEmbedConfig.version;
+				playerInformation["Downloaded"] = '0 MB';
+
 				if (!$('#panelBox0').length) {
 					$("<div>", {
 						id: "panelBox" + i,
@@ -237,7 +249,7 @@ $(document).ready(function() {
 	};
 
 	(function() {
-		var btns = ["open_jira", "open_supps", "open_akamai"];
+		var btns = ["open_jira", "open_supps", "open_feature_request", "open_akamai"];
 		var lastButton =  $('[name="open_jira"]');
 		var btnsElm = [];
 		$('.pbButton').css({
@@ -287,6 +299,8 @@ $(document).ready(function() {
 		    		var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=12201&issuetype=9";
 	    		} else if (event.target.id === "open_akamai") {
 	    			var url = "https://control.akamai.com/resolve/charaka/CharakaServlet?action=open&requestType=nonPS&category=Technical%20Support_technical.support";
+	    		} else if (event.target.id === "open_feature_request"){
+	    			var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=12201&issuetype=4";
 	    		} else {
 	    			var url = "about:blank";
 	    		}
