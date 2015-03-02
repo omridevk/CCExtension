@@ -22,11 +22,9 @@ $(document).ready(function() {
 
 	//collect player information and add an overlay div on the player to display the information.
 	function getPlayerInfo () {
-		$()
 		// if (typeof(kWidget) != "undefined")
 		kWidget.addReadyCallback(function( playerId ){
 			var kdp = document.getElementById( playerId );
-			// console.log(kWidget.uiConfScriptLoadList);
 			// alert('Entry name: '+ JSON.stringify(kdp.evaluate('{mediaProxy.selectedFlavorId}') ));
 			// binds an event and namespces it to "myPluginName"
 			kdp.kBind("bytesDownloadedChange.test", function( data, id ){
@@ -74,6 +72,10 @@ $(document).ready(function() {
 		for (var i = 0; i < iframes.length; i++ ) {
 			$(iframes[i]).attr('allow-same-origin', true);
 			//get the player position
+
+			var innerDoc = iframes[i].contentDocument || iframes[i].contentWindow.document;
+			var innerPlayeriFrame = innerDoc.getElementsByTagName('iframe');
+			
 			if (typeof(iframes[i].contentWindow.kalturaIframePackageData) != "undefined") {
 				var playerPosition = iframes[i].getBoundingClientRect();
 				// get the scroll position from the top in pixels.
@@ -86,7 +88,7 @@ $(document).ready(function() {
 					} else if (streamingType === "http") {
 						streamingType = "HTTP Progressive Download";
 					} else if (streamingType === "rtmp") {
-						streamingType = "RTMP Streaming";
+						streamingType = "RTMP";
 					} else if (streamingType === "auto") {
 						streamingType = "Auto";
 					} else {
@@ -175,7 +177,6 @@ $(document).ready(function() {
 	var findJiraComment = function() {
 		setTimeout(function() {
 			$('.dataCell').each(function () {
-				console.log(this);
 			// if (this.innerText.length > 140 && this.innerText.length < 450) {
 				this.innerHTML = Autolinker.link( this.innerHTML );
 				var pattern = /Link:/;
@@ -208,7 +209,6 @@ $(document).ready(function() {
 							if (!$(this).find('a').length) {
 							
 								var jiraNumber = this.innerText;
-								console.log(jiraNumber);
 								$(this).empty();
 								jiraNumber = jiraNumber.split(",");
 								for (var j = 0; j < jiraNumber.length; j++) {
