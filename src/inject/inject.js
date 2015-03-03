@@ -24,145 +24,146 @@ $(document).ready(function() {
 
 	//collect player information and add an overlay div on the player to display the information.
 	function getPlayerInfo () {
-		var playerInformation = {};
-		// if (typeof(kWidget) != "undefined")
-		kWidget.addReadyCallback(function( playerId ){
-			var kdp = document.getElementById( playerId );
-			// alert('Entry name: '+ JSON.stringify(kdp.evaluate('{mediaProxy.entry.}') ));
-			playerInformation["Play Manifest"] = kdp.evaluate('{mediaProxy.entry.dataUrl}');
-			console.log(JSON.stringify(kdp.evaluate('{mediaProxy.entry}') ));
-			// binds an event and namespces it to "myPluginName"
-			kdp.kBind("bytesDownloadedChange.test", function( data, id ){
-				if (isNaN(data.newValue)) {
-					kdp.kUnbind('.test')
+		if (typeof(kWidget) != "undefined") {
+			var playerInformation = {};
+			var options = {};
+
+			var streamingType = function(streamingType) {
+				if (streamingType === "hdnetworkmanifest") {
+					streamingType = "HTTP Streaming(HDS)";
+				} else if (streamingType === "hdnetwork") {
+					streamingType = "HTTP Streaming(Akamai)";
+				} else if (streamingType === "http") {
+					streamingType = "HTTP Progressive Download";
+				} else if (streamingType === "rtmp") {
+					streamingType = "RTMP";
+				} else if (streamingType === "auto") {
+					streamingType = "Auto";
+				} else {
+					streamingType = "RTMPE Streaming";
 				}
-				
-				createInfo(data);
-			});
-		});
-
-
-		var createInfo = function(data) {
-		// data = JSON.stringify(data);
-			
-			data.newValue = (isNaN(data.newValue)) ? "Only HTTP Streaming type is currently supported" : bytesToSize(data.newValue);
-			if ($('#downloadedBytes').length) {
-
-				var p = $("<td>", {
-					id: "downloadedBytes",
-					text: data.newValue
-				});
-				$('#downloadedBytes').replaceWith(p);	
-			} else {
-				$("<p>", {
-					id: "downloadedBytes",
-					text:"Downloaded:" + data.newValue
-				}).appendTo('#panelBox0');
+				return streamingType;
 			}
-		}
 
-
-
-		function bytesToSize(bytes) {
-		   	if(bytes == 0) return '0 Byte';
-			   var k = 1000;
-			   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-			   var i = Math.floor(Math.log(bytes) / Math.log(k));
-			   return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
-		}
-
-
-		var iframes = document.getElementsByTagName('iframe');
-
-		for (var i = 0; i < iframes.length; i++ ) {
-			$(iframes[i]).attr('allow-same-origin', true);
-			//get the player position
-
-			var innerDoc = iframes[i].contentDocument || iframes[i].contentWindow.document;
-			var innerPlayeriFrame = innerDoc.getElementsByTagName('iframe');
 			
-			if (typeof(iframes[i].contentWindow.kalturaIframePackageData) != "undefined") {
-				var playerPosition = iframes[i].getBoundingClientRect();
-				// get the scroll position from the top in pixels.
-				var scrollPosition = $(window).scrollTop();
-				var streamingType = function(streamingType) {
-					if (streamingType === "hdnetworkmanifest") {
-						streamingType = "HTTP Streaming(HDS)";
-					} else if (streamingType === "hdnetwork") {
-						streamingType = "HTTP Streaming(Akamai)";
-					} else if (streamingType === "http") {
-						streamingType = "HTTP Progressive Download";
-					} else if (streamingType === "rtmp") {
-						streamingType = "RTMP";
-					} else if (streamingType === "auto") {
-						streamingType = "Auto";
-					} else {
-						streamingType = "RTMPE Streaming";
-					}
-					return streamingType;
-				}
-				// var playerInformation = {
-				// 	"Partner Id" : iframes[i].contentWindow.kalturaIframePackageData.playerConfig.widgetId.replace('_', ''),
-				// 	"Entry Id" : iframes[i].contentWindow.kalturaIframePackageData.playerConfig.entryId,
-				// 	"UiConf Id" : iframes[i].contentWindow.kalturaIframePackageData.playerConfig.uiConfId,
-				// 	"Streaming Type" : streamingType(iframes[i].contentWindow.kalturaIframePackageData.playerConfig.vars.streamerType),
-				// 	"Player Version" : preMwEmbedConfig.version,
-				// 	"Downloaded" : '0 MB'
-				// }
-				playerInformation["Partner Id"] = iframes[i].contentWindow.kalturaIframePackageData.playerConfig.widgetId.replace('_', '');
-				playerInformation["Entry Id"] = iframes[i].contentWindow.kalturaIframePackageData.playerConfig.entryId;
-				playerInformation["UiConf Id"] =  iframes[i].contentWindow.kalturaIframePackageData.playerConfig.uiConfId;
-				playerInformation["Streaming Type"] = streamingType(iframes[i].contentWindow.kalturaIframePackageData.playerConfig.vars.streamerType);
+			
+			kWidget.addReadyCallback(function( playerId ){
+				var kdp = document.getElementById( playerId );
+				options.playerDivId = kdp;
+				// playerInformation["Play Manifest"] = kdp.evaluate('{mediaProxy.entry.dataUrl}');
+				playerInformation["Partner Id"] = kdp.evaluate('{mediaProxy.entry.partnerId}');
+				playerInformation["Entry Name"] = kdp.evaluate('{mediaProxy.entry.name}');
+				playerInformation["Entry Id"] = kdp.evaluate('{mediaProxy.entry.id}');
+				playerInformation["Volume"] = kdp.evaluate('{video.volume}') * 100 + "%";
+				playerInformation["Streaming Type"] = streamingType(kdp.evaluate('{configProxy.flashvars.streamerType}'));
+				var uiConfId = kdp.evaluate('{mediaProxy.kalturaMediaFlavorArray}')[0].src;
+				playerInformation["UiConf Id"] = uiConfId.split('uiConfId=')[1];
 				playerInformation["Player Version"] =  preMwEmbedConfig.version;
 				playerInformation["Downloaded"] = '0 MB';
+				kdp.kBind("bytesDownloadedChange.bytesChanged", function( data, id ){
+					if (isNaN(data.newValue)) {
+						kdp.kUnbind('.bytesChanged')
+					}
+					
+					createInfo(data);
+				});
+				kdp.kBind("volumeChanged.bytesChanged", function( data, id ){
+					var volume = data.newVolume * 100;
+					updateVolumeLabel(volume)
+				});
+			});
+			
+			var updateVolumeLabel = function(data) {
+				var td = $("<td>", {
+						id: "volumeLabel",
+						text: data + "%"
+				});
+				$('#volumeLabel').replaceWith(td);
+			}
 
-				if (!$('#panelBox0').length) {
-					$("<div>", {
-						id: "panelBox" + i,
-						class: "extensionPanel",
-						css: {
-							"height": playerPosition.height/2,
-							"width" : playerPosition.width / 2,
-							"top": playerPosition.top + scrollPosition + 15,
-							"bottom": playerPosition.bottom,
-							"left": playerPosition.left + 15,
-							"right": playerPosition.right
-						}
-					}).appendTo('body');
-					$("<span>", {
-						id: "closeBtn",
-						class: "boxclose",
-						css: {
-							"position" : "absolute",
-							"right" : "18px",
-							"top" : "20px",
-							"cursor": "pointer"
-						}
-					}).appendTo('#panelBox' + i);
-					$('#closeBtn').click(function() {
-						$('#panelBox0').hide();
+			var createInfo = function(data) {			
+				data.newValue = (isNaN(data.newValue)) ? "Only HTTP Streaming type is currently supported" : bytesToSize(data.newValue);
+				if ($('#downloadedBytes').length) {
+
+					var td = $("<td>", {
+						id: "downloadedBytes",
+						text: data.newValue
 					});
-
-					$.each(playerInformation, function(key, value) {
-						var tbl = $('<table></table>');
-					    var row = $('<tr></tr>').attr({ class: ["panelTabel"].join(' ') }).appendTo(tbl);
-					    $('<td class="customTd"></td>').text(key + " : ").appendTo(row);
-					    if (key === "Downloaded") {
-					    	$('<td id="downloadedBytes"></td>').text(value).appendTo(row);        	
-					    } else {
-					    $('<td></td>').text(value).appendTo(row);        
-						}
-					    tbl.appendTo($("#panelBox" + i));   
-						// $("<p>", {
-						// 	text: key + ": " + value
-						// }).appendTo('#panelBox' + i);
-					});
-
+					$('#downloadedBytes').replaceWith(td);	
 				} else {
-					$('#panelBox' + i).show();
+					$("<p>", {
+						id: "downloadedBytes",
+						text:"Downloaded:" + data.newValue
+					}).appendTo('#panelBox');
 				}
 			}
-		}
+
+
+
+			function bytesToSize(bytes) {
+			   	if(bytes == 0) return '0 Byte';
+				   var k = 1000;
+				   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+				   var i = Math.floor(Math.log(bytes) / Math.log(k));
+				   return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
+			}
+
+
+			var iframes = document.getElementsByTagName('iframe');
+			var playerPosition = (options.playerDivId) ? options.playerDivId.getBoundingClientRect() : undefined;
+			// get the scroll position from the top in pixels.
+			var scrollPosition = $(window).scrollTop();
+			
+
+			if (!$('#panelBox').length) {
+				$("<div>", {
+					id: "panelBox",
+					class: "extensionPanel",
+					css: {
+						"height": playerPosition.height/1.5,
+						"width" : playerPosition.width / 1.5,
+						"top": playerPosition.top + scrollPosition + 15,
+						"bottom": playerPosition.bottom,
+						"left": playerPosition.left + 15,
+						"right": playerPosition.right
+					}
+				}).appendTo('body');
+				$("<span>", {
+					id: "closeBtn",
+					class: "boxclose",
+					css: {
+						"position" : "absolute",
+						"right" : "18px",
+						"top" : "20px",
+						"cursor": "pointer"
+					}
+				}).appendTo('#panelBox');
+				$('#closeBtn').click(function() {
+					$('#panelBox').hide();
+				});
+
+				$.each(playerInformation, function(key, value) {
+					var tbl = $('<table></table>');
+				    var row = $('<tr></tr>').attr({ class: ["panelTabel"].join(' ') }).appendTo(tbl);
+				    $('<td class="customTd"></td>').text(key + " : ").appendTo(row);
+				    if (key === "Downloaded") {
+				    	$('<td id="downloadedBytes"></td>').text(value).appendTo(row);        	
+				    } else if (key === "Volume") {
+				    	$('<td id="volumeLabel"></td>').text(value).appendTo(row); 
+				    } else {
+				    $('<td></td>').text(value).appendTo(row);        
+					}
+				    tbl.appendTo($("#panelBox"));   
+					// $("<p>", {
+					// 	text: key + ": " + value
+					// }).appendTo('#panelBox' + i);
+				});
+
+			} else {
+				$('#panelBox').show();
+			}
+	}
+
 	}
 
 	// Listening to events that comes from the popup window, and execute function based on the action chosen in the popup.js
