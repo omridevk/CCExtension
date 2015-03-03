@@ -301,7 +301,7 @@ $(document).ready(function() {
 	    		} else if (event.target.id === "open_akamai") {
 	    			var url = "https://control.akamai.com/resolve/charaka/CharakaServlet?action=open&requestType=nonPS&category=Technical%20Support_technical.support";
 	    		} else if (event.target.id === "open_feature_request"){
-	    			var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=12201&issuetype=4";
+	    			var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=4";
 	    		} else {
 	    			var url = "about:blank";
 	    		}
