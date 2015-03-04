@@ -55,9 +55,9 @@ $(document).ready(function() {
 				playerInformation["Entry Name"] = kdp.evaluate('{mediaProxy.entry.name}');
 				playerInformation["Entry Id"] = kdp.evaluate('{mediaProxy.entry.id}');
 				playerInformation["Volume"] = kdp.evaluate('{video.volume}') * 100 + "%";
+				
 				playerInformation["Streaming Type"] = streamingType(kdp.evaluate('{configProxy.flashvars.streamerType}'));
-				var uiConfId = kdp.evaluate('{mediaProxy.kalturaMediaFlavorArray}')[0].src;
-				playerInformation["UiConf Id"] = uiConfId.split('uiConfId=')[1];
+				playerInformation["UiConf Id"] = kdp.evaluate('{configProxy.kw.uiConfId}');
 				playerInformation["Player Version"] =  preMwEmbedConfig.version;
 				playerInformation["Downloaded"] = '0 MB';
 				kdp.kBind("bytesDownloadedChange.bytesChanged", function( data, id ){
