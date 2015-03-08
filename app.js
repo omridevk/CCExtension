@@ -40,7 +40,22 @@ myApp.controller('customerCareCtrl', function ($scope) {
         });
     }
 
+    $scope.displayURLQRCode = function($event) {
+        document.getElementById('spinner').style.display = 'block';
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+                document.getElementById('spinner').style.display = 'none';
+                $scope.qrCodeImgSrc = 'http://chart.googleapis.com/chart?cht=qr&chs=300x300&choe=UTF-8&chld=H&chl=' + tabs[0].url;
+                $scope.$apply();
+        });
+    }
 
+    $scope.getImage = function(src) {
+        if (src !== "") {
+            return src;  
+        } else {
+            return "//:0"; 
+        }
+};
 	$scope.openJira = function() {
 
 		if (typeof $scope.jira != 'undefined') {
@@ -71,6 +86,8 @@ var test = function() {
            chrome.tabs.sendMessage(tabs[0].id, {action: "getKs"}, function(response) {});  
         });
 }
+
+
 
 myApp.directive('myEnter', function () { //directive that listen to "Enter" keypress
     return function (scope, element, attrs) {

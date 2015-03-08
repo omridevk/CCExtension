@@ -48,14 +48,22 @@
         <a href="#" class="button success postfix" ng-click="getKs()">Get KS</a>
         <br>
         <a href="#" class="button success postfix" ng-click="getPlayerInfo()">Get Player Info</a>
+        <br>
+        <a href="#" class="button success postfix" data-reveal-id="myModal" ng-click="displayURLQRCode($event)">URL To QR Code</a>
       </div>
     </div> <!-- End of panel 1 -->
-
+    <div id="myModal" class="reveal-modal" data-reveal style="max-height:200px;">
+      <img id="spinner" ng-src="/img/spinner.gif" style="display:none;">
+      <img ng-src="{{qrCodeImgSrc}}" />
+      <a class="close-reveal-modal">&#215;</a>
+    </div>
     <div class="large-12 columns content" id="panel2">
       <h2>Coming Soon</h2>
     </div>
   </div> <!-- End of Row -->
 </div> <!-- Enf of Wrapper -->
+
+
 
 </body>
 </html>

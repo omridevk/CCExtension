@@ -64,7 +64,7 @@ $(document).ready(function() {
 					if (isNaN(data.newValue)) {
 						kdp.kUnbind('.bytesChanged')
 					}
-					
+					console.log(data);
 					createInfo(data);
 				});
 				kdp.kBind("volumeChanged.bytesChanged", function( data, id ){
@@ -162,7 +162,7 @@ $(document).ready(function() {
 			} else {
 				$('#panelBox').show();
 			}
-	}
+		}
 
 	}
 
@@ -174,9 +174,13 @@ $(document).ready(function() {
 	   		injectScript(jQueryInject);
 	   		injectScript(getPlayerInfo);
 	   } else if (msg.action == "test") {
-	   		
+
 	   }
 	});
+
+	function displayURLQRCode() {
+		console.log("display qrCode inject script");
+	}
 
 	// Inject script tag and its content to a page in order to access the page JavaScript variables. 
 	// Choose which function to inject when calling the function.
@@ -258,7 +262,9 @@ $(document).ready(function() {
 			'left': '0px'
 		});
 
+		
 		var createNewBtn = function (btnType) {
+			
 			var btnTypeText = btnType.split('_');
 			var btnTypeTextNew = '';
 			for (var j = 0; j < btnTypeText.length; j++) {
@@ -287,9 +293,11 @@ $(document).ready(function() {
 
 
 		$(lastButton).replaceWith(btnsElm[0][0]);
+
 		for (i=0; i < btnsElm.length - 1; i++) {
 			$('#' + btnsElm[i][0].id).after(btnsElm[i+1][0]);	
 		}
+
 		
 		$('.custom').click(function(event) {	
 			var caseData = saveTicketInformation();		
