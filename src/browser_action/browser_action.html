@@ -14,8 +14,8 @@
 <head>
   <script src="/js/angular/angular.min.js"></script>
   <script src="/js/jquery/jquery.min.js"></script>
-  <script src="/js/jquery.zclip/ZeroClipboard.js"></script>
   <script src="/js/foundation/foundation.min.js"></script>
+  <script src="/js/jquery.cookie/jquery.cookie.js"></script>
   <script src="/app.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/styles.css">
   <title>Kaltura Customer Care's Chrome Extension</title>
@@ -51,7 +51,7 @@
           <input autofocus my-enter="getKs()" class="textbox" type="text" id="ks-input-box" ng-model="ks" placeholder='Get KS'> 
         </div>
         <div class="small-2 columns">
-          <a href="#" class="button postfix" data-clipboard-target='ks-input-box' ng-click="getKs()">Go</a>
+          <a href="#" class="button postfix" data-clipboard-target="ks-input-box" id="copyKSbutton" ng-click="getKs()">Go</a>
         </div>
 
         <br>
@@ -71,7 +71,11 @@
   </div> <!-- End of Row -->
 </div> <!-- Enf of Wrapper -->
 
-
+<div id="joyrideDiv">
+<ol class="joyride-list" data-joyride>
+  <li data-id="ks-input-box"><p>Here's the explanation</p></li>
+</ol>
+</div>
 
 </body>
 </html>

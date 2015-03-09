@@ -9,7 +9,7 @@
  * http://corp.kaltura.com
  */
 
-var myApp = angular.module('myApp', []);
+var myApp = angular.module('myApp',[]);
 
 chrome.contextMenus.create({
   id: 'open',
@@ -36,9 +36,13 @@ myApp.controller('customerCareCtrl', function ($scope) {
             chrome.tabs.sendMessage(tabs[0].id, {action: "getKs"}, function(response) {
                 $scope.$apply(function() {
                     if (response)
-                        $scope.ks = response.ks["kmc.vars.ks"];
+                         $scope.ks = response.ks["kmc.vars.ks"];
+                        // $("#joyrideDiv").foundation('joyride', 'start');
+                        
                 });
                 $('#ks-input-box').select();
+                document.execCommand('copy');
+
             });  
         });
     }
