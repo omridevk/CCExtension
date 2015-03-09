@@ -58,6 +58,7 @@ $(document).ready(function() {
 				
 				playerInformation["Streaming Type"] = streamingType(kdp.evaluate('{configProxy.flashvars.streamerType}'));
 				playerInformation["UiConf Id"] = kdp.evaluate('{configProxy.kw.uiConfId}');
+				console.log(kdp.evaluate('{playerStatusProxy.loadTime}'));
 				playerInformation["Player Version"] =  preMwEmbedConfig.version;
 				playerInformation["Downloaded"] = '0 MB';
 				kdp.kBind("bytesDownloadedChange.bytesChanged", function( data, id ){
@@ -169,7 +170,8 @@ $(document).ready(function() {
 	// Listening to events that comes from the popup window, and execute function based on the action chosen in the popup.js
 	chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
 	   if (msg.action == 'getKs') {
-	   		injectScript(getKs);
+	   		var windowVariables = retrieveWindowVariables(["kmc.vars.ks"]);
+	   		sendResponse({ks: windowVariables});
 	   } else if (msg.action == 'getPlayerInfo') {
 	   		injectScript(jQueryInject);
 	   		injectScript(getPlayerInfo);
@@ -397,6 +399,33 @@ $(document).ready(function() {
 				}
 			});	
 		}
+
+	function retrieveWindowVariables(variables) {
+	    var ret = {};
+
+	    var scriptContent = "";
+	    for (var i = 0; i < variables.length; i++) {
+	        var currVariable = variables[i];
+	        scriptContent += "if (typeof " + currVariable + " !== 'undefined') $('body').attr('tmp_" + currVariable + "', " + currVariable + ");\n"
+	    }
+
+	    var script = document.createElement('script');
+	    script.id = 'tmpScript';
+	    script.appendChild(document.createTextNode(scriptContent));
+	    (document.body || document.head || document.documentElement).appendChild(script);
+
+	    for (var i = 0; i < variables.length; i++) {
+	        var currVariable = variables[i];
+	        ret[currVariable] = $("body").attr("tmp_" + currVariable);
+	        $("body").removeAttr("tmp_" + currVariable);
+	    }
+
+	    $("#tmpScript").remove();
+
+	    return ret;
+	}
+
+
 });
 
 

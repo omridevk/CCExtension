@@ -24,13 +24,22 @@ myApp.controller('customerCareCtrl', function ($scope) {
     $scope.activeFoundation = $(document).foundation();
 
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-           chrome.tabs.sendMessage(tabs[0].id, {action: "test"}, function(response) {});  
+            chrome.tabs.sendMessage(tabs[0].id, {action: "test"}, function(response) {
+
+            });  
         });
 
     $scope.getKs = function() {
+
         //send message from browser_action(popup window) to content_script(inject.js) to display prompt with the ks.
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-           chrome.tabs.sendMessage(tabs[0].id, {action: "getKs"}, function(response) {});  
+            chrome.tabs.sendMessage(tabs[0].id, {action: "getKs"}, function(response) {
+                $scope.$apply(function() {
+                    if (response)
+                        $scope.ks = response.ks["kmc.vars.ks"];
+                });
+                $('#ks-input-box').select();
+            });  
         });
     }
 
@@ -49,13 +58,7 @@ myApp.controller('customerCareCtrl', function ($scope) {
         });
     }
 
-    $scope.getImage = function(src) {
-        if (src !== "") {
-            return src;  
-        } else {
-            return "//:0"; 
-        }
-};
+
 	$scope.openJira = function() {
 
 		if (typeof $scope.jira != 'undefined') {
@@ -86,7 +89,6 @@ var test = function() {
            chrome.tabs.sendMessage(tabs[0].id, {action: "getKs"}, function(response) {});  
         });
 }
-
 
 
 myApp.directive('myEnter', function () { //directive that listen to "Enter" keypress

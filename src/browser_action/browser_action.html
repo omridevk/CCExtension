@@ -14,6 +14,7 @@
 <head>
   <script src="/js/angular/angular.min.js"></script>
   <script src="/js/jquery/jquery.min.js"></script>
+  <script src="/js/jquery.zclip/ZeroClipboard.js"></script>
   <script src="/js/foundation/foundation.min.js"></script>
   <script src="/app.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/styles.css">
@@ -45,7 +46,14 @@
         <div class="small-2 columns">
           <a href="#" class="button postfix" ng-click="openSalesforce()">Go</a>
         </div>
-        <a href="#" class="button success postfix" ng-click="getKs()">Get KS</a>
+        <div class="small-10 columns">
+
+          <input autofocus my-enter="getKs()" class="textbox" type="text" id="ks-input-box" ng-model="ks" placeholder='Get KS'> 
+        </div>
+        <div class="small-2 columns">
+          <a href="#" class="button postfix" data-clipboard-target='ks-input-box' ng-click="getKs()">Go</a>
+        </div>
+
         <br>
         <a href="#" class="button success postfix" ng-click="getPlayerInfo()">Get Player Info</a>
         <br>
