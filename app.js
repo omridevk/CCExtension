@@ -22,13 +22,9 @@ myApp.controller('customerCareCtrl', function ($scope) {
 
     Foundation.global.namespace = '';
     $scope.activeFoundation = $(document).foundation();
-
-    chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-            chrome.tabs.sendMessage(tabs[0].id, {action: "test"}, function(response) {
-
-            });  
-        });
-
+    $(function () {
+        $('[data-toggle="popover"]').popover()
+    })
     $scope.getKs = function() {
 
         //send message from browser_action(popup window) to content_script(inject.js) to display prompt with the ks.
@@ -81,19 +77,8 @@ myApp.controller('customerCareCtrl', function ($scope) {
     }
 });
 
-chrome.contextMenus.create({
 
-    title: "Search: %s", 
-    contexts:["selection"], 
-    onclick: test,
 
-});
-
-var test = function() {
-     chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-           chrome.tabs.sendMessage(tabs[0].id, {action: "getKs"}, function(response) {});  
-        });
-}
 
 
 myApp.directive('myEnter', function () { //directive that listen to "Enter" keypress

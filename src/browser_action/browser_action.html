@@ -15,6 +15,7 @@
   <script src="/js/angular/angular.min.js"></script>
   <script src="/js/jquery/jquery.min.js"></script>
   <script src="/js/foundation/foundation.min.js"></script>
+  <script src="/js/bootstrap/bootstrap.min.js"></script>
   <script src="/js/jquery.cookie/jquery.cookie.js"></script>
   <script src="/app.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/styles.css">
@@ -48,10 +49,12 @@
         </div>
         <div class="small-10 columns">
 
-          <input autofocus my-enter="getKs()" class="textbox" type="text" id="ks-input-box" ng-model="ks" placeholder='Get KS'> 
+          <input autofocus my-enter="getKs()"  class="textbox" type="text" id="ks-input-box" ng-model="ks" placeholder='Get KS'> 
+           <small class="error" ng-show="ks" style="width: 300px; margin-top: -16px">KS Copied to clipboard</small>
         </div>
         <div class="small-2 columns">
           <a href="#" class="button postfix" data-clipboard-target="ks-input-box" id="copyKSbutton" ng-click="getKs()">Go</a>
+
         </div>
 
         <br>

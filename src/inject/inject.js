@@ -20,7 +20,9 @@ $(document).ready(function() {
 		}
 	}
 
+	function init() {
 
+	}
 
 	//collect player information and add an overlay div on the player to display the information.
 	function getPlayerInfo () {
@@ -58,14 +60,13 @@ $(document).ready(function() {
 				
 				playerInformation["Streaming Type"] = streamingType(kdp.evaluate('{configProxy.flashvars.streamerType}'));
 				playerInformation["UiConf Id"] = kdp.evaluate('{configProxy.kw.uiConfId}');
-				console.log(kdp.evaluate('{playerStatusProxy.loadTime}'));
 				playerInformation["Player Version"] =  preMwEmbedConfig.version;
 				playerInformation["Downloaded"] = '0 MB';
+				window.playerInformation = playerInformation;
 				kdp.kBind("bytesDownloadedChange.bytesChanged", function( data, id ){
 					if (isNaN(data.newValue)) {
 						kdp.kUnbind('.bytesChanged')
 					}
-					console.log(data);
 					createInfo(data);
 				});
 				kdp.kBind("volumeChanged.bytesChanged", function( data, id ){
@@ -167,22 +168,24 @@ $(document).ready(function() {
 
 	}
 
+
 	// Listening to events that comes from the popup window, and execute function based on the action chosen in the popup.js
 	chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
 	   if (msg.action == 'getKs') {
 	   		var windowVariables = retrieveWindowVariables(["kmc.vars.ks"]);
 	   		sendResponse({ks: windowVariables});
 	   } else if (msg.action == 'getPlayerInfo') {
+	   		
+	   		
 	   		injectScript(jQueryInject);
 	   		injectScript(getPlayerInfo);
+	   		var windowVariables = retrieveWindowVariables(["playerInformation"]);
+	   		console.dir(windowVariables);
 	   } else if (msg.action == "test") {
 
 	   }
 	});
 
-	function displayURLQRCode() {
-		console.log("display qrCode inject script");
-	}
 
 	// Inject script tag and its content to a page in order to access the page JavaScript variables. 
 	// Choose which function to inject when calling the function.
@@ -219,40 +222,34 @@ $(document).ready(function() {
 				for (var i = 0; i < options.length; i++) {
 					$('div:contains("' + options[i] + '")').each(function () {
 
-						// Looking for links in Salesforce ticket comments and turn then into click-able links
-						$(document).ready(findJiraComment).delay(400);
-						//get the comment field's class - will be used to test if user Clicked edit comment
-						var editCommentClass = $(this).attr("class");
-						//do not execute the script bellow if user is editing a comment.
-						if (this.innerText.length < 30 && editCommentClass != "pbSubsection" && editCommentClass != "requiredInput") {
-							if (!$(this).find('a').length) {
-							
-								var jiraNumber = this.innerText;
-								$(this).empty();
-								jiraNumber = jiraNumber.split(",");
-								for (var j = 0; j < jiraNumber.length; j++) {
-									jiraNumber[j] = jiraNumber[j].replace(' ', '');
-									if (jiraNumber[j].indexOf(',') != -1 ) {
-										jiraNumber[j] = jiraNumber[j].replace('\,', '');
-									}
-									var link = options[i] === "F-CS" ? 
-										"https://control.akamai.com/resolve/caseview/caseDetails.jsp?caseId=" + jiraNumber[j] : 
-										"https://kaltura.atlassian.net/browse/" + jiraNumber[j];
-									var newLink = $("<a />", {
-										name: "link",
-
-										target: "_blank",
-										href: link,
-										text: jiraNumber[j] + " "
-									});
-									$(this).append(newLink);
+						
+						if (!$(this).find('a').length) {
+						
+							var jiraNumber = this.innerText;
+							$(this).empty();
+							jiraNumber = jiraNumber.split(",");
+							for (var j = 0; j < jiraNumber.length; j++) {
+								jiraNumber[j] = jiraNumber[j].replace(' ', '');
+								if (jiraNumber[j].indexOf(',') != -1 ) {
+									jiraNumber[j] = jiraNumber[j].replace('\,', '');
 								}
+								var link = options[i] === "F-CS" ? 
+									"https://control.akamai.com/resolve/caseview/caseDetails.jsp?caseId=" + jiraNumber[j] : 
+									"https://kaltura.atlassian.net/browse/" + jiraNumber[j];
+								var newLink = $("<a />", {
+									name: "link",
+
+									target: "_blank",
+									href: link,
+									text: jiraNumber[j] + " "
+								});
+								$(this).append(newLink);
 							}
 						}
 					});
 				}
 			}
-		}, 1500);
+		}, 50);
 	};
 
 	(function() {
@@ -357,48 +354,48 @@ $(document).ready(function() {
 		$(window).resize(findJiraField);
 	});
 
-		if (document.URL.indexOf('CreateIssue') != -1) { 
-			//execute script if open JIRA page is loaded
-		    chrome.storage.local.get(null, function(items) { 
-		    	if (document.URL.indexOf('init') != -1) {
-		    		$('.error').hide();
-		    	}
-				var allKeys = Object.keys(items);		
-				$('#customfield_10101').val(items.caseData.accountName); //set account name field
-				$('#customfield_10102').val(items.caseData.caseNumber); //set the case number field
-				$('#customfield_10600').val(items.caseData.caseURL); //set SF Case Link field
-				$('#customfield_10303').val(10416);
-				$('option:selected', 'select[name="priority"]').removeAttr('selected');
-				if (items.caseData.priority === 'High') { //Set Ticket high priority
-					 $('#priority-field').val('2-' + items.caseData.priority);
-					 $('[name=priority]').val( 12 );
-					 $('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_critical.gif');
-				} else if (items.caseData.priority === 'Medium') {
-					$('[name=priority]').val( 13 );
-					$('#priority-field').val('3-' + items.caseData.priority, true);
-					$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_major.gif');
-				} else if (items.caseData.priority === 'Low') {
-					$('[name=priority]').val( 14 );
-					$('#priority-field').val('3-' + items.caseData.priority);
-					$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_minor.gif');
-				} else {
-					$('[name=priority]').val( 15 );
-					$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_minor.gif');
-				}
-				 //set SF Case Link field
-				
-				//Check for Class of service
-				if (items.caseData.accountClass === "Platinum") {
-					$('#customfield_10103-1').prop('checked',true);
-				} else if (items.caseData.accountClass === "Gold") {
-					$('#customfield_10103-2').prop('checked',true);
-				} else if (items.caseData.accountClass === "Silver") {
-					$('#customfield_10103-3').prop('checked',true);
-				} else {
-					$('#customfield_10103-3').prop('checked', true);
-				}
-			});	
-		}
+	if (document.URL.indexOf('CreateIssue') != -1) { 
+		//execute script if open JIRA page is loaded
+	    chrome.storage.local.get(null, function(items) { 
+	    	if (document.URL.indexOf('init') != -1) {
+	    		$('.error').hide();
+	    	}
+			var allKeys = Object.keys(items);		
+			$('#customfield_10101').val(items.caseData.accountName); //set account name field
+			$('#customfield_10102').val(items.caseData.caseNumber); //set the case number field
+			$('#customfield_10600').val(items.caseData.caseURL); //set SF Case Link field
+			$('#customfield_10303').val(10416);
+			$('option:selected', 'select[name="priority"]').removeAttr('selected');
+			if (items.caseData.priority === 'High') { //Set Ticket high priority
+				 $('#priority-field').val('2-' + items.caseData.priority);
+				 $('[name=priority]').val( 12 );
+				 $('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_critical.gif');
+			} else if (items.caseData.priority === 'Medium') {
+				$('[name=priority]').val( 13 );
+				$('#priority-field').val('3-' + items.caseData.priority, true);
+				$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_major.gif');
+			} else if (items.caseData.priority === 'Low') {
+				$('[name=priority]').val( 14 );
+				$('#priority-field').val('3-' + items.caseData.priority);
+				$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_minor.gif');
+			} else {
+				$('[name=priority]').val( 15 );
+				$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_minor.gif');
+			}
+			 //set SF Case Link field
+			
+			//Check for Class of service
+			if (items.caseData.accountClass === "Platinum") {
+				$('#customfield_10103-1').prop('checked',true);
+			} else if (items.caseData.accountClass === "Gold") {
+				$('#customfield_10103-2').prop('checked',true);
+			} else if (items.caseData.accountClass === "Silver") {
+				$('#customfield_10103-3').prop('checked',true);
+			} else {
+				$('#customfield_10103-3').prop('checked', true);
+			}
+		});	
+	}
 
 	function retrieveWindowVariables(variables) {
 	    var ret = {};
