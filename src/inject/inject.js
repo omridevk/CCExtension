@@ -9,182 +9,45 @@
  * http://corp.kaltura.com
  */
 
-$(document).ready(function() {
+(function() {
+
 	// Type of tickets to add href to. 
 	var options = ["SUP-", "PLAT-", "FEC-", "SUPPS-", "KMS-", "F-CS"];
-
-	function getKs () {
-		if (typeof kmc != 'undefined' ) {
-			var ks = kmc.vars.ks;
-			prompt("The KS is:", ks);
-		}
-	}
+	init();
 
 	function init() {
-
-	}
+		addListeners();
+		autoFillJira();
+		findJiraComment();
+		findJiraField();
+		addButtons();
+	};
 
 	//collect player information and add an overlay div on the player to display the information.
-	function getPlayerInfo () {
-		if (typeof(kWidget) != "undefined") {
-			var playerInformation = {};
-			var options = {};
+	
 
-			var streamingType = function(streamingType) {
-				if (streamingType === "hdnetworkmanifest") {
-					streamingType = "HTTP Streaming(HDS)";
-				} else if (streamingType === "hdnetwork") {
-					streamingType = "HTTP Streaming(Akamai)";
-				} else if (streamingType === "http") {
-					streamingType = "HTTP Progressive Download";
-				} else if (streamingType === "rtmp") {
-					streamingType = "RTMP";
-				} else if (streamingType === "auto") {
-					streamingType = "Auto";
-				} else {
-					streamingType = "RTMPE Streaming";
-				}
-				return streamingType;
+	function addListeners() {
+		chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
+			if (msg.action == 'getKs') {
+				var windowVariables = retrieveWindowVariables(["kmc.vars.ks"]);
+				sendResponse({ks: windowVariables});
+			} else if (msg.action == 'getPlayerInfo') {
+				injectScript(jQueryInject);
+				injectScript(getPlayerInfo);
+				newGetPlayerInfo();
+			} else if (msg.action == "test") {
+
 			}
+		});
 
-			
-			
-			kWidget.addReadyCallback(function( playerId ){
-				var kdp = document.getElementById( playerId );
-				options.playerDivId = kdp;
-				// playerInformation["Play Manifest"] = kdp.evaluate('{mediaProxy.entry.dataUrl}');
-				playerInformation["Partner Id"] = kdp.evaluate('{mediaProxy.entry.partnerId}');
-				playerInformation["Entry Name"] = kdp.evaluate('{mediaProxy.entry.name}');
-				playerInformation["Entry Id"] = kdp.evaluate('{mediaProxy.entry.id}');
-				playerInformation["Volume"] = kdp.evaluate('{video.volume}') * 100 + "%";
-				
-				playerInformation["Streaming Type"] = streamingType(kdp.evaluate('{configProxy.flashvars.streamerType}'));
-				playerInformation["UiConf Id"] = kdp.evaluate('{configProxy.kw.uiConfId}');
-				playerInformation["Player Version"] =  preMwEmbedConfig.version;
-				playerInformation["Downloaded"] = '0 MB';
-				window.playerInformation = playerInformation;
-				kdp.kBind("bytesDownloadedChange.bytesChanged", function( data, id ){
-					if (isNaN(data.newValue)) {
-						kdp.kUnbind('.bytesChanged')
-					}
-					createInfo(data);
-				});
-				kdp.kBind("volumeChanged.bytesChanged", function( data, id ){
-					var volume = data.newVolume * 100;
-					updateVolumeLabel(volume)
-				});
-			});
-			
-			var updateVolumeLabel = function(data) {
-				var td = $("<td>", {
-						id: "volumeLabel",
-						text: data + "%"
-				});
-				$('#volumeLabel').replaceWith(td);
-			}
+		chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
+		if (response.farewell == "goodbye")
 
-			var createInfo = function(data) {			
-				data.newValue = (isNaN(data.newValue)) ? "Only HTTP Streaming type is currently supported" : bytesToSize(data.newValue);
-				if ($('#downloadedBytes').length) {
-
-					var td = $("<td>", {
-						id: "downloadedBytes",
-						text: data.newValue
-					});
-					$('#downloadedBytes').replaceWith(td);	
-				} else {
-					$("<p>", {
-						id: "downloadedBytes",
-						text:"Downloaded:" + data.newValue
-					}).appendTo('#panelBox');
-				}
-			}
-
-
-
-			function bytesToSize(bytes) {
-			   	if(bytes == 0) return '0 Byte';
-				   var k = 1000;
-				   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-				   var i = Math.floor(Math.log(bytes) / Math.log(k));
-				   return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
-			}
-
-
-			var iframes = document.getElementsByTagName('iframe');
-			var playerPosition = (options.playerDivId) ? options.playerDivId.getBoundingClientRect() : undefined;
-			// get the scroll position from the top in pixels.
-			var scrollPosition = $(window).scrollTop();
-			
-
-			if (!$('#panelBox').length) {
-				$("<div>", {
-					id: "panelBox",
-					class: "extensionPanel",
-					css: {
-						"height": playerPosition.height/1.5,
-						"width" : playerPosition.width / 1.5,
-						"top": playerPosition.top + scrollPosition + 15,
-						"bottom": playerPosition.bottom,
-						"left": playerPosition.left + 15,
-						"right": playerPosition.right
-					}
-				}).appendTo('body');
-				$("<span>", {
-					id: "closeBtn",
-					class: "boxclose",
-					css: {
-						"position" : "absolute",
-						"right" : "18px",
-						"top" : "20px",
-						"cursor": "pointer"
-					}
-				}).appendTo('#panelBox');
-				$('#closeBtn').click(function() {
-					$('#panelBox').hide();
-				});
-
-				$.each(playerInformation, function(key, value) {
-					var tbl = $('<table></table>');
-				    var row = $('<tr></tr>').attr({ class: ["panelTabel"].join(' ') }).appendTo(tbl);
-				    $('<td class="customTd"></td>').text(key + " : ").appendTo(row);
-				    if (key === "Downloaded") {
-				    	$('<td id="downloadedBytes"></td>').text(value).appendTo(row);        	
-				    } else if (key === "Volume") {
-				    	$('<td id="volumeLabel"></td>').text(value).appendTo(row); 
-				    } else {
-				    $('<td></td>').text(value).appendTo(row);        
-					}
-				    tbl.appendTo($("#panelBox"));   
-					// $("<p>", {
-					// 	text: key + ": " + value
-					// }).appendTo('#panelBox' + i);
-				});
-
-			} else {
-				$('#panelBox').show();
-			}
-		}
-
-	}
-
-
+			$(window).resize(findJiraField);
+		});
+	};
 	// Listening to events that comes from the popup window, and execute function based on the action chosen in the popup.js
-	chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
-	   if (msg.action == 'getKs') {
-	   		var windowVariables = retrieveWindowVariables(["kmc.vars.ks"]);
-	   		sendResponse({ks: windowVariables});
-	   } else if (msg.action == 'getPlayerInfo') {
-	   		
-	   		
-	   		injectScript(jQueryInject);
-	   		injectScript(getPlayerInfo);
-	   		var windowVariables = retrieveWindowVariables(["playerInformation"]);
-	   		console.dir(windowVariables);
-	   } else if (msg.action == "test") {
-
-	   }
-	});
+	
 
 
 	// Inject script tag and its content to a page in order to access the page JavaScript variables. 
@@ -193,10 +56,10 @@ $(document).ready(function() {
 		var script = document.createElement('script');
 		script.appendChild(document.createTextNode('('+ func +')();'));
 		(document.body || document.head || document.documentElement).appendChild(script);
-	}
+	};
 
 	// Looking for links in Salesforce ticket comments and turn then into click-able links
-	var findJiraComment = function() {
+	function findJiraComment() {
 		setTimeout(function() {
 			$('.dataCell').each(function () {
 			// if (this.innerText.length > 140 && this.innerText.length < 450) {
@@ -211,7 +74,7 @@ $(document).ready(function() {
 
 
 	// Iterating over each ticket type options and turn it to a clickable link.
-	var findJiraField = function() {
+	function findJiraField() {
 		setTimeout(function() {
 			var currentLocation = document.URL;
 			var pattern = /salesforce/;
@@ -252,7 +115,7 @@ $(document).ready(function() {
 		}, 50);
 	};
 
-	(function() {
+	function addButtons() {
 		var btns = ["open_jira", "open_supps", "open_feature_request", "open_akamai"];
 		var lastButton =  $('[name="open_jira"]');
 		var btnsElm = [];
@@ -317,10 +180,10 @@ $(document).ready(function() {
 
 			});	
 		});
-	})();
+	}
 
 
-	var saveTicketInformation = function(btnId) {
+	function saveTicketInformation(btnId) {
 		var caseData = {};
 		caseData.div = $('#cas2_ileinner');
 		chrome.storage.local.clear();
@@ -333,68 +196,50 @@ $(document).ready(function() {
 		return caseData;
 	};
 
-	(function() {
-		var currentLocation = document.URL;
-		var pattern = /admin/;
-		var hint = $('.hint');
-		if (pattern.test(currentLocation)) {
-			if ($('#password')[0] != undefined && hint.length < 1) {
-				setTimeout(function() {
-					var z = document.getElementById("submit").click();
-				}, 200);
-			}
+
+	function autoFillJira() {
+		if (document.URL.indexOf('CreateIssue') != -1) { 
+			//execute script if open JIRA page is loaded
+		    chrome.storage.local.get(null, function(items) { 
+		    	if (document.URL.indexOf('init') != -1) {
+		    		$('.error').hide();
+		    	}
+				var allKeys = Object.keys(items);		
+				$('#customfield_10101').val(items.caseData.accountName); //set account name field
+				$('#customfield_10102').val(items.caseData.caseNumber); //set the case number field
+				$('#customfield_10600').val(items.caseData.caseURL); //set SF Case Link field
+				$('#customfield_10303').val(10416);
+				$('option:selected', 'select[name="priority"]').removeAttr('selected');
+				if (items.caseData.priority === 'High') { //Set Ticket high priority
+					 $('#priority-field').val('2-' + items.caseData.priority);
+					 $('[name=priority]').val( 12 );
+					 $('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_critical.gif');
+				} else if (items.caseData.priority === 'Medium') {
+					$('[name=priority]').val( 13 );
+					$('#priority-field').val('3-' + items.caseData.priority, true);
+					$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_major.gif');
+				} else if (items.caseData.priority === 'Low') {
+					$('[name=priority]').val( 14 );
+					$('#priority-field').val('3-' + items.caseData.priority);
+					$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_minor.gif');
+				} else {
+					$('[name=priority]').val( 15 );
+					$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_minor.gif');
+				}
+				 //set SF Case Link field
+				
+				//Check for Class of service
+				if (items.caseData.accountClass === "Platinum") {
+					$('#customfield_10103-1').prop('checked',true);
+				} else if (items.caseData.accountClass === "Gold") {
+					$('#customfield_10103-2').prop('checked',true);
+				} else if (items.caseData.accountClass === "Silver") {
+					$('#customfield_10103-3').prop('checked',true);
+				} else {
+					$('#customfield_10103-3').prop('checked', true);
+				}
+			});	
 		}
-	})();
-
-
-	chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
-	if (response.farewell == "goodbye")
-		findJiraComment();
-		findJiraField();
-		$(window).resize(findJiraField);
-	});
-
-	if (document.URL.indexOf('CreateIssue') != -1) { 
-		//execute script if open JIRA page is loaded
-	    chrome.storage.local.get(null, function(items) { 
-	    	if (document.URL.indexOf('init') != -1) {
-	    		$('.error').hide();
-	    	}
-			var allKeys = Object.keys(items);		
-			$('#customfield_10101').val(items.caseData.accountName); //set account name field
-			$('#customfield_10102').val(items.caseData.caseNumber); //set the case number field
-			$('#customfield_10600').val(items.caseData.caseURL); //set SF Case Link field
-			$('#customfield_10303').val(10416);
-			$('option:selected', 'select[name="priority"]').removeAttr('selected');
-			if (items.caseData.priority === 'High') { //Set Ticket high priority
-				 $('#priority-field').val('2-' + items.caseData.priority);
-				 $('[name=priority]').val( 12 );
-				 $('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_critical.gif');
-			} else if (items.caseData.priority === 'Medium') {
-				$('[name=priority]').val( 13 );
-				$('#priority-field').val('3-' + items.caseData.priority, true);
-				$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_major.gif');
-			} else if (items.caseData.priority === 'Low') {
-				$('[name=priority]').val( 14 );
-				$('#priority-field').val('3-' + items.caseData.priority);
-				$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_minor.gif');
-			} else {
-				$('[name=priority]').val( 15 );
-				$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_minor.gif');
-			}
-			 //set SF Case Link field
-			
-			//Check for Class of service
-			if (items.caseData.accountClass === "Platinum") {
-				$('#customfield_10103-1').prop('checked',true);
-			} else if (items.caseData.accountClass === "Gold") {
-				$('#customfield_10103-2').prop('checked',true);
-			} else if (items.caseData.accountClass === "Silver") {
-				$('#customfield_10103-3').prop('checked',true);
-			} else {
-				$('#customfield_10103-3').prop('checked', true);
-			}
-		});	
 	}
 
 	function retrieveWindowVariables(variables) {
@@ -422,8 +267,158 @@ $(document).ready(function() {
 	    return ret;
 	}
 
+	function newGetPlayerInfo() {
+		console.log($('#tmpDiv').innerHTML);
+	}
 
-});
+	function getPlayerInfo () {
+		if (typeof(kWidget) != "undefined") {
+			var playerInformation = {};
+			var options = {};
+
+			var streamingType = function(streamingType) {
+				if (streamingType === "hdnetworkmanifest") {
+					streamingType = "HTTP Streaming(HDS)";
+				} else if (streamingType === "hdnetwork") {
+					streamingType = "HTTP Streaming(Akamai)";
+				} else if (streamingType === "http") {
+					streamingType = "HTTP Progressive Download";
+				} else if (streamingType === "rtmp") {
+					streamingType = "RTMP";
+				} else if (streamingType === "auto") {
+					streamingType = "Auto";
+				} else {
+					streamingType = "RTMPE Streaming";
+				}
+				return streamingType;
+			}
+
+
+			kWidget.addReadyCallback(function( playerId ){
+				var kdp = document.getElementById( playerId );
+				options.playerDivId = kdp;
+				// playerInformation["Play Manifest"] = kdp.evaluate('{mediaProxy.entry.dataUrl}');
+				playerInformation["Partner Id"] = kdp.evaluate('{mediaProxy.entry.partnerId}');
+				playerInformation["Entry Name"] = kdp.evaluate('{mediaProxy.entry.name}');
+				playerInformation["Entry Id"] = kdp.evaluate('{mediaProxy.entry.id}');
+				playerInformation["Volume"] = kdp.evaluate('{video.volume}') * 100 + "%";
+				
+				playerInformation["Streaming Type"] = streamingType(kdp.evaluate('{configProxy.flashvars.streamerType}'));
+				playerInformation["UiConf Id"] = kdp.evaluate('{configProxy.kw.uiConfId}');
+				playerInformation["Player Version"] =  preMwEmbedConfig.version;
+				playerInformation["Downloaded"] = '0 MB';
+				
+				kdp.kBind("bytesDownloadedChange.bytesChanged", function( data, id ){
+					if (isNaN(data.newValue)) {
+						kdp.kUnbind('.bytesChanged')
+					}
+					updateDownloadedLabel(data);
+				});
+				kdp.kBind("volumeChanged.bytesChanged", function( data, id ){
+					var volume = data.newVolume * 100;
+					updateVolumeLabel(volume)
+				});
+			});
+			
+			var tempDiv = $("<div>", {
+				id:"tmpDiv",
+				css: {
+					"display":"none"
+				},
+				text: JSON.stringify(playerInformation)
+			}).appendTo('body');
+			var updateVolumeLabel = function(data) {
+				var td = $("<td>", {
+						id: "volumeLabel",
+						text: data + "%"
+				});
+				$('#volumeLabel').replaceWith(td);
+			}
+
+			var updateDownloadedLabel = function(data) {			
+				data.newValue = (isNaN(data.newValue)) ? "Only HTTP Streaming type is currently supported" : bytesToSize(data.newValue);
+				if ($('#downloadedBytes').length) {
+
+					var td = $("<td>", {
+						id: "downloadedBytes",
+						text: data.newValue
+					});
+					$('#downloadedBytes').replaceWith(td);	
+				} else {
+					$("<p>", {
+						id: "downloadedBytes",
+						text:"Downloaded:" + data.newValue
+					}).appendTo('#panelBox');
+				}
+			}
+
+
+
+			function bytesToSize(bytes) {
+			   	if(bytes == 0) return '0 Byte';
+				   var k = 1000;
+				   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+				   var i = Math.floor(Math.log(bytes) / Math.log(k));
+				   return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
+			}
+
+
+			
+			var playerPosition = (options.playerDivId) ? options.playerDivId.getBoundingClientRect() : undefined;
+			// get the scroll position from the top in pixels.
+			var scrollPosition = $(window).scrollTop();
+			
+
+			if (!$('#panelBox').length) {
+				$("<div>", {
+					id: "panelBox",
+					class: "extensionPanel",
+					css: {
+						"height": playerPosition.height/1.5,
+						"width" : playerPosition.width / 1.5,
+						"top": playerPosition.top + scrollPosition + 15,
+						"bottom": playerPosition.bottom,
+						"left": playerPosition.left + 15,
+						"right": playerPosition.right
+					}
+				}).appendTo('body');
+				$("<span>", {
+					id: "closeBtn",
+					class: "boxclose",
+					css: {
+						"position" : "absolute",
+						"right" : "18px",
+						"top" : "20px",
+						"cursor": "pointer"
+					}
+				}).appendTo('#panelBox');
+				$('#closeBtn').click(function() {
+					$('#panelBox').hide();
+				});
+
+				$.each(playerInformation, function(key, value) {
+					var tbl = $('<table></table>');
+				    var row = $('<tr></tr>').attr({ class: ["panelTabel"].join(' ') }).appendTo(tbl);
+				    $('<td class="customTd"></td>').text(key + " : ").appendTo(row);
+				    if (key === "Downloaded") {
+				    	$('<td id="downloadedBytes"></td>').text(value).appendTo(row);        	
+				    } else if (key === "Volume") {
+				    	$('<td id="volumeLabel"></td>').text(value).appendTo(row); 
+				    } else {
+				    $('<td></td>').text(value).appendTo(row);        
+					}
+				    tbl.appendTo($("#panelBox"));   
+				});
+
+			} else {
+				$('#panelBox').show();
+			}
+		}
+
+	}
+
+
+})();
 
 
 /*! jQuery v2.0.0 | (c) 2005, 2013 jQuery Foundation, Inc. | jquery.org/license
