@@ -1,6 +1,6 @@
 {
   "name": "Kaltura Custom Extension",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "manifest_version": 2,
   "description": "This extension was created to maximize efficiency within the Customer Care team",
   "homepage_url": "http://corp.kaltura.com",
@@ -22,13 +22,13 @@
 
   "commands": {
     "toggle-feature": {
-      "suggested_key": { "default": "Ctrl+Shift+Y" },
+      "suggested_key": { "default": "Ctrl+Shift+C" },
       "description": "Send a 'toggle-feature' event to the extension"
     },
     "_execute_browser_action": {
       "suggested_key": {
-        "default": "Ctrl+Shift+F",
-        "mac": "MacCtrl+Shift+F"
+        "default": "Ctrl+Shift+C",
+        "mac": "MacCtrl+Shift+C"
       }
     }
   },

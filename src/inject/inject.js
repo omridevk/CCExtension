@@ -20,6 +20,8 @@
 	
 	var CCEXT = {
 
+		'defaultDelay' : 600, 
+
 		init: function() {
 			this.addListeners();
 			this.autoFillJira();
@@ -27,6 +29,9 @@
 			this.findJiraField();
 			this.addButtons();
 		},
+
+
+		
 
 		addListeners: function()  {
 			var _this = this;
@@ -72,7 +77,7 @@
 					}
 				// }
 			});
-			}, 1500);	
+			}, this.defaultDelay);	
 		},
 
 
@@ -115,7 +120,7 @@
 						});
 					}
 				}
-			}, 50);
+			}, this.defaultDelay);
 		},
 
 		addButtons: function() {
@@ -419,7 +424,6 @@
 	}
 
 	CCEXT.init();
-
 
 })();
 
