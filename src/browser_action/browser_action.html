@@ -15,6 +15,8 @@
   <script src="/js/angular/angular.min.js"></script>
   <script src="/js/jquery/jquery.min.js"></script>
   <script src="/js/foundation/foundation.min.js"></script>
+  <script src="/js/bootstrap/bootstrap.min.js"></script>
+  <script src="/js/jquery.cookie/jquery.cookie.js"></script>
   <script src="/app.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/styles.css">
   <title>Kaltura Customer Care's Chrome Extension</title>
@@ -45,17 +47,39 @@
         <div class="small-2 columns">
           <a href="#" class="button postfix" ng-click="openSalesforce()">Go</a>
         </div>
-        <a href="#" class="button success postfix" ng-click="getKs()">Get KS</a>
+        <div class="small-10 columns">
+
+          <input autofocus my-enter="getKs()"  class="textbox" type="text" id="ks-input-box" ng-model="ks" placeholder='Get KS'> 
+           <small class="error" ng-show="ks" style="width: 300px; margin-top: -16px">KS Copied to clipboard</small>
+        </div>
+        <div class="small-2 columns">
+          <a href="#" class="button postfix" data-clipboard-target="ks-input-box" id="copyKSbutton" ng-click="getKs()">Go</a>
+
+        </div>
+
         <br>
         <a href="#" class="button success postfix" ng-click="getPlayerInfo()">Get Player Info</a>
+        <br>
+        <a href="#" class="button success postfix" data-reveal-id="myModal" ng-click="displayURLQRCode($event)">URL To QR Code</a>
       </div>
     </div> <!-- End of panel 1 -->
-
+    <div id="myModal" class="reveal-modal" data-reveal style="max-height:200px;">
+      <img id="spinner" ng-src="/img/spinner.gif" style="display:none;">
+      <img ng-src="{{qrCodeImgSrc}}" />
+      <a class="close-reveal-modal">&#215;</a>
+    </div>
     <div class="large-12 columns content" id="panel2">
       <h2>Coming Soon</h2>
     </div>
   </div> <!-- End of Row -->
 </div> <!-- Enf of Wrapper -->
 
+<div id="joyrideDiv">
+<ol class="joyride-list" data-joyride>
+  <li data-id="ks-input-box"><p>Here's the explanation</p></li>
+</ol>
+</div>
+
 </body>
 </html>
+
