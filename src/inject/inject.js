@@ -50,7 +50,7 @@
 			});
 
 			chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
-			if (response.farewell == "goodbye")
+			if (response.farewell === "goodbye")
 
 				$(window).resize(_this.findJiraField);
 			});
@@ -142,7 +142,7 @@
 				for (var j = 0; j < btnTypeText.length; j++) {
 					
 					btnTypeText[j] = btnTypeText[j].charAt(0).toUpperCase() + btnTypeText[j].slice(1);
-					if (j != btnTypeText.length - 1) {
+					if (j !== btnTypeText.length - 1) {
 						btnTypeText[j] += " ";
 					}
 
@@ -208,10 +208,10 @@
 
 
 		autoFillJira: function() {
-			if (document.URL.indexOf('CreateIssue') != -1) { 
+			if (document.URL.indexOf('CreateIssue') !== -1) { 
 				//execute script if open JIRA page is loaded
 			    chrome.storage.local.get(null, function(items) { 
-			    	if (document.URL.indexOf('init') != -1) {
+			    	if (document.URL.indexOf('init') !== -1) {
 			    		$('.error').hide();
 			    	}
 					var allKeys = Object.keys(items);		
@@ -283,7 +283,7 @@
 
 		//collect player information and add an overlay div on the player to display the information.
 		getPlayerInfo: function() {
-			if (typeof(kWidget) != "undefined") {
+			if (typeof(kWidget) !== "undefined") {
 				var playerInformation = {};
 				var options = {};
 
