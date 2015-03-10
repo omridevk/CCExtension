@@ -11,411 +11,428 @@
 
 (function() {
 
+	"use strict";
+
 	// Type of tickets to add href to. 
 	var options = ["SUP-", "PLAT-", "FEC-", "SUPPS-", "KMS-", "F-CS"];
-	init();
+	
 
-	function init() {
-		addListeners();
-		autoFillJira();
-		findJiraComment();
-		findJiraField();
-		addButtons();
-	};
-
+	// CCEXT.init();
+	
 	//collect player information and add an overlay div on the player to display the information.
 	
-
-	function addListeners() {
-		chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
-			if (msg.action == 'getKs') {
-				var windowVariables = retrieveWindowVariables(["kmc.vars.ks"]);
-				sendResponse({ks: windowVariables});
-			} else if (msg.action == 'getPlayerInfo') {
-				injectScript(jQueryInject);
-				injectScript(getPlayerInfo);
-				newGetPlayerInfo();
-			} else if (msg.action == "test") {
-
-			}
-		});
-
-		chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
-		if (response.farewell == "goodbye")
-
-			$(window).resize(findJiraField);
-		});
-	};
-	// Listening to events that comes from the popup window, and execute function based on the action chosen in the popup.js
-	
+	var CCEXT = {
 
 
-	// Inject script tag and its content to a page in order to access the page JavaScript variables. 
-	// Choose which function to inject when calling the function.
-	function injectScript(func) {
-		var script = document.createElement('script');
-		script.appendChild(document.createTextNode('('+ func +')();'));
-		(document.body || document.head || document.documentElement).appendChild(script);
-	};
+		init: function() {
+			this.addListeners();
+			this.autoFillJira();
+			this.findJiraComment();
+			this.findJiraField();
+			this.addButtons();
+		},
 
-	// Looking for links in Salesforce ticket comments and turn then into click-able links
-	function findJiraComment() {
-		setTimeout(function() {
-			$('.dataCell').each(function () {
-			// if (this.innerText.length > 140 && this.innerText.length < 450) {
-				this.innerHTML = Autolinker.link( this.innerHTML );
-				var pattern = /Link:/;
-				if (pattern.test(this.innerText)) {
+		addListeners: function()  {
+			var _this = this;
+
+			chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
+				if (msg.action === 'getKs' && (location.host === "kmc.kaltura.com")) {
+					var windowVariables = _this.retrieveWindowVariables(["kmc.vars.ks"]);
+					sendResponse({ks: windowVariables});
+				} else if (msg.action === 'getPlayerInfo') {
+					_this.injectScript(jQueryInject);
+					_this.injectScript(_this.getPlayerInfo);
+					// newGetPlayerInfo();
+				} else if (msg.action === "test") {
+
 				}
-			// }
-		});
-		}, 1500);	
-	};
+			});
+
+			chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
+			if (response.farewell == "goodbye")
+
+				$(window).resize(_this.findJiraField);
+			});
+		},
+		// Listening to events that comes from the popup window, and execute function based on the action chosen in the popup.js
+		
+
+		// Inject script tag and its content to a page in order to access the page JavaScript variables. 
+		// Choose which function to inject when calling the function.
+		injectScript: function(func) {
+			var script = document.createElement('script');
+			script.appendChild(document.createTextNode('('+ func +')();'));
+			(document.body || document.head || document.documentElement).appendChild(script);
+		},
+
+		// Looking for links in Salesforce ticket comments and turn then into click-able links
+		findJiraComment: function () {
+			setTimeout(function() {
+				$('.dataCell').each(function () {
+				// if (this.innerText.length > 140 && this.innerText.length < 450) {
+					this.innerHTML = Autolinker.link( this.innerHTML );
+					var pattern = /Link:/;
+					if (pattern.test(this.innerText)) {
+					}
+				// }
+			});
+			}, 1500);	
+		},
 
 
-	// Iterating over each ticket type options and turn it to a clickable link.
-	function findJiraField() {
-		setTimeout(function() {
-			var currentLocation = document.URL;
-			var pattern = /salesforce/;
+		// Iterating over each ticket type options and turn it to a clickable link.
+		findJiraField: function () {
+			setTimeout(function() {
+				var currentLocation = document.URL;
+				var pattern = /salesforce/;
 
-			// Execute the script bellow only if the location is in salesforce
-			if (pattern.test(currentLocation)) {
-				var els = {};
-				for (var i = 0; i < options.length; i++) {
-					$('div:contains("' + options[i] + '")').each(function () {
+				// Execute the script bellow only if the location is in salesforce
+				if (pattern.test(currentLocation)) {
+					var els = {};
+					for (var i = 0; i < options.length; i++) {
+						$('div:contains("' + options[i] + '")').each(function () {
 
-						
-						if (!$(this).find('a').length) {
-						
-							var jiraNumber = this.innerText;
-							$(this).empty();
-							jiraNumber = jiraNumber.split(",");
-							for (var j = 0; j < jiraNumber.length; j++) {
-								jiraNumber[j] = jiraNumber[j].replace(' ', '');
-								if (jiraNumber[j].indexOf(',') != -1 ) {
-									jiraNumber[j] = jiraNumber[j].replace('\,', '');
+							
+							if (!$(this).find('a').length) {
+							
+								var jiraNumber = this.innerText;
+								$(this).empty();
+								jiraNumber = jiraNumber.split(",");
+								for (var j = 0; j < jiraNumber.length; j++) {
+									jiraNumber[j] = jiraNumber[j].replace(' ', '');
+									if (jiraNumber[j].indexOf(',') != -1 ) {
+										jiraNumber[j] = jiraNumber[j].replace('\,', '');
+									}
+									var link = options[i] === "F-CS" ? 
+										"https://control.akamai.com/resolve/caseview/caseDetails.jsp?caseId=" + jiraNumber[j] : 
+										"https://kaltura.atlassian.net/browse/" + jiraNumber[j];
+									var newLink = $("<a />", {
+										name: "link",
+
+										target: "_blank",
+										href: link,
+										text: jiraNumber[j] + " "
+									});
+									$(this).append(newLink);
 								}
-								var link = options[i] === "F-CS" ? 
-									"https://control.akamai.com/resolve/caseview/caseDetails.jsp?caseId=" + jiraNumber[j] : 
-									"https://kaltura.atlassian.net/browse/" + jiraNumber[j];
-								var newLink = $("<a />", {
-									name: "link",
-
-									target: "_blank",
-									href: link,
-									text: jiraNumber[j] + " "
-								});
-								$(this).append(newLink);
 							}
+						});
+					}
+				}
+			}, 50);
+		},
+
+		addButtons: function() {
+			var _this = this;
+
+			var btns = ["open_jira", "open_supps", "open_feature_request", "open_akamai"];
+			var lastButton =  $('[name="open_jira"]');
+			var btnsElm = [];
+			$('.pbButton').css({
+				'position' : 'relative',
+				'left': '0px'
+			});
+
+			
+			var createNewBtn = function (btnType) {
+				
+				var btnTypeText = btnType.split('_');
+				var btnTypeTextNew = '';
+				for (var j = 0; j < btnTypeText.length; j++) {
+					
+					btnTypeText[j] = btnTypeText[j].charAt(0).toUpperCase() + btnTypeText[j].slice(1);
+					if (j != btnTypeText.length - 1) {
+						btnTypeText[j] += " ";
+					}
+
+					btnTypeTextNew += btnTypeText[j];
+				}
+				var newButton = $('<input/>').attr({
+					type: "button",
+					id: btnType,
+					class: "btn custom",
+					data: btnType,
+					value: btnTypeTextNew
+				});
+				return newButton;
+			}
+			
+			for (var i=0; i < btns.length; i++) {
+				var btn = createNewBtn(btns[i]);
+				btnsElm.push(btn);
+			}
+
+
+			$(lastButton).replaceWith(btnsElm[0][0]);
+
+			for (i=0; i < btnsElm.length - 1; i++) {
+				$('#' + btnsElm[i][0].id).after(btnsElm[i+1][0]);	
+			}
+
+			
+			$('.custom').click(function(event) {	
+				var caseData = _this.saveTicketInformation();		
+			    chrome.storage.local.set({'caseData': caseData}, function() {
+		    		if (event.target.id === "open_jira") {
+			    		var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=9";
+		    		} else if (event.target.id === "open_supps") {
+			    		var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=12201&issuetype=9";
+		    		} else if (event.target.id === "open_akamai") {
+		    			var url = "https://control.akamai.com/resolve/charaka/CharakaServlet?action=open&requestType=nonPS&category=Technical%20Support_technical.support";
+		    		} else if (event.target.id === "open_feature_request"){
+		    			var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=4";
+		    		} else {
+		    			var url = "about:blank";
+		    		}
+					var myWindow = window.open(url, "myWindow", "width=600, height=600");    // Opens a new window
+					myWindow.focus();
+
+				});	
+			});
+		},
+
+
+		saveTicketInformation: function(btnId) {
+			var caseData = {};
+			caseData.div = $('#cas2_ileinner');
+			chrome.storage.local.clear();
+			caseData.caseNumber = caseData.div[0].innerHTML;
+			caseData.btnId = btnId;
+			caseData.accountName = $('#cas4_ileinner')[0].innerText; 
+			caseData.priority = $('#cas8_ileinner')[0].innerText;
+			caseData.accountClass = $('#00N70000002RDrn_ileinner')[0].innerText;
+			caseData.caseURL = document.URL;
+			return caseData;
+		},
+
+
+		autoFillJira: function() {
+			if (document.URL.indexOf('CreateIssue') != -1) { 
+				//execute script if open JIRA page is loaded
+			    chrome.storage.local.get(null, function(items) { 
+			    	if (document.URL.indexOf('init') != -1) {
+			    		$('.error').hide();
+			    	}
+					var allKeys = Object.keys(items);		
+					$('#customfield_10101').val(items.caseData.accountName); //set account name field
+					$('#customfield_10102').val(items.caseData.caseNumber); //set the case number field
+					$('#customfield_10600').val(items.caseData.caseURL); //set SF Case Link field
+					$('#customfield_10303').val(10416);
+					$('option:selected', 'select[name="priority"]').removeAttr('selected');
+					if (items.caseData.priority === 'High') { //Set Ticket high priority
+						 $('#priority-field').val('2-' + items.caseData.priority);
+						 $('[name=priority]').val( 12 );
+						 $('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_critical.gif');
+					} else if (items.caseData.priority === 'Medium') {
+						$('[name=priority]').val( 13 );
+						$('#priority-field').val('3-' + items.caseData.priority, true);
+						$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_major.gif');
+					} else if (items.caseData.priority === 'Low') {
+						$('[name=priority]').val( 14 );
+						$('#priority-field').val('3-' + items.caseData.priority);
+						$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_minor.gif');
+					} else {
+						$('[name=priority]').val( 15 );
+						$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_minor.gif');
+					}
+					 //set SF Case Link field
+					
+					//Check for Class of service
+					if (items.caseData.accountClass === "Platinum") {
+						$('#customfield_10103-1').prop('checked',true);
+					} else if (items.caseData.accountClass === "Gold") {
+						$('#customfield_10103-2').prop('checked',true);
+					} else if (items.caseData.accountClass === "Silver") {
+						$('#customfield_10103-3').prop('checked',true);
+					} else {
+						$('#customfield_10103-3').prop('checked', true);
+					}
+				});	
+			}
+		},
+
+		retrieveWindowVariables: function(variables) {
+		    var ret = {};
+
+		    var scriptContent = "";
+		    for (var i = 0; i < variables.length; i++) {
+		        var currVariable = variables[i];
+		        scriptContent += "if (typeof " + currVariable + " !== 'undefined') $('body').attr('tmp_" + currVariable + "', " + currVariable + ");\n"
+		    }
+
+		    var script = document.createElement('script');
+		    script.id = 'tmpScript';
+		    script.appendChild(document.createTextNode(scriptContent));
+		    (document.body || document.head || document.documentElement).appendChild(script);
+
+		    for (var i = 0; i < variables.length; i++) {
+		        var currVariable = variables[i];
+		        ret[currVariable] = $("body").attr("tmp_" + currVariable);
+		        $("body").removeAttr("tmp_" + currVariable);
+		    }
+
+		    $("#tmpScript").remove();
+
+		    return ret;
+		},
+
+		newGetPlayerInfo: function() {
+			console.log($('#tmpDiv').innerHTML);
+		},
+
+		getPlayerInfo: function() {
+			if (typeof(kWidget) != "undefined") {
+				var playerInformation = {};
+				var options = {};
+
+				var bytesToSize = function(bytes) {
+				   	if(bytes == 0) return '0 Byte';
+					   var k = 1000;
+					   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+					   var i = Math.floor(Math.log(bytes) / Math.log(k));
+					   return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
+				}
+				var streamingType = function(streamingType) {
+					if (streamingType === "hdnetworkmanifest") {
+						streamingType = "HTTP Streaming(HDS)";
+					} else if (streamingType === "hdnetwork") {
+						streamingType = "HTTP Streaming(Akamai)";
+					} else if (streamingType === "http") {
+						streamingType = "HTTP Progressive Download";
+					} else if (streamingType === "rtmp") {
+						streamingType = "RTMP";
+					} else if (streamingType === "auto") {
+						streamingType = "Auto";
+					} else {
+						streamingType = "RTMPE Streaming";
+					}
+					return streamingType;
+				}
+
+
+				kWidget.addReadyCallback(function( playerId ){
+					var kdp = document.getElementById( playerId );
+					options.playerDivId = kdp;
+					// playerInformation["Play Manifest"] = kdp.evaluate('{mediaProxy.entry.dataUrl}');
+					playerInformation["Partner Id"] = kdp.evaluate('{mediaProxy.entry.partnerId}');
+					playerInformation["Entry Name"] = kdp.evaluate('{mediaProxy.entry.name}');
+					playerInformation["Entry Id"] = kdp.evaluate('{mediaProxy.entry.id}');
+					playerInformation["Volume"] = kdp.evaluate('{video.volume}') * 100 + "%";
+					
+					playerInformation["Streaming Type"] = streamingType(kdp.evaluate('{configProxy.flashvars.streamerType}'));
+					playerInformation["UiConf Id"] = kdp.evaluate('{configProxy.kw.uiConfId}');
+					playerInformation["Player Version"] =  preMwEmbedConfig.version;
+					playerInformation["Downloaded"] = '0 MB';
+					
+					kdp.kBind("bytesDownloadedChange.bytesChanged", function( data, id ){
+						if (isNaN(data.newValue)) {
+							kdp.kUnbind('.bytesChanged')
 						}
+						updateDownloadedLabel(data);
 					});
-				}
-			}
-		}, 50);
-	};
-
-	function addButtons() {
-		var btns = ["open_jira", "open_supps", "open_feature_request", "open_akamai"];
-		var lastButton =  $('[name="open_jira"]');
-		var btnsElm = [];
-		$('.pbButton').css({
-			'position' : 'relative',
-			'left': '0px'
-		});
-
-		
-		var createNewBtn = function (btnType) {
-			
-			var btnTypeText = btnType.split('_');
-			var btnTypeTextNew = '';
-			for (var j = 0; j < btnTypeText.length; j++) {
-				
-				btnTypeText[j] = btnTypeText[j].charAt(0).toUpperCase() + btnTypeText[j].slice(1);
-				if (j != btnTypeText.length - 1) {
-					btnTypeText[j] += " ";
-				}
-
-				btnTypeTextNew += btnTypeText[j];
-			}
-			var newButton = $('<input/>').attr({
-				type: "button",
-				id: btnType,
-				class: "btn custom",
-				data: btnType,
-				value: btnTypeTextNew
-			});
-			return newButton;
-		}
-		
-		for (var i=0; i < btns.length; i++) {
-			var btn = createNewBtn(btns[i]);
-			btnsElm.push(btn);
-		}
-
-
-		$(lastButton).replaceWith(btnsElm[0][0]);
-
-		for (i=0; i < btnsElm.length - 1; i++) {
-			$('#' + btnsElm[i][0].id).after(btnsElm[i+1][0]);	
-		}
-
-		
-		$('.custom').click(function(event) {	
-			var caseData = saveTicketInformation();		
-		    chrome.storage.local.set({'caseData': caseData}, function() {
-	    		if (event.target.id === "open_jira") {
-		    		var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=9";
-	    		} else if (event.target.id === "open_supps") {
-		    		var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=12201&issuetype=9";
-	    		} else if (event.target.id === "open_akamai") {
-	    			var url = "https://control.akamai.com/resolve/charaka/CharakaServlet?action=open&requestType=nonPS&category=Technical%20Support_technical.support";
-	    		} else if (event.target.id === "open_feature_request"){
-	    			var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=4";
-	    		} else {
-	    			var url = "about:blank";
-	    		}
-				myWindow = window.open(url, "myWindow", "width=600, height=600");    // Opens a new window
-				myWindow.focus();
-
-			});	
-		});
-	}
-
-
-	function saveTicketInformation(btnId) {
-		var caseData = {};
-		caseData.div = $('#cas2_ileinner');
-		chrome.storage.local.clear();
-		caseData.caseNumber = caseData.div[0].innerHTML;
-		caseData.btnId = btnId;
-		caseData.accountName = $('#cas4_ileinner')[0].innerText; 
-		caseData.priority = $('#cas8_ileinner')[0].innerText;
-		caseData.accountClass = $('#00N70000002RDrn_ileinner')[0].innerText;
-		caseData.caseURL = document.URL;
-		return caseData;
-	};
-
-
-	function autoFillJira() {
-		if (document.URL.indexOf('CreateIssue') != -1) { 
-			//execute script if open JIRA page is loaded
-		    chrome.storage.local.get(null, function(items) { 
-		    	if (document.URL.indexOf('init') != -1) {
-		    		$('.error').hide();
-		    	}
-				var allKeys = Object.keys(items);		
-				$('#customfield_10101').val(items.caseData.accountName); //set account name field
-				$('#customfield_10102').val(items.caseData.caseNumber); //set the case number field
-				$('#customfield_10600').val(items.caseData.caseURL); //set SF Case Link field
-				$('#customfield_10303').val(10416);
-				$('option:selected', 'select[name="priority"]').removeAttr('selected');
-				if (items.caseData.priority === 'High') { //Set Ticket high priority
-					 $('#priority-field').val('2-' + items.caseData.priority);
-					 $('[name=priority]').val( 12 );
-					 $('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_critical.gif');
-				} else if (items.caseData.priority === 'Medium') {
-					$('[name=priority]').val( 13 );
-					$('#priority-field').val('3-' + items.caseData.priority, true);
-					$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_major.gif');
-				} else if (items.caseData.priority === 'Low') {
-					$('[name=priority]').val( 14 );
-					$('#priority-field').val('3-' + items.caseData.priority);
-					$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_minor.gif');
-				} else {
-					$('[name=priority]').val( 15 );
-					$('.aui-ss-entity-icon').attr('src', 'https://kaltura.atlassian.net/images/icons/priority_minor.gif');
-				}
-				 //set SF Case Link field
-				
-				//Check for Class of service
-				if (items.caseData.accountClass === "Platinum") {
-					$('#customfield_10103-1').prop('checked',true);
-				} else if (items.caseData.accountClass === "Gold") {
-					$('#customfield_10103-2').prop('checked',true);
-				} else if (items.caseData.accountClass === "Silver") {
-					$('#customfield_10103-3').prop('checked',true);
-				} else {
-					$('#customfield_10103-3').prop('checked', true);
-				}
-			});	
-		}
-	}
-
-	function retrieveWindowVariables(variables) {
-	    var ret = {};
-
-	    var scriptContent = "";
-	    for (var i = 0; i < variables.length; i++) {
-	        var currVariable = variables[i];
-	        scriptContent += "if (typeof " + currVariable + " !== 'undefined') $('body').attr('tmp_" + currVariable + "', " + currVariable + ");\n"
-	    }
-
-	    var script = document.createElement('script');
-	    script.id = 'tmpScript';
-	    script.appendChild(document.createTextNode(scriptContent));
-	    (document.body || document.head || document.documentElement).appendChild(script);
-
-	    for (var i = 0; i < variables.length; i++) {
-	        var currVariable = variables[i];
-	        ret[currVariable] = $("body").attr("tmp_" + currVariable);
-	        $("body").removeAttr("tmp_" + currVariable);
-	    }
-
-	    $("#tmpScript").remove();
-
-	    return ret;
-	}
-
-	function newGetPlayerInfo() {
-		console.log($('#tmpDiv').innerHTML);
-	}
-
-	function getPlayerInfo () {
-		if (typeof(kWidget) != "undefined") {
-			var playerInformation = {};
-			var options = {};
-
-			var streamingType = function(streamingType) {
-				if (streamingType === "hdnetworkmanifest") {
-					streamingType = "HTTP Streaming(HDS)";
-				} else if (streamingType === "hdnetwork") {
-					streamingType = "HTTP Streaming(Akamai)";
-				} else if (streamingType === "http") {
-					streamingType = "HTTP Progressive Download";
-				} else if (streamingType === "rtmp") {
-					streamingType = "RTMP";
-				} else if (streamingType === "auto") {
-					streamingType = "Auto";
-				} else {
-					streamingType = "RTMPE Streaming";
-				}
-				return streamingType;
-			}
-
-
-			kWidget.addReadyCallback(function( playerId ){
-				var kdp = document.getElementById( playerId );
-				options.playerDivId = kdp;
-				// playerInformation["Play Manifest"] = kdp.evaluate('{mediaProxy.entry.dataUrl}');
-				playerInformation["Partner Id"] = kdp.evaluate('{mediaProxy.entry.partnerId}');
-				playerInformation["Entry Name"] = kdp.evaluate('{mediaProxy.entry.name}');
-				playerInformation["Entry Id"] = kdp.evaluate('{mediaProxy.entry.id}');
-				playerInformation["Volume"] = kdp.evaluate('{video.volume}') * 100 + "%";
-				
-				playerInformation["Streaming Type"] = streamingType(kdp.evaluate('{configProxy.flashvars.streamerType}'));
-				playerInformation["UiConf Id"] = kdp.evaluate('{configProxy.kw.uiConfId}');
-				playerInformation["Player Version"] =  preMwEmbedConfig.version;
-				playerInformation["Downloaded"] = '0 MB';
-				
-				kdp.kBind("bytesDownloadedChange.bytesChanged", function( data, id ){
-					if (isNaN(data.newValue)) {
-						kdp.kUnbind('.bytesChanged')
-					}
-					updateDownloadedLabel(data);
-				});
-				kdp.kBind("volumeChanged.bytesChanged", function( data, id ){
-					var volume = data.newVolume * 100;
-					updateVolumeLabel(volume)
-				});
-			});
-			
-			var tempDiv = $("<div>", {
-				id:"tmpDiv",
-				css: {
-					"display":"none"
-				},
-				text: JSON.stringify(playerInformation)
-			}).appendTo('body');
-			var updateVolumeLabel = function(data) {
-				var td = $("<td>", {
-						id: "volumeLabel",
-						text: data + "%"
-				});
-				$('#volumeLabel').replaceWith(td);
-			}
-
-			var updateDownloadedLabel = function(data) {			
-				data.newValue = (isNaN(data.newValue)) ? "Only HTTP Streaming type is currently supported" : bytesToSize(data.newValue);
-				if ($('#downloadedBytes').length) {
-
-					var td = $("<td>", {
-						id: "downloadedBytes",
-						text: data.newValue
+					kdp.kBind("volumeChanged.bytesChanged", function( data, id ){
+						var volume = data.newVolume * 100;
+						updateVolumeLabel(volume)
 					});
-					$('#downloadedBytes').replaceWith(td);	
-				} else {
-					$("<p>", {
-						id: "downloadedBytes",
-						text:"Downloaded:" + data.newValue
-					}).appendTo('#panelBox');
-				}
-			}
-
-
-
-			function bytesToSize(bytes) {
-			   	if(bytes == 0) return '0 Byte';
-				   var k = 1000;
-				   var sizes = ['Bytes', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
-				   var i = Math.floor(Math.log(bytes) / Math.log(k));
-				   return (bytes / Math.pow(k, i)).toPrecision(3) + ' ' + sizes[i];
-			}
-
-
-			
-			var playerPosition = (options.playerDivId) ? options.playerDivId.getBoundingClientRect() : undefined;
-			// get the scroll position from the top in pixels.
-			var scrollPosition = $(window).scrollTop();
-			
-
-			if (!$('#panelBox').length) {
-				$("<div>", {
-					id: "panelBox",
-					class: "extensionPanel",
+				});
+				
+				var tempDiv = $("<div>", {
+					id:"tmpDiv",
 					css: {
-						"height": playerPosition.height/1.5,
-						"width" : playerPosition.width / 1.5,
-						"top": playerPosition.top + scrollPosition + 15,
-						"bottom": playerPosition.bottom,
-						"left": playerPosition.left + 15,
-						"right": playerPosition.right
-					}
+						"display":"none"
+					},
+					text: JSON.stringify(playerInformation)
 				}).appendTo('body');
-				$("<span>", {
-					id: "closeBtn",
-					class: "boxclose",
-					css: {
-						"position" : "absolute",
-						"right" : "18px",
-						"top" : "20px",
-						"cursor": "pointer"
-					}
-				}).appendTo('#panelBox');
-				$('#closeBtn').click(function() {
-					$('#panelBox').hide();
-				});
 
-				$.each(playerInformation, function(key, value) {
-					var tbl = $('<table></table>');
-				    var row = $('<tr></tr>').attr({ class: ["panelTabel"].join(' ') }).appendTo(tbl);
-				    $('<td class="customTd"></td>').text(key + " : ").appendTo(row);
-				    if (key === "Downloaded") {
-				    	$('<td id="downloadedBytes"></td>').text(value).appendTo(row);        	
-				    } else if (key === "Volume") {
-				    	$('<td id="volumeLabel"></td>').text(value).appendTo(row); 
-				    } else {
-				    $('<td></td>').text(value).appendTo(row);        
-					}
-				    tbl.appendTo($("#panelBox"));   
-				});
+				var updateVolumeLabel = function(data) {
+					var td = $("<td>", {
+							id: "volumeLabel",
+							text: data + "%"
+					});
+					$('#volumeLabel').replaceWith(td);
+				}
 
-			} else {
-				$('#panelBox').show();
+				var updateDownloadedLabel = function(data) {			
+					data.newValue = (isNaN(data.newValue)) ? "Only HTTP Streaming type is currently supported" : bytesToSize(data.newValue);
+					if ($('#downloadedBytes').length) {
+
+						var td = $("<td>", {
+							id: "downloadedBytes",
+							text: data.newValue
+						});
+						$('#downloadedBytes').replaceWith(td);	
+					} else {
+						$("<p>", {
+							id: "downloadedBytes",
+							text:"Downloaded:" + data.newValue
+						}).appendTo('#panelBox');
+					}
+				}
+
+
+
+
+
+				
+				var playerPosition = (options.playerDivId) ? options.playerDivId.getBoundingClientRect() : undefined;
+				// get the scroll position from the top in pixels.
+				var scrollPosition = $(window).scrollTop();
+				
+
+				if (!$('#panelBox').length) {
+					$("<div>", {
+						id: "panelBox",
+						class: "extensionPanel",
+						css: {
+							"height": playerPosition.height/1.5,
+							"width" : playerPosition.width / 1.5,
+							"top": playerPosition.top + scrollPosition + 15,
+							"bottom": playerPosition.bottom,
+							"left": playerPosition.left + 15,
+							"right": playerPosition.right
+						}
+					}).appendTo('body');
+					$("<span>", {
+						id: "closeBtn",
+						class: "boxclose",
+						css: {
+							"position" : "absolute",
+							"right" : "18px",
+							"top" : "20px",
+							"cursor": "pointer"
+						}
+					}).appendTo('#panelBox');
+					$('#closeBtn').click(function() {
+						$('#panelBox').hide();
+					});
+
+					$.each(playerInformation, function(key, value) {
+						var tbl = $('<table></table>');
+					    var row = $('<tr></tr>').attr({ class: ["panelTabel"].join(' ') }).appendTo(tbl);
+					    $('<td class="customTd"></td>').text(key + " : ").appendTo(row);
+					    if (key === "Downloaded") {
+					    	$('<td id="downloadedBytes"></td>').text(value).appendTo(row);        	
+					    } else if (key === "Volume") {
+					    	$('<td id="volumeLabel"></td>').text(value).appendTo(row); 
+					    } else {
+					    $('<td></td>').text(value).appendTo(row);        
+						}
+					    tbl.appendTo($("#panelBox"));   
+					});
+
+				} else {
+					$('#panelBox').show();
+				}
 			}
 		}
 
+
 	}
+
+
+
+
+CCEXT.init();
 
 
 })();
