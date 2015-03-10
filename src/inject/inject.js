@@ -123,52 +123,88 @@
 			}, this.defaultDelay);
 		},
 
+		btnStringHelper: function(str) {
+			var btnTypeText = str.split('_');
+			var btnTypeTextNew = '';
+			for (var j = 0; j < btnTypeText.length; j++) {
+				
+				btnTypeText[j] = btnTypeText[j].charAt(0).toUpperCase() + btnTypeText[j].slice(1);
+				if (j !== btnTypeText.length - 1) {
+					btnTypeText[j] += " ";
+				}
+
+				btnTypeTextNew += btnTypeText[j];
+			}
+			return btnTypeTextNew;
+		},
+
+		defualtConfig: {
+			btns: {
+				"open_jira": {
+					url: "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=9",
+					text: "Open Jira",
+				},
+
+				"open_supps":{
+					url: "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=12201&issuetype=9",
+					text: "Open SUPPS"
+				}, 
+				"open_akamai":{
+					url: "https://control.akamai.com/resolve/charaka/CharakaServlet?action=open&requestType=nonPS&category=Technical%20Support_technical.support",
+					text: "Open Akamai Ticket"
+				},
+				"open_feature_request":{
+					url:"https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=4",
+					text: "Open Feature Request"
+				} 
+			}
+		},
+
 		addButtons: function() {
 			var _this = this;
 
 			var btns = ["open_jira", "open_supps", "open_feature_request", "open_akamai"];
 			var lastButton =  $('[name="open_jira"]');
+			// console.log(lastButton);
 			var btnsElm = [];
 			$('.pbButton').css({
 				'position' : 'relative',
 				'left': '0px'
 			});
-
 			
-			var createNewBtn = function (btnType) {
-				
-				var btnTypeText = btnType.split('_');
-				var btnTypeTextNew = '';
-				for (var j = 0; j < btnTypeText.length; j++) {
-					
-					btnTypeText[j] = btnTypeText[j].charAt(0).toUpperCase() + btnTypeText[j].slice(1);
-					if (j !== btnTypeText.length - 1) {
-						btnTypeText[j] += " ";
+			var createNewBtn = function (btnToCreateList) {
+				var btns = [];
+				var index = 0;
+				for (var btn in btnToCreateList) {
+					if (btnToCreateList.hasOwnProperty(btn)) {				
+						var newButton = $('<input/>').attr({
+							type: "button",
+							id: btn + "" + index,
+							href: btnToCreateList[btn].url,
+							class: "btn custom " + "index" + index,
+							data: btn,
+							value: btnToCreateList[btn].text
+						});
+						index++;
+						btns.push(newButton);
 					}
-
-					btnTypeTextNew += btnTypeText[j];
 				}
-				var newButton = $('<input/>').attr({
-					type: "button",
-					id: btnType,
-					class: "btn custom",
-					data: btnType,
-					value: btnTypeTextNew
-				});
-				return newButton;
+				return btns;
 			}
+				
+
+			var btns = createNewBtn(_this.defualtConfig.btns);
+			lastButton.replaceWith(btns[0]);
+			var newLastButton = $('.index0');
+			$.each(newLastButton, function( key, value ){
+				for (var i=0; i < btns.length - 1; i++) {
+					if (btns[i][0].id !== "open_jira0") {
+						$('.index0').after(btns[i]);
+					}
+				}	
+			});
+
 			
-			for (var i=0; i < btns.length; i++) {
-				var btn = createNewBtn(btns[i]);
-				btnsElm.push(btn);
-			}
-
-
-			$(lastButton).replaceWith(btnsElm[0][0]);
-
-			for (i=0; i < btnsElm.length - 1; i++) {
-				$('#' + btnsElm[i][0].id).after(btnsElm[i+1][0]);	
-			}
 
 			
 			$('.custom').click(function(event) {	
