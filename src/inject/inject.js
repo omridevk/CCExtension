@@ -1,7 +1,7 @@
 /*!
  * filename: inject.js
  * Kaltura Customer Care's Chrome Extension
- * 0.0.1
+ * 0.0.20
  *
  * Copyright(c) 2015 Omri Katz <omri.katz@kaltura.com>
  * MIT Licensed. http://www.opensource.org/licenses/mit-license.php
@@ -17,9 +17,6 @@
 	var options = ["SUP-", "PLAT-", "FEC-", "SUPPS-", "KMS-", "F-CS"];
 	
 
-	// CCEXT.init();
-	
-	//collect player information and add an overlay div on the player to display the information.
 	
 	var CCEXT = {
 
@@ -279,6 +276,7 @@
 			console.log($('#tmpDiv').innerHTML);
 		},
 
+		//collect player information and add an overlay div on the player to display the information.
 		getPlayerInfo: function() {
 			if (typeof(kWidget) != "undefined") {
 				var playerInformation = {};
@@ -418,12 +416,9 @@
 				}
 			}
 		}
-
-
 	}
 
-
-CCEXT.init();
+	CCEXT.init();
 
 
 })();
