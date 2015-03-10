@@ -338,6 +338,8 @@
 					});
 				});
 				
+
+				//create a temp div within a website with text that contain JSON from object that is inaccessible to inject.js
 				var tempDiv = $("<div>", {
 					id:"tmpDiv",
 					css: {
