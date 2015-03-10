@@ -20,7 +20,7 @@
 	
 	var CCEXT = {
 
-		'defaultDelay' : 600, 
+		'defaultDelay' : 1500, 
 
 		init: function() {
 			this.addListeners();
@@ -28,6 +28,7 @@
 			this.findJiraComment();
 			this.findJiraField();
 			this.addButtons();
+			this.xhrRequestListener();
 		},
 
 
@@ -83,7 +84,8 @@
 
 		// Iterating over each ticket type options and turn it to a clickable link.
 		findJiraField: function () {
-			setTimeout(function() {
+			// setTimeout(function() {
+				$(document).ready(function() {
 				var currentLocation = document.URL;
 				var pattern = /salesforce/;
 
@@ -120,7 +122,26 @@
 						});
 					}
 				}
-			}, this.defaultDelay);
+			 });
+		},
+
+		xhrRequestListener: function() {
+			
+	    var oldXHR = window.XMLHttpRequest;
+	 
+	    function newXHR() {
+	        var realXHR = new oldXHR();
+	 
+	        realXHR.addEventListener("readystatechange", function() { 
+	            console.log("an ajax request was made") 
+	        }, false);
+	 
+	        return realXHR;
+	    }
+	 
+	    window.XMLHttpRequest = newXHR;
+	
+
 		},
 
 		btnStringHelper: function(str) {
@@ -210,13 +231,14 @@
 			$('.custom').click(function(event) {	
 				var caseData = _this.saveTicketInformation();		
 			    chrome.storage.local.set({'caseData': caseData}, function() {
-		    		if (event.target.id === "open_jira") {
+		    		if (event.target.id === "open_jira0") {
+		    			console.log(event);
 			    		var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=9";
-		    		} else if (event.target.id === "open_supps") {
+		    		} else if (event.target.id === "open_supps1") {
 			    		var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=12201&issuetype=9";
-		    		} else if (event.target.id === "open_akamai") {
+		    		} else if (event.target.id === "open_akamai2") {
 		    			var url = "https://control.akamai.com/resolve/charaka/CharakaServlet?action=open&requestType=nonPS&category=Technical%20Support_technical.support";
-		    		} else if (event.target.id === "open_feature_request"){
+		    		} else if (event.target.id === "open_feature_request3"){
 		    			var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=4";
 		    		} else {
 		    			var url = "about:blank";
@@ -462,6 +484,9 @@
 	}
 
 	CCEXT.init();
+
+
+	
 
 })();
 
