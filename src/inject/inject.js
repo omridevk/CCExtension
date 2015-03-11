@@ -15,20 +15,23 @@
 
 	// Type of tickets to add href to. 
 	var options = ["SUP-", "PLAT-", "FEC-", "SUPPS-", "KMS-", "F-CS"];
-	
+
+        
+
 
 	
 	var CCEXT = {
 
-		'defaultDelay' : 1500, 
-
 		init: function() {
+			var _this = this;
 			this.addListeners();
 			this.autoFillJira();
-			this.findJiraComment();
-			this.findJiraField();
 			this.addButtons();
-			this.xhrRequestListener();
+			$(window).resize(function() {
+				
+					_this.findJiraField;
+				
+			});
 		},
 
 
@@ -44,16 +47,16 @@
 				} else if (msg.action === 'getPlayerInfo') {
 					_this.injectScript(jQueryInject);
 					_this.injectScript(_this.getPlayerInfo);
-					// newGetPlayerInfo();
-				} else if (msg.action === "test") {
+				} else if (msg.action === "findJiraField") {
+					_this.findJiraField();
+					_this.findJiraComment();
 
 				}
 			});
 
 			chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
-			if (response.farewell === "goodbye")
-
-				$(window).resize(_this.findJiraField);
+			
+				
 			});
 		},
 		// Listening to events that comes from the popup window, and execute function based on the action chosen in the popup.js
@@ -69,94 +72,42 @@
 
 		// Looking for links in Salesforce ticket comments and turn then into click-able links
 		findJiraComment: function () {
-			setTimeout(function() {
-				$('.dataCell').each(function () {
-				// if (this.innerText.length > 140 && this.innerText.length < 450) {
-					this.innerHTML = Autolinker.link( this.innerHTML );
-					var pattern = /Link:/;
-					if (pattern.test(this.innerText)) {
-					}
-				// }
+			$('.dataCell').each(function () {
+				this.innerHTML = Autolinker.link( this.innerHTML );
+				var pattern = /Link:/;
 			});
-			}, this.defaultDelay);	
 		},
 
 
 		// Iterating over each ticket type options and turn it to a clickable link.
 		findJiraField: function () {
-			// setTimeout(function() {
-				$(document).ready(function() {
-				var currentLocation = document.URL;
-				var pattern = /salesforce/;
-
-				// Execute the script bellow only if the location is in salesforce
-				if (pattern.test(currentLocation)) {
-					var els = {};
-					for (var i = 0; i < options.length; i++) {
-						$('div:contains("' + options[i] + '")').each(function () {
-
-							
-							if (!$(this).find('a').length) {
-							
-								var jiraNumber = this.innerText;
-								$(this).empty();
-								jiraNumber = jiraNumber.split(",");
-								for (var j = 0; j < jiraNumber.length; j++) {
-									jiraNumber[j] = jiraNumber[j].replace(' ', '');
-									if (jiraNumber[j].indexOf(',') != -1 ) {
-										jiraNumber[j] = jiraNumber[j].replace('\,', '');
-									}
-									var link = options[i] === "F-CS" ? 
-										"https://control.akamai.com/resolve/caseview/caseDetails.jsp?caseId=" + jiraNumber[j] : 
-										"https://kaltura.atlassian.net/browse/" + jiraNumber[j];
-									var newLink = $("<a />", {
-										name: "link",
-
-										target: "_blank",
-										href: link,
-										text: jiraNumber[j] + " "
-									});
-									$(this).append(newLink);
-								}
+			var els = {};
+			for (var i = 0; i < options.length; i++) {
+				$('div:contains("' + options[i] + '")').each(function () {
+					if (!$(this).find('a').length) {
+						var jiraNumber = this.innerText;
+						$(this).empty();
+						jiraNumber = jiraNumber.split(",");
+						for (var j = 0; j < jiraNumber.length; j++) {
+							jiraNumber[j] = jiraNumber[j].replace(' ', '');
+							if (jiraNumber[j].indexOf(',') != -1 ) {
+								jiraNumber[j] = jiraNumber[j].replace('\,', '');
 							}
-						});
+							var link = options[i] === "F-CS" ? 
+								"https://control.akamai.com/resolve/caseview/caseDetails.jsp?caseId=" + jiraNumber[j] : 
+								"https://kaltura.atlassian.net/browse/" + jiraNumber[j];
+							var newLink = $("<a />", {
+								name: "link",
+
+								target: "_blank",
+								href: link,
+								text: jiraNumber[j] + " "
+							});
+							$(this).append(newLink);
+						}
 					}
-				}
-			 });
-		},
-
-		xhrRequestListener: function() {
-			
-	    var oldXHR = window.XMLHttpRequest;
-	 
-	    function newXHR() {
-	        var realXHR = new oldXHR();
-	 
-	        realXHR.addEventListener("readystatechange", function() { 
-	            console.log("an ajax request was made") 
-	        }, false);
-	 
-	        return realXHR;
-	    }
-	 
-	    window.XMLHttpRequest = newXHR;
-	
-
-		},
-
-		btnStringHelper: function(str) {
-			var btnTypeText = str.split('_');
-			var btnTypeTextNew = '';
-			for (var j = 0; j < btnTypeText.length; j++) {
-				
-				btnTypeText[j] = btnTypeText[j].charAt(0).toUpperCase() + btnTypeText[j].slice(1);
-				if (j !== btnTypeText.length - 1) {
-					btnTypeText[j] += " ";
-				}
-
-				btnTypeTextNew += btnTypeText[j];
+				});
 			}
-			return btnTypeTextNew;
 		},
 
 		defualtConfig: {
@@ -186,7 +137,6 @@
 
 			var btns = ["open_jira", "open_supps", "open_feature_request", "open_akamai"];
 			var lastButton =  $('[name="open_jira"]');
-			// console.log(lastButton);
 			var btnsElm = [];
 			$('.pbButton').css({
 				'position' : 'relative',
@@ -201,9 +151,8 @@
 						var newButton = $('<input/>').attr({
 							type: "button",
 							id: btn + "" + index,
-							href: btnToCreateList[btn].url,
+							src: btnToCreateList[btn].url,
 							class: "btn custom " + "index" + index,
-							data: btn,
 							value: btnToCreateList[btn].text
 						});
 						index++;
@@ -213,12 +162,11 @@
 				return btns;
 			}
 				
-
 			var btns = createNewBtn(_this.defualtConfig.btns);
 			lastButton.replaceWith(btns[0]);
 			var newLastButton = $('.index0');
-			$.each(newLastButton, function( key, value ){
-				for (var i=0; i < btns.length - 1; i++) {
+			$.each(btns[0], function( key, value ){
+				for (var i=0; i < btns.length; i++) {
 					if (btns[i][0].id !== "open_jira0") {
 						$('.index0').after(btns[i]);
 					}
@@ -226,23 +174,11 @@
 			});
 
 			
+			$('.custom').click(function(event) {
 
-			
-			$('.custom').click(function(event) {	
 				var caseData = _this.saveTicketInformation();		
 			    chrome.storage.local.set({'caseData': caseData}, function() {
-		    		if (event.target.id === "open_jira0") {
-		    			console.log(event);
-			    		var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=9";
-		    		} else if (event.target.id === "open_supps1") {
-			    		var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=12201&issuetype=9";
-		    		} else if (event.target.id === "open_akamai2") {
-		    			var url = "https://control.akamai.com/resolve/charaka/CharakaServlet?action=open&requestType=nonPS&category=Technical%20Support_technical.support";
-		    		} else if (event.target.id === "open_feature_request3"){
-		    			var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=4";
-		    		} else {
-		    			var url = "about:blank";
-		    		}
+			    	var url = event.target.getAttribute('src');
 					var myWindow = window.open(url, "myWindow", "width=600, height=600");    // Opens a new window
 					myWindow.focus();
 
@@ -335,9 +271,6 @@
 		    return ret;
 		},
 
-		newGetPlayerInfo: function() {
-			console.log($('#tmpDiv').innerHTML);
-		},
 
 		//collect player information and add an overlay div on the player to display the information.
 		getPlayerInfo: function() {
