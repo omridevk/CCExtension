@@ -1,6 +1,6 @@
 {
   "name": "Kaltura Custom Extension",
-  "version": "0.0.22",
+  "version": "0.0.23",
   "manifest_version": 2,
   "description": "This extension was created to maximize efficiency within the Customer Care team",
   "homepage_url": "https://github.com/omridevk/CCExtension",
@@ -22,13 +22,13 @@
 
   "commands": {
     "toggle-feature": {
-      "suggested_key": { "default": "Ctrl+Shift+C" },
+      "suggested_key": { "default": "Ctrl+Shift+A" },
       "description": "Send a 'toggle-feature' event to the extension"
     },
     "_execute_browser_action": {
       "suggested_key": {
-        "default": "Ctrl+Shift+C",
-        "mac": "MacCtrl+Shift+C"
+        "default": "Ctrl+Shift+A",
+        "mac": "MacCtrl+Shift+A"
       }
     }
   },

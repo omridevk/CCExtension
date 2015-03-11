@@ -11,7 +11,7 @@ chrome.runtime.onMessage.addListener(
 
 var requestFilter = {
     urls: [ "https://*.salesforce.com/*" ],
-    types: ["xmlhttprequest", "other"]
+    types: ["xmlhttprequest"]
   };
 //add event listener to xhr requests with filter specific to salesforce.com to opmtize performance.
 chrome.webRequest.onCompleted.addListener( handler, requestFilter);
@@ -19,7 +19,6 @@ chrome.webRequest.onCompleted.addListener( handler, requestFilter);
 function handler(details) {
   //Once a xhr request is completed in saleforce a message is sent to content script(inject.js)
   // giving the OK to start replacing links in page
-  console.log(details);
   chrome.tabs.sendMessage(details.tabId, {action: "findJiraField"}, function(response) {});  
 
 }
