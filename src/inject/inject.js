@@ -152,7 +152,7 @@
 							type: "button",
 							id: btn + "" + index,
 							src: btnToCreateList[btn].url,
-							class: "btn custom " + "index" + index,
+							class: "btn custom " + "extensionBtn" + index,
 							value: btnToCreateList[btn].text
 						});
 						index++;
@@ -164,11 +164,11 @@
 				
 			var btns = createNewBtn(_this.defualtConfig.btns);
 			lastButton.replaceWith(btns[0]);
-			var newLastButton = $('.index0');
+			var newLastButton = $('.extensionBtn0');
 			$.each(btns[0], function( key, value ){
 				for (var i=0; i < btns.length; i++) {
 					if (btns[i][0].id !== "open_jira0") {
-						$('.index0').after(btns[i]);
+						$('.extensionBtn0').after(btns[i]);
 					}
 				}	
 			});
