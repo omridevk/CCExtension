@@ -1,5 +1,5 @@
 .extensionPanel {
-	color: #FFFFFF;
+	color: #FFFFFF !important;
 	position: absolute;
 	background-color: black;
     word-wrap: break-word;
@@ -8,6 +8,10 @@
     -ms-box-shadow: 0px 3px 10px rgba(34, 25, 25, 0.4);
     -o-box-shadow: 0px 3px 10px rgba(34, 25, 25, 0.4);
     box-shadow: 0px 3px 10px rgba(34, 25, 25, 0.4);
+}
+
+#panelBox td {
+    color: rgba(255, 255, 255, 0.85);
 }
 
 .customTd {
