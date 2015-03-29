@@ -15,19 +15,23 @@
 
 	// Type of tickets to add href to. 
 	var options = ["SUP-", "PLAT-", "FEC-", "SUPPS-", "KMS-", "F-CS"];
-	
+
+        
+
 
 	
 	var CCEXT = {
 
-		'defaultDelay' : 600, 
-
 		init: function() {
+			var _this = this;
 			this.addListeners();
 			this.autoFillJira();
-			this.findJiraComment();
-			this.findJiraField();
 			this.addButtons();
+			$(window).resize(function() {
+				
+					_this.findJiraField;
+				
+			});
 		},
 
 
@@ -43,16 +47,16 @@
 				} else if (msg.action === 'getPlayerInfo') {
 					_this.injectScript(jQueryInject);
 					_this.injectScript(_this.getPlayerInfo);
-					// newGetPlayerInfo();
-				} else if (msg.action === "test") {
+				} else if (msg.action === "findJiraField") {
+					_this.findJiraField();
+					_this.findJiraComment();
 
 				}
 			});
 
 			chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
-			if (response.farewell === "goodbye")
-
-				$(window).resize(_this.findJiraField);
+			
+				
 			});
 		},
 		// Listening to events that comes from the popup window, and execute function based on the action chosen in the popup.js
@@ -68,59 +72,64 @@
 
 		// Looking for links in Salesforce ticket comments and turn then into click-able links
 		findJiraComment: function () {
-			setTimeout(function() {
-				$('.dataCell').each(function () {
-				// if (this.innerText.length > 140 && this.innerText.length < 450) {
-					this.innerHTML = Autolinker.link( this.innerHTML );
-					var pattern = /Link:/;
-					if (pattern.test(this.innerText)) {
-					}
-				// }
+			$('.dataCell').each(function () {
+				this.innerHTML = Autolinker.link( this.innerHTML );
+				var pattern = /Link:/;
 			});
-			}, this.defaultDelay);	
 		},
 
 
 		// Iterating over each ticket type options and turn it to a clickable link.
 		findJiraField: function () {
-			setTimeout(function() {
-				var currentLocation = document.URL;
-				var pattern = /salesforce/;
-
-				// Execute the script bellow only if the location is in salesforce
-				if (pattern.test(currentLocation)) {
-					var els = {};
-					for (var i = 0; i < options.length; i++) {
-						$('div:contains("' + options[i] + '")').each(function () {
-
-							
-							if (!$(this).find('a').length) {
-							
-								var jiraNumber = this.innerText;
-								$(this).empty();
-								jiraNumber = jiraNumber.split(",");
-								for (var j = 0; j < jiraNumber.length; j++) {
-									jiraNumber[j] = jiraNumber[j].replace(' ', '');
-									if (jiraNumber[j].indexOf(',') != -1 ) {
-										jiraNumber[j] = jiraNumber[j].replace('\,', '');
-									}
-									var link = options[i] === "F-CS" ? 
-										"https://control.akamai.com/resolve/caseview/caseDetails.jsp?caseId=" + jiraNumber[j] : 
-										"https://kaltura.atlassian.net/browse/" + jiraNumber[j];
-									var newLink = $("<a />", {
-										name: "link",
-
-										target: "_blank",
-										href: link,
-										text: jiraNumber[j] + " "
-									});
-									$(this).append(newLink);
-								}
+			var els = {};
+			for (var i = 0; i < options.length; i++) {
+				$('div:contains("' + options[i] + '")').each(function () {
+					if (!$(this).find('a').length) {
+						var jiraNumber = this.innerText;
+						$(this).empty();
+						jiraNumber = jiraNumber.split(",");
+						for (var j = 0; j < jiraNumber.length; j++) {
+							jiraNumber[j] = jiraNumber[j].replace(' ', '');
+							if (jiraNumber[j].indexOf(',') != -1 ) {
+								jiraNumber[j] = jiraNumber[j].replace('\,', '');
 							}
-						});
+							var link = options[i] === "F-CS" ? 
+								"https://control.akamai.com/resolve/caseview/caseDetails.jsp?caseId=" + jiraNumber[j] : 
+								"https://kaltura.atlassian.net/browse/" + jiraNumber[j];
+							var newLink = $("<a />", {
+								name: "link",
+
+								target: "_blank",
+								href: link,
+								text: jiraNumber[j] + " "
+							});
+							$(this).append(newLink);
+						}
 					}
-				}
-			}, this.defaultDelay);
+				});
+			}
+		},
+
+		defualtConfig: {
+			btns: {
+				"open_jira": {
+					url: "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=9",
+					text: "Open Jira",
+				},
+
+				"open_supps":{
+					url: "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=12201&issuetype=9",
+					text: "Open SUPPS"
+				}, 
+				"open_akamai":{
+					url: "https://control.akamai.com/resolve/charaka/CharakaServlet?action=open&requestType=nonPS&category=Technical%20Support_technical.support",
+					text: "Open Akamai Ticket"
+				},
+				"open_feature_request":{
+					url:"https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=4",
+					text: "Open Feature Request"
+				} 
+			}
 		},
 
 		addButtons: function() {
@@ -133,58 +142,43 @@
 				'position' : 'relative',
 				'left': '0px'
 			});
-
 			
-			var createNewBtn = function (btnType) {
-				
-				var btnTypeText = btnType.split('_');
-				var btnTypeTextNew = '';
-				for (var j = 0; j < btnTypeText.length; j++) {
-					
-					btnTypeText[j] = btnTypeText[j].charAt(0).toUpperCase() + btnTypeText[j].slice(1);
-					if (j !== btnTypeText.length - 1) {
-						btnTypeText[j] += " ";
+			var createNewBtn = function (btnToCreateList) {
+				var btns = [];
+				var index = 0;
+				for (var btn in btnToCreateList) {
+					if (btnToCreateList.hasOwnProperty(btn)) {				
+						var newButton = $('<input/>').attr({
+							type: "button",
+							id: btn + "" + index,
+							src: btnToCreateList[btn].url,
+							class: "btn custom " + "extensionBtn" + index,
+							value: btnToCreateList[btn].text
+						});
+						index++;
+						btns.push(newButton);
 					}
-
-					btnTypeTextNew += btnTypeText[j];
 				}
-				var newButton = $('<input/>').attr({
-					type: "button",
-					id: btnType,
-					class: "btn custom",
-					data: btnType,
-					value: btnTypeTextNew
-				});
-				return newButton;
+				return btns;
 			}
-			
-			for (var i=0; i < btns.length; i++) {
-				var btn = createNewBtn(btns[i]);
-				btnsElm.push(btn);
-			}
-
-
-			$(lastButton).replaceWith(btnsElm[0][0]);
-
-			for (i=0; i < btnsElm.length - 1; i++) {
-				$('#' + btnsElm[i][0].id).after(btnsElm[i+1][0]);	
-			}
+				
+			var btns = createNewBtn(_this.defualtConfig.btns);
+			lastButton.replaceWith(btns[0]);
+			var newLastButton = $('.extensionBtn0');
+			$.each(btns[0], function( key, value ){
+				for (var i=0; i < btns.length; i++) {
+					if (btns[i][0].id !== "open_jira0") {
+						$('.extensionBtn0').after(btns[i]);
+					}
+				}	
+			});
 
 			
-			$('.custom').click(function(event) {	
+			$('.custom').click(function(event) {
+
 				var caseData = _this.saveTicketInformation();		
 			    chrome.storage.local.set({'caseData': caseData}, function() {
-		    		if (event.target.id === "open_jira") {
-			    		var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=9";
-		    		} else if (event.target.id === "open_supps") {
-			    		var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=12201&issuetype=9";
-		    		} else if (event.target.id === "open_akamai") {
-		    			var url = "https://control.akamai.com/resolve/charaka/CharakaServlet?action=open&requestType=nonPS&category=Technical%20Support_technical.support";
-		    		} else if (event.target.id === "open_feature_request"){
-		    			var url = "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=4";
-		    		} else {
-		    			var url = "about:blank";
-		    		}
+			    	var url = event.target.getAttribute('src');
 					var myWindow = window.open(url, "myWindow", "width=600, height=600");    // Opens a new window
 					myWindow.focus();
 
@@ -277,9 +271,6 @@
 		    return ret;
 		},
 
-		newGetPlayerInfo: function() {
-			console.log($('#tmpDiv').innerHTML);
-		},
 
 		//collect player information and add an overlay div on the player to display the information.
 		getPlayerInfo: function() {
@@ -426,6 +417,9 @@
 	}
 
 	CCEXT.init();
+
+
+	
 
 })();
 
