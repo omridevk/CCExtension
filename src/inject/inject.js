@@ -34,7 +34,7 @@
 			});
 		},
 
-
+        commentSize: 30,
 		
 
 		addListeners: function()  {
@@ -82,33 +82,53 @@
 		// Iterating over each ticket type options and turn it to a clickable link.
 		findJiraField: function () {
 			var els = {};
+            var _this = this;
 			for (var i = 0; i < options.length; i++) {
 				$('div:contains("' + options[i] + '")').each(function () {
 					if (!$(this).find('a').length) {
-						var jiraNumber = this.innerText;
-						$(this).empty();
-						jiraNumber = jiraNumber.split(",");
-						for (var j = 0; j < jiraNumber.length; j++) {
-							jiraNumber[j] = jiraNumber[j].replace(' ', '');
-							if (jiraNumber[j].indexOf(',') != -1 ) {
-								jiraNumber[j] = jiraNumber[j].replace('\,', '');
-							}
-							var link = options[i] === "F-CS" ? 
-								"https://control.akamai.com/resolve/caseview/caseDetails.jsp?caseId=" + jiraNumber[j] : 
-								"https://kaltura.atlassian.net/browse/" + jiraNumber[j];
-							var newLink = $("<a />", {
-								name: "link",
+                        if (_this.commentFieldSize(this, _this.commentSize)) {
+                            var jiraNumber = this.innerText;
+                            $(this).empty();
 
-								target: "_blank",
-								href: link,
-								text: jiraNumber[j] + " "
-							});
-							$(this).append(newLink);
-						}
+                            jiraNumber = jiraNumber.split(",");
+                            for (var j = 0; j < jiraNumber.length; j++) {
+                                jiraNumber[j] = jiraNumber[j].replace(' ', '');
+                                if (jiraNumber[j].indexOf(',') != -1) {
+                                    jiraNumber[j] = jiraNumber[j].replace('\,', '');
+                                }
+                                var link = options[i] === "F-CS" ?
+                                "https://control.akamai.com/resolve/caseview/caseDetails.jsp?caseId=" + jiraNumber[j] :
+                                "https://kaltura.atlassian.net/browse/" + jiraNumber[j];
+                                var newLink = $("<a />", {
+                                    name: "link",
+
+                                    target: "_blank",
+                                    href: link,
+                                    text: jiraNumber[j] + " "
+                                });
+                                $(this).append(newLink);
+                            }
+                        }
 					}
 				});
 			}
 		},
+
+        commentFieldSize: function(el, commentSize) {
+
+            if (el.innerHTML.length < commentSize)
+            {
+                console.log(el.innerHTML);
+
+                return true;
+            }
+            return false;
+            /* check if length of the element is less than 20 - selected a small number like 20
+                this will ensure that we only replacing the JIRA field, since I am looking for any field that has SUP
+                inside it, some the parents are also returned, thus need to make sure that we only replace the child element
+                * if size is smaller than 20, we can go ahead and check
+             */
+        },
 
 		defualtConfig: {
 			btns: {
