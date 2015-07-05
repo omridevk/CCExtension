@@ -17,11 +17,21 @@ var requestFilter = {
 chrome.webRequest.onCompleted.addListener( handler, requestFilter);
 
 function handler(details) {
+
   //Once a xhr request is completed in saleforce a message is sent to content script(inject.js)
   // giving the OK to start replacing links in page
-  chrome.tabs.sendMessage(details.tabId, {action: "findJiraField"}, function(response) {});  
+  chrome.tabs.sendMessage(details.tabId, {action: "findJiraField"}, function(response) {}); 
+  chrome.tabs.sendMessage(details.tabId, {action: "salesforceLoaded"}, function(response) {}); 
+
 
 }
+
+
+
+chrome.tabs.getSelected(null,function(tab) {
+    var tablink = tab.url;
+    
+});
 
 chrome.contextMenus.create({
     "title": "Player Stats",

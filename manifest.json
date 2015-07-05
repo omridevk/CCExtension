@@ -1,8 +1,8 @@
 {
   "name": "Kaltura Custom Extension",
-  "version": "0.0.25",
+  "version": "0.0.26",
   "manifest_version": 2,
-  "description": "This extension was created to maximize efficiency within the Customer Care team",
+  "description": "This extension was created to maximize efficiency within the Customer Care team, created by Omri Katz.",
   "homepage_url": "https://github.com/omridevk/CCExtension",
   "icons": {
     "16": "icons/icon16.png",
