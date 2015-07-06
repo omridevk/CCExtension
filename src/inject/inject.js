@@ -50,7 +50,8 @@
 				} else if (msg.action === "findJiraField") {
 					_this.findJiraField();
 					_this.findJiraComment();
-					_this.addButtons();
+					// _this.addButtons();
+					_this.CustomButtons.init();
 				}
 			});
 
@@ -59,8 +60,192 @@
 				
 			});
 		},
+
 		// Listening to events that comes from the popup window, and execute function based on the action chosen in the popup.js
 		
+
+
+		CustomButtons: {
+
+			defualtConfig: {
+
+				buttonsData: {
+					"open_jira": {
+						url: "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=9",
+						text: "Open Jira",
+					},
+
+					"open_supps":{
+						url: "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=12201&issuetype=9",
+						text: "Open SUPPS"
+					}, 
+					"open_akamai":{
+						url: "https://control.akamai.com/resolve/charaka/CharakaServlet?action=open&requestType=nonPS&category=Technical%20Support_technical.support",
+						text: "Open Akamai Ticket"
+					},
+					"open_feature_request":{
+						url:"https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=4",
+						text: "Open Feature Request"
+					} 
+				}	
+			},
+			init: function() 
+			{
+				this.setMasterDocument();
+				this.createButttons();
+				this.replaceButtons();
+				this.addListeners();
+			},
+			setMasterDocument: function() 
+			{
+				var _this = this;
+				
+				// 1. find the active tab.
+				// 2. get the ticket number from it
+				// 3. Itteriate through all the iframe that has id ext-comp.
+				// 4. look for each iframe if there the ticket number equels the ticket number of the active tab.
+				// 5. if it is set that iframe as the root document otherwise set the page as the document(backward compaitiblity)
+
+				var activeTicketNumber = getIframe(findActiveTab());
+
+				function getIframe(activeTab) 
+				{
+					// the id of the active tab contains the name of the div that contains the iframe.
+					// using this information to set the root document based on the active tab.
+					if (typeof(activeTab) !== 'undefined') {
+						var iframeDivId = activeTab.id.substring(activeTab.id.lastIndexOf("_") + 1 );
+						var iframe = $('#' + iframeDivId).find('iframe')[0];
+
+						return _this.innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+						
+					}
+					setButtonsLayOut();
+					return _this.innerDoc = document;
+				}
+				function setButtonsLayOut() {
+					var title = $('.mainTitle')[0];
+					console.log(title.parentNode);
+					$(title.parentNode).css("width", "30px");
+				}
+				function findActiveTab() 
+				{
+					// relevant active tab should always be second in the array of active tabs.
+
+					 return $(".x-tab-strip-active:visible")[1];
+					
+				}
+
+				// if (iframe.id.indexOf('ext-comp') !== -1)
+				// {
+					
+				// 	return this.innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+				// } 
+				// return this.innerDoc = document;
+				
+			},
+
+
+
+
+
+			getLastButton: function()
+			{
+				return $(this.innerDoc).find('[name="open_jira"]');
+			},
+
+			createButttons: function()
+			{
+				var btns = [];
+				var btnToCreateList = this.defualtConfig.buttonsData;
+				var index = 0;
+				for (var btn in btnToCreateList) {
+					if (btnToCreateList.hasOwnProperty(btn)) {				
+						var newButton = $('<input/>').attr({
+							type: "button",
+							id: btn + "" + index,
+							src: btnToCreateList[btn].url,
+							class: "btn custom " + "extensionBtn" + index,
+							value: btnToCreateList[btn].text
+						});
+						index++;
+						btns.push(newButton);
+					}
+				}
+				return this.buttonsEls = btns;
+			},
+			replaceLastButton: function()
+			{
+				if ($(this.innerDoc).find('.extensionBtn0').length === 0) {
+					return $(this.getLastButton()).replaceWith(this.buttonsEls[0]);
+				}
+				return false;
+				// replace last button with the first button (open_jira)
+
+			},
+			replaceButtons: function()
+			{
+				
+				this.replaceLastButton();
+					if ( ! this.buttonsAdded()) {
+						var btns = $(this.buttonsEls);
+						var _this = this;
+						$.each(btns[0], function( key, value ){
+								for (var i=0; i < btns.length; i++) {
+									if (btns[i][0].id !== "open_jira0") {
+										console.log("from after function");
+										$(_this.innerDoc).find('.extensionBtn0').after(btns[i]);
+									}
+								}	
+						});
+					}
+			},
+			buttonsAdded: function()
+			{
+				if ($(this.innerDoc).find('.extensionBtn1').length > 0) {
+					console.log($(this.innerDoc).find('.extensionBtn1').length);
+					return true;
+				}
+				return false;
+			},
+			addListeners: function()
+			{
+				var _this = this;
+				$(this.innerDoc).find('.custom').click(function(event) {
+
+					var caseData = _this.saveTicketInformation();		
+				    chrome.storage.local.set({'caseData': caseData}, function() {
+				    	var url = event.target.getAttribute('src');
+						var myWindow = window.open(url, "myWindow", "width=600, height=600");    // Opens a new window
+						myWindow.focus();
+
+					});	
+				});
+			},
+
+			saveTicketInformation: function(btnId) {
+				var caseData = {};
+				caseData.caseURL = this.innerDoc.getElementById('00N70000003iS5n_ileinner').innerText;
+				
+
+				caseData.div = $(this.innerDoc).find('#cas2_ileinner');
+				chrome.storage.local.clear();
+				caseData.caseNumber = caseData.div[0].innerHTML;
+				caseData.btnId = btnId;
+				caseData.accountName = $(this.innerDoc).find('#cas4_ileinner')[0].innerText; 
+				caseData.priority = $(this.innerDoc).find('#cas8_ileinner')[0].innerText;
+				caseData.accountClass = $(this.innerDoc).find('#00N70000002RDrn_ileinner')[0].innerText;
+				// caseData.caseURL = document.URL;
+				// Adding a fix for the new Salesforce console.
+				// Need to find the div that contains the URL for the salesforce ticket.
+				// Since the new Console puts everything within an iframe.
+				// Need to first find the iframe, then get the div with case link URL.
+
+				// find the iframe for the new salesforce console.	
+				// Always assumes that the relevant iframe is in the second spot.
+					
+				return caseData;
+			}
+		},
 
 		// Inject script tag and its content to a page in order to access the page JavaScript variables. 
 		// Choose which function to inject when calling the function.
@@ -128,156 +313,7 @@
              */
         },
 
-		defualtConfig: {
-			btns: {
-				"open_jira": {
-					url: "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=9",
-					text: "Open Jira",
-				},
-
-				"open_supps":{
-					url: "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=12201&issuetype=9",
-					text: "Open SUPPS"
-				}, 
-				"open_akamai":{
-					url: "https://control.akamai.com/resolve/charaka/CharakaServlet?action=open&requestType=nonPS&category=Technical%20Support_technical.support",
-					text: "Open Akamai Ticket"
-				},
-				"open_feature_request":{
-					url:"https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=4",
-					text: "Open Feature Request"
-				} 
-			}
-		},
-
-		addButtons: function() {
-			var _this = this;
-
-			// var btns = ["open_jira", "open_supps", "open_feature_request", "open_akamai"];
-			/*
-			** Adding support for the new console.
-			** First, need to keep backward compaitbility, by checking if iframe exisits.
-			** Iframe indicits new console.
-			** find the last button in the iframe otherwise all the same.
-
-
-			
-
-			*/
-
-
-
-			var iframe = document.getElementById('ext-comp-1035');
-			if (typeof(iframe) !== 'undefined') 
-			{
-				this.innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-				
-				// var lastButton = $(innerDoc).find('#open_jira0');
-				
-				var el = this.innerDoc.getElementsByName('open_jira')[0];	
-				if (typeof(el) !== 'undefined')
-				{
-					this.lastButton = $(el);
-				} else {
-					this.lastButton = this.lastButton;
-				}
-				
-				
-			} else {
-				this.innerDoc = document;
-				// var lastButton =  $('[name="open_jira"]');
-			}
-			var btnsElm = [];
-			$('.pbButton').css({
-				'position' : 'relative',
-				'left': '0px'
-			});
-
-			var buttonsAdded = function() 
-			{
-				var el = $(_this.innerDoc).find('.extensionBtn1');
-				if (el.length  === 0) 
-				{
-					return true;
-				}
-				return false;			
-			}
-
-			
-			var createNewBtn = function (btnToCreateList) {
-				var btns = [];
-				var index = 0;
-				for (var btn in btnToCreateList) {
-					if (btnToCreateList.hasOwnProperty(btn)) {				
-						var newButton = $('<input/>').attr({
-							type: "button",
-							id: btn + "" + index,
-							src: btnToCreateList[btn].url,
-							class: "btn custom " + "extensionBtn" + index,
-							value: btnToCreateList[btn].text
-						});
-						index++;
-						btns.push(newButton);
-					}
-				}
-				return btns;
-			}
-				
-			var btns = createNewBtn(_this.defualtConfig.btns);
-			var lastbtn = this.lastButton;
-			$(this.lastButton).replaceWith(btns[0]);
-			var newLastButton = $('.extensionBtn0');
-			//check if we already added the buttons.
-			if (buttonsAdded()) {
-				$.each(btns[0], function( key, value ){
-					for (var i=0; i < btns.length; i++) {
-						if (btns[i][0].id !== "open_jira0") {
-							$(_this.innerDoc).find('.extensionBtn0').after(btns[i]);
-						}
-					}	
-				});
-
-
-			
-				$(this.innerDoc).find('.custom').click(function(event) {
-
-					var caseData = _this.saveTicketInformation();		
-				    chrome.storage.local.set({'caseData': caseData}, function() {
-				    	var url = event.target.getAttribute('src');
-						var myWindow = window.open(url, "myWindow", "width=600, height=600");    // Opens a new window
-						myWindow.focus();
-
-					});	
-				});
-			}
-		},
-
-
-		saveTicketInformation: function(btnId) {
-			var caseData = {};
-			caseData.div = $(this.innerDoc).find('#cas2_ileinner');
-			chrome.storage.local.clear();
-			caseData.caseNumber = caseData.div[0].innerHTML;
-			caseData.btnId = btnId;
-			caseData.accountName = $(this.innerDoc).find('#cas4_ileinner')[0].innerText; 
-			caseData.priority = $(this.innerDoc).find('#cas8_ileinner')[0].innerText;
-			caseData.accountClass = $(this.innerDoc).find('#00N70000002RDrn_ileinner')[0].innerText;
-			// caseData.caseURL = document.URL;
-			// Adding a fix for the new Salesforce console.
-			// Need to find the div that contains the URL for the salesforce ticket.
-			// Since the new Console puts everything within an iframe.
-			// Need to first find the iframe, then get the div with case link URL.
-
-			// find the iframe for the new salesforce console.	
-			var iframe = document.getElementById('ext-comp-1035');
-
-
-			var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-			caseData.caseURL = innerDoc.getElementById('00N70000003iS5n_ileinner').innerText;
-				
-			return caseData;
-		},
-
+		
 
 		autoFillJira: function() {
 			if (document.URL.indexOf('CreateIssue') !== -1) { 
@@ -286,7 +322,8 @@
 			    	if (document.URL.indexOf('init') !== -1) {
 			    		$('.error').hide();
 			    	}
-					var allKeys = Object.keys(items);		
+					var allKeys = Object.keys(items);
+					console.log(allKeys);		
 					$('#customfield_10101').val(items.caseData.accountName); //set account name field
 					$('#customfield_10102').val(items.caseData.caseNumber); //set the case number field
 					$('#customfield_10600').val(items.caseData.caseURL); //set SF Case Link field
