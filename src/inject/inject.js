@@ -105,8 +105,10 @@
 				// 3. Itteriate through all the iframe that has id ext-comp.
 				// 4. look for each iframe if there the ticket number equels the ticket number of the active tab.
 				// 5. if it is set that iframe as the root document otherwise set the page as the document(backward compaitiblity)
+				var activeTab = findActiveTab();
+				getIframe(activeTab);
+				addListenerToTab(activeTab);
 
-				var activeTicketNumber = getIframe(findActiveTab());
 
 				function getIframe(activeTab) 
 				{
@@ -124,7 +126,6 @@
 				}
 				function setButtonsLayOut() {
 					var title = $('.mainTitle')[0];
-					console.log(title.parentNode);
 					$(title.parentNode).css("width", "30px");
 				}
 				function findActiveTab() 
@@ -135,17 +136,14 @@
 					
 				}
 
-				// if (iframe.id.indexOf('ext-comp') !== -1)
-				// {
-					
-				// 	return this.innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-				// } 
-				// return this.innerDoc = document;
+				function addListenerToTab(activeTab)
+				{
+					$(activeTab).click(function() {
+						_this.init();
+					});
+				}
 				
 			},
-
-
-
 
 
 			getLastButton: function()
@@ -192,7 +190,6 @@
 						$.each(btns[0], function( key, value ){
 								for (var i=0; i < btns.length; i++) {
 									if (btns[i][0].id !== "open_jira0") {
-										console.log("from after function");
 										$(_this.innerDoc).find('.extensionBtn0').after(btns[i]);
 									}
 								}	
@@ -202,7 +199,6 @@
 			buttonsAdded: function()
 			{
 				if ($(this.innerDoc).find('.extensionBtn1').length > 0) {
-					console.log($(this.innerDoc).find('.extensionBtn1').length);
 					return true;
 				}
 				return false;
@@ -322,8 +318,7 @@
 			    	if (document.URL.indexOf('init') !== -1) {
 			    		$('.error').hide();
 			    	}
-					var allKeys = Object.keys(items);
-					console.log(allKeys);		
+					var allKeys = Object.keys(items);	
 					$('#customfield_10101').val(items.caseData.accountName); //set account name field
 					$('#customfield_10102').val(items.caseData.caseNumber); //set the case number field
 					$('#customfield_10600').val(items.caseData.caseURL); //set SF Case Link field
