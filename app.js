@@ -53,7 +53,7 @@ myApp.controller('customerCareCtrl', function ($scope) {
         document.getElementById('spinner').style.display = 'block';
         chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
                 document.getElementById('spinner').style.display = 'none';
-                $scope.qrCodeImgSrc = 'http://chart.googleapis.com/chart?cht=qr&chs=300x300&choe=UTF-8&chld=H&chl=' + tabs[0].url;
+                $scope.qrCodeImgSrc = 'http://chart.googleapis.com/chart?cht=qr&chs=300x300&choe=UTF-8&chld=H&chl=' + encodeURIComponent(tabs[0].url);
                 $scope.$apply();
         });
     }
