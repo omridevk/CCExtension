@@ -48,10 +48,11 @@
 					_this.injectScript(jQueryInject);
 					_this.injectScript(_this.getPlayerInfo);
 				} else if (msg.action === "findJiraField") {
-					_this.findJiraField();
+					
 					_this.findJiraComment();
 					// _this.addButtons();
 					_this.CustomButtons.init();
+					_this.findJiraField();
 				}
 			});
 
@@ -126,7 +127,9 @@
 				}
 				function setButtonsLayOut() {
 					var title = $('.mainTitle')[0];
-					$(title.parentNode).css("width", "30px");
+					if (typeof(title) !== 'undefined') {
+						$(title.parentNode).css("width", "30px");
+					}
 				}
 				function findActiveTab() 
 				{
@@ -253,8 +256,8 @@
 
 		// Looking for links in Salesforce ticket comments and turn then into click-able links
 		findJiraComment: function () {
-			$('.dataCell').each(function () {
-				this.innerHTML = Autolinker.link( this.innerHTML );
+			$(this.CustomButtons.innerDoc).find('.dataCell').each(function () {
+				this.innerHTML = Autolinker.link( this.innerHTML, {stripPrefix: false} );
 				var pattern = /Link:/;
 			});
 		},
@@ -264,8 +267,9 @@
 		findJiraField: function () {
 			var els = {};
             var _this = this;
+
 			for (var i = 0; i < options.length; i++) {
-				$('div:contains("' + options[i] + '")').each(function () {
+				$(this.CustomButtons.innerDoc).find('div:contains("' + options[i] + '")').each(function () {
 					if (!$(this).find('a').length) {
                         if (_this.commentFieldSize(this, _this.commentSize)) {
                             var jiraNumber = this.innerText;
