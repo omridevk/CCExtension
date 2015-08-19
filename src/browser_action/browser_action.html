@@ -20,7 +20,7 @@
     <script src="../../js/jquery.cookie/jquery.cookie.js"></script>
     <script src="../../bower_components/angular-animate/angular-animate.js"></script>
     <script src="../../bower_components/angular-aria/angular-aria.js"></script>
-    <script src="../../bower_components/angular-material/angular-material.min.js"></script>
+    <script src="../../bower_components/angular-material/angular-material.js"></script>
     <script src="../../app.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/styles.css">
     <link rel="stylesheet" type="text/css" href="../../bower_components/angular-material/angular-material.css">
@@ -29,86 +29,38 @@
 <body ng-controller="customerCareCtrl">
 
 <md-divider ng-if="!$last"></md-divider>
-<md-content class="md-padding" class="mainPage" layout-padding style="width: 340px;">
+<md-content class="md-padding" class="mainPage" layout-padding style="width: 340px;" id="popupContainer">
     <!--<img src="/img/Kaltura.svg" id="logo"/>-->
     <md-tabs md-dynamic-height md-border-bottom>
-        <md-tab label="Tickets">
+        <md-tab label="{{titleText}}" ng-repeat="(tabIndex, titleText) in tabs.titles">
             <md-content class="md-padding">
-                <h1 class="md-display-2" style="margin-left:20px">Tickets</h1>
-                <div class="row collapse">
-                    <div class="small-8 columns">
+                <h1 class="md-display-2" style="margin-left:20px">{{titleText}}</h1>
+                <div class="row collapse" ng-repeat="tab in tabs" ng-if="tab.appearsInTab===tabIndex">
+                    <div class="small-8 columns" >
                         <md-input-container>
-                            <label>Search for a JIRA ticket</label>
-                            <input name="JIRA" my-enter="popUp.openJira()" ng-model="popUp.jira">
+                            <label> {{tab.text}} </label>
+                            <input my-enter="tab.action()" ng-model="tab.model">
                         </md-input-container>
                     </div>
                     <div class="small-4 columns">
-                        <md-button id="jiraButton" ng-click="popUp.openJira()" class="md-raised md-primary">JIRA
-                        </md-button>
-                    </div>
-                </div>
-                <div class="row collapse">
-                    <div class="small-8 columns">
-                        <md-input-container>
-                            <label>Search for a SF ticket</label>
-                            <input name="Salesforce" my-enter="popUp.openSalesforce()" ng-model="popUp.salesForce">
-                        </md-input-container>
-                    </div>
-                    <div class="small-4 columns">
-                        <md-button id="salesforceButton" ng-click="popUp.openSalesforce()" class="md-raised">SF
-                        </md-button>
-                    </div>
-                </div>
-            </md-content>
-        </md-tab>
-        <md-tab label="Scripts">
-            <md-content class="md-padding">
-                <h1 class="md-display-2">Scripts</h1>
-                <div class="row collapse">
-                    <div class="small-8 columns">
-                        <md-input-container>
-                            <label>Convert Epoch to GMT</label>
-                            <input name="Epoch" my-enter="popUp.convertEpoch()" ng-model="popUp.epochInput">
-                        </md-input-container>
-                        <md-input-container ng-show="popUp.epochOutput">
-                            <label>Convert Epoch to GMT</label>
-                            <input name="Salesforce" my-enter="popUp.convertEpoch()" ng-model="popUp.epochOutput">
-                        </md-input-container>
-                    </div>
-                    <div class="small-4 columns">
-                        <md-button id="epochInput" ng-click="popUp.convertEpoch()" class="md-raised">Convert</md-button>
-                    </div>
-                </div>
-                <div class="row collapse">
-                    <div class="small-8 columns">
-                        <md-input-container>
-                            <label>Get KS!</label>
-                            <input name="KS" my-enter="popUp.getKs()" id="ks-input-box" ng-model="popUp.ks">
-
-                            <div ng-messages="projectForm.description.$error">
-                                <div ng-message="md-maxlength" ng-show="popUp.ks">KS Copied to clipboard</div>
-                            </div>
-                        </md-input-container>
-                    </div>
-                    <div class="small-4 columns">
-                        <md-button id="copyKSbutton" ng-click="popUp.getKs()" ng-model="popUp.ks"
-                                   class="md-raised md-primary">KS
+                        <md-button ng-click="value.action()" class="md-raised md-primary">{{tab.buttonName}}
                         </md-button>
                     </div>
                 </div>
             </md-content>
         </md-tab>
     </md-tabs>
-</md-content>
+
 <div class="md-padding" layout="row" layout-sm="column" layout-align="left center"
      style="padding-top: 0;">
-        <md-button ng-click="popUp.getPlayerInfo()" class="md-raised">Get Player Info</md-button>
+        <div ng-repeat="button in notInTabs">
+            <md-button ng-click="button.action($event)" class="md-raised">{{button.buttonName}}</md-button>
+        </div>
         <md-button data-reveal-id="myModal" ng-click="popUp.displayURLQRCode($event)" class="md-raised">Display QR Code
         </md-button>
     </div>
 </div>
-<br>
-
+</md-content>
 <div id="myModal" class="reveal-modal" data-reveal style="max-height:200px;">
     <img id="spinner" ng-src="/img/spinner.gif" style="display:none;">
     <img ng-src="{{qrCodeImgSrc}}"/>
