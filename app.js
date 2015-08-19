@@ -61,6 +61,12 @@ myApp.controller('customerCareCtrl', function ($scope) {
 
             }
         },
+        convertEpoch: function() {
+            var utcSeconds = this.epochInput;
+            var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+            d.setUTCSeconds(utcSeconds);
+            this.epochOutput = d;
+        },
         displayURLQRCode: function() {
             document.getElementById('spinner').style.display = 'block';
             chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
@@ -73,7 +79,25 @@ myApp.controller('customerCareCtrl', function ($scope) {
             chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
                 chrome.tabs.sendMessage(tabs[0].id, {action: "getPlayerInfo"}, function(response) {});
             });
+            this.tabsContent.openJira.action();
+        },
+        tabsContent:  {
+            openJira: {
+                name: 'Open Jira',
+                action: function() {
+                }
+            },
+            openSalesforce: {
+
+            },
+            getKs: {
+
+            },
+            convertEpoch: {
+
+            }
         }
+
     }
 });
 
@@ -87,7 +111,6 @@ myApp.directive('myEnter', function () { //directive that listen to "Enter" keyp
                 scope.$apply(function (){
                     scope.$eval(attrs.myEnter);
                 });
-
                 event.preventDefault();
             }
         });

@@ -13,89 +13,112 @@
 <html ng-app="myApp">
 <head>
 
-  <script src="../../bower_components/angular/angular.js"></script>
-  <script src="../../bower_components/jquery/dist/jquery.js"></script>
-  <script src="../../js/foundation/foundation.min.js"></script>
-  <script src="../../js/bootstrap/bootstrap.min.js"></script>
-  <script src="../../js/jquery.cookie/jquery.cookie.js"></script>
-  <script src="../../bower_components/angular-animate/angular-animate.js"></script>
-  <script src="../../bower_components/angular-aria/angular-aria.js"></script>
-  <script src="../../bower_components/angular-material/angular-material.min.js"></script>
-  <script src="../../app.js"></script>
-  <link rel="stylesheet" type="text/css" href="/css/styles.css">
-  <link rel="stylesheet" type="text/css" href="../../bower_components/angular-material/angular-material.css">
-  <title>Kaltura Customer Care's Chrome Extension</title>
+    <script src="../../bower_components/angular/angular.js"></script>
+    <script src="../../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../../js/foundation/foundation.min.js"></script>
+    <script src="../../js/bootstrap/bootstrap.min.js"></script>
+    <script src="../../js/jquery.cookie/jquery.cookie.js"></script>
+    <script src="../../bower_components/angular-animate/angular-animate.js"></script>
+    <script src="../../bower_components/angular-aria/angular-aria.js"></script>
+    <script src="../../bower_components/angular-material/angular-material.min.js"></script>
+    <script src="../../app.js"></script>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css">
+    <link rel="stylesheet" type="text/css" href="../../bower_components/angular-material/angular-material.css">
+    <title>Kaltura Customer Care's Chrome Extension</title>
 </head>
 <body ng-controller="customerCareCtrl">
-<div id="wrapper">
-  <img src="/img/Kaltura.svg" id="logo"/>
-  <!--<ul class="tabs" data-tab>-->
-    <!--<li class="tab-title active"><a href="#panel1">Jira</a></li>-->
-    <!--<li class="tab-title"><a href="#panel2">Coming Soon</a></li>-->
-  <!--</ul>-->
-  <div class="row tabs-content">
-    <div class="large-12 columns content active" id="panel1">
-      <!--<h6>Search for a JIRA ticket</h6>-->
-      <div class="row collapse">
-        <div class="small-8 columns">
-          <md-input-container>
-            <label>Search for a JIRA ticket</label>
-            <input name="JIRA" my-enter="popUp.openJira()" ng-model="popUp.jira">
-          </md-input-container>
-        </div>
-        <div class="small-4 columns">
-          <md-button id="jiraButton" ng-click="popUp.openJira()" class="md-raised md-primary">JIRA</md-button>
-        </div>
-      </div>
-      <div class="row collapse">
-        <div class="small-8 columns">
-          <md-input-container>
-            <label>Search for a SF ticket</label>
-            <input name="Salesforce" my-enter="popUp.openSalesforce()" ng-model="popUp.salesForce">
-          </md-input-container>
-        </div>
-        <div class="small-4 columns">
-          <md-button id="salesforceButton" ng-click="popUp.openSalesforce()" class="md-raised">SF</md-button>
-        </div>
-      </div>
-      <div class="row collapse">
-        <div class="small-8 columns">
-          <md-input-container>
-            <label>Get KS!</label>
-            <input name="KS" my-enter="popUp.getKs()" id="ks-input-box" ng-model="popUp.ks">
-            <div ng-messages="projectForm.description.$error">
-              <div ng-message="md-maxlength" ng-show="popUp.ks">KS Copied to clipboard</div>
-            </div>
-          </md-input-container>
-        </div>
-        <div class="small-4 columns">
-          <md-button id="copyKSbutton" ng-click="popUp.getKs()" ng-model="popUp.ks" class="md-raised md-primary">KS</md-button>
-        </div>
-      </div>
-      <br>
-      <md-divider ng-if="!$last"></md-divider>
 
-      <div class="small-offset-2 columns">
-          <md-button ng-click="popUp.getPlayerInfo()" class="md-raised">Get Player Info</md-button>
-      </div>
-      <div class="small-offset-2 columns">
-        <md-button data-reveal-id="myModal" ng-click="popUp.displayURLQRCode($event)" class="md-raised">Display QR Code</md-button>
-      </div>
-        <br>
-      </div>
-    </div> <!-- End of panel 1 -->
-    <div id="myModal" class="reveal-modal" data-reveal style="max-height:200px;">
-      <img id="spinner" ng-src="/img/spinner.gif" style="display:none;">
-      <img ng-src="{{qrCodeImgSrc}}" />
-      <a class="close-reveal-modal">&#215;</a>
+<md-divider ng-if="!$last"></md-divider>
+<md-content class="md-padding" class="mainPage" layout-padding style="width: 340px;">
+    <!--<img src="/img/Kaltura.svg" id="logo"/>-->
+    <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="Tickets">
+            <md-content class="md-padding">
+                <h1 class="md-display-2" style="margin-left:20px">Tickets</h1>
+                <div class="row collapse">
+                    <div class="small-8 columns">
+                        <md-input-container>
+                            <label>Search for a JIRA ticket</label>
+                            <input name="JIRA" my-enter="popUp.openJira()" ng-model="popUp.jira">
+                        </md-input-container>
+                    </div>
+                    <div class="small-4 columns">
+                        <md-button id="jiraButton" ng-click="popUp.openJira()" class="md-raised md-primary">JIRA
+                        </md-button>
+                    </div>
+                </div>
+                <div class="row collapse">
+                    <div class="small-8 columns">
+                        <md-input-container>
+                            <label>Search for a SF ticket</label>
+                            <input name="Salesforce" my-enter="popUp.openSalesforce()" ng-model="popUp.salesForce">
+                        </md-input-container>
+                    </div>
+                    <div class="small-4 columns">
+                        <md-button id="salesforceButton" ng-click="popUp.openSalesforce()" class="md-raised">SF
+                        </md-button>
+                    </div>
+                </div>
+            </md-content>
+        </md-tab>
+        <md-tab label="Scripts">
+            <md-content class="md-padding">
+                <h1 class="md-display-2">Scripts</h1>
+                <div class="row collapse">
+                    <div class="small-8 columns">
+                        <md-input-container>
+                            <label>Convert Epoch to GMT</label>
+                            <input name="Epoch" my-enter="popUp.convertEpoch()" ng-model="popUp.epochInput">
+                        </md-input-container>
+                        <md-input-container ng-show="popUp.epochOutput">
+                            <label>Convert Epoch to GMT</label>
+                            <input name="Salesforce" my-enter="popUp.convertEpoch()" ng-model="popUp.epochOutput">
+                        </md-input-container>
+                    </div>
+                    <div class="small-4 columns">
+                        <md-button id="epochInput" ng-click="popUp.convertEpoch()" class="md-raised">Convert</md-button>
+                    </div>
+                </div>
+                <div class="row collapse">
+                    <div class="small-8 columns">
+                        <md-input-container>
+                            <label>Get KS!</label>
+                            <input name="KS" my-enter="popUp.getKs()" id="ks-input-box" ng-model="popUp.ks">
+
+                            <div ng-messages="projectForm.description.$error">
+                                <div ng-message="md-maxlength" ng-show="popUp.ks">KS Copied to clipboard</div>
+                            </div>
+                        </md-input-container>
+                    </div>
+                    <div class="small-4 columns">
+                        <md-button id="copyKSbutton" ng-click="popUp.getKs()" ng-model="popUp.ks"
+                                   class="md-raised md-primary">KS
+                        </md-button>
+                    </div>
+                </div>
+            </md-content>
+        </md-tab>
+    </md-tabs>
+</md-content>
+<div class="md-padding" layout="row" layout-sm="column" layout-align="left center"
+     style="padding-top: 0;">
+        <md-button ng-click="popUp.getPlayerInfo()" class="md-raised">Get Player Info</md-button>
+        <md-button data-reveal-id="myModal" ng-click="popUp.displayURLQRCode($event)" class="md-raised">Display QR Code
+        </md-button>
     </div>
-  </div> <!-- End of Row -->
-</div> <!-- Enf of Wrapper -->
+</div>
+<br>
+
+<div id="myModal" class="reveal-modal" data-reveal style="max-height:200px;">
+    <img id="spinner" ng-src="/img/spinner.gif" style="display:none;">
+    <img ng-src="{{qrCodeImgSrc}}"/>
+    <a class="close-reveal-modal">&#215;</a>
+</div>
 
 <div id="joyrideDiv">
-<ol class="joyride-list" data-joyride>
-  <li data-id="ks-input-box"><p>Here's the explanation</p></li>
-</ol>
+    <ol class="joyride-list" data-joyride>
+        <li data-id="ks-input-box"><p>Here's the explanation</p></li>
+    </ol>
 </div>
 
 </body>
