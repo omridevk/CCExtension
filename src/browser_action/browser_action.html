@@ -12,64 +12,82 @@
  -->
 <html ng-app="myApp">
 <head>
-  <script src="/js/angular/angular.min.js"></script>
-  <script src="/js/jquery/jquery.min.js"></script>
-  <script src="/js/foundation/foundation.min.js"></script>
-  <script src="/js/bootstrap/bootstrap.min.js"></script>
-  <script src="/js/jquery.cookie/jquery.cookie.js"></script>
-  <script src="/app.js"></script>
+
+  <script src="../../bower_components/angular/angular.js"></script>
+  <script src="../../bower_components/jquery/dist/jquery.js"></script>
+  <script src="../../js/foundation/foundation.min.js"></script>
+  <script src="../../js/bootstrap/bootstrap.min.js"></script>
+  <script src="../../js/jquery.cookie/jquery.cookie.js"></script>
+  <script src="../../bower_components/angular-animate/angular-animate.js"></script>
+  <script src="../../bower_components/angular-aria/angular-aria.js"></script>
+  <script src="../../bower_components/angular-material/angular-material.min.js"></script>
+  <script src="../../app.js"></script>
   <link rel="stylesheet" type="text/css" href="/css/styles.css">
+  <link rel="stylesheet" type="text/css" href="../../bower_components/angular-material/angular-material.css">
   <title>Kaltura Customer Care's Chrome Extension</title>
 </head>
 <body ng-controller="customerCareCtrl">
 <div id="wrapper">
   <img src="/img/Kaltura.svg" id="logo"/>
-  <ul class="tabs" data-tab>
-    <li class="tab-title active"><a href="#panel1">Jira</a></li>
-    <li class="tab-title"><a href="#panel2">Coming Soon</a></li>
-  </ul>
+  <!--<ul class="tabs" data-tab>-->
+    <!--<li class="tab-title active"><a href="#panel1">Jira</a></li>-->
+    <!--<li class="tab-title"><a href="#panel2">Coming Soon</a></li>-->
+  <!--</ul>-->
   <div class="row tabs-content">
     <div class="large-12 columns content active" id="panel1">
-      <h6>Search for a JIRA ticket</h6>
+      <!--<h6>Search for a JIRA ticket</h6>-->
       <div class="row collapse">
-        <div class="small-10 columns">
-          <input autofocus my-enter="openJira()" class="textbox" type="text" ng-model="jira" placeholder="JIRA number">
+        <div class="small-8 columns">
+          <md-input-container>
+            <label>Search for a JIRA ticket</label>
+            <input name="JIRA" my-enter="popUp.openJira()" ng-model="popUp.jira">
+          </md-input-container>
         </div>
-        <div class="small-2 columns">
-          <a href="#" class="button postfix" id="jiraButton" ng-click="openJira()">Go</a>
+        <div class="small-4 columns">
+          <md-button id="jiraButton" ng-click="popUp.openJira()" class="md-raised md-primary">JIRA</md-button>
         </div>
       </div>
-      <h6>Search for Salesforce Ticket</h6>
       <div class="row collapse">
-        <div class="small-10 columns">
-          <input autofocus my-enter="openSalesforce()" class="textbox" type="text" ng-model="salesforce" placeholder="Salesforce ticket number">
+        <div class="small-8 columns">
+          <md-input-container>
+            <label>Search for a SF ticket</label>
+            <input name="Salesforce" my-enter="popUp.openSalesforce()" ng-model="popUp.salesForce">
+          </md-input-container>
         </div>
-        <div class="small-2 columns">
-          <a href="#" class="button postfix" ng-click="openSalesforce()">Go</a>
+        <div class="small-4 columns">
+          <md-button id="salesforceButton" ng-click="popUp.openSalesforce()" class="md-raised">SF</md-button>
         </div>
-        <div class="small-10 columns">
+      </div>
+      <div class="row collapse">
+        <div class="small-8 columns">
+          <md-input-container>
+            <label>Get KS!</label>
+            <input name="KS" my-enter="popUp.getKs()" id="ks-input-box" ng-model="popUp.ks">
+            <div ng-messages="projectForm.description.$error">
+              <div ng-message="md-maxlength" ng-show="popUp.ks">KS Copied to clipboard</div>
+            </div>
+          </md-input-container>
+        </div>
+        <div class="small-4 columns">
+          <md-button id="copyKSbutton" ng-click="popUp.getKs()" ng-model="popUp.ks" class="md-raised md-primary">KS</md-button>
+        </div>
+      </div>
+      <br>
+      <md-divider ng-if="!$last"></md-divider>
 
-          <input autofocus my-enter="getKs()"  class="textbox" type="text" id="ks-input-box" ng-model="ks" placeholder='Get KS'> 
-           <small class="error" ng-show="ks" style="width: 300px; margin-top: -16px">KS Copied to clipboard</small>
-        </div>
-        <div class="small-2 columns">
-          <a href="#" class="button postfix" data-clipboard-target="ks-input-box" id="copyKSbutton" ng-click="getKs()">Go</a>
-
-        </div>
-
+      <div class="small-offset-2 columns">
+          <md-button ng-click="popUp.getPlayerInfo()" class="md-raised">Get Player Info</md-button>
+      </div>
+      <div class="small-offset-2 columns">
+        <md-button data-reveal-id="myModal" ng-click="popUp.displayURLQRCode($event)" class="md-raised">Display QR Code</md-button>
+      </div>
         <br>
-        <a href="#" class="button success postfix" ng-click="getPlayerInfo()">Get Player Info</a>
-        <br>
-        <a href="#" class="button success postfix" data-reveal-id="myModal" ng-click="displayURLQRCode($event)">URL To QR Code</a>
       </div>
     </div> <!-- End of panel 1 -->
     <div id="myModal" class="reveal-modal" data-reveal style="max-height:200px;">
       <img id="spinner" ng-src="/img/spinner.gif" style="display:none;">
       <img ng-src="{{qrCodeImgSrc}}" />
       <a class="close-reveal-modal">&#215;</a>
-    </div>
-    <div class="large-12 columns content" id="panel2">
-      <h2>Coming Soon</h2>
     </div>
   </div> <!-- End of Row -->
 </div> <!-- Enf of Wrapper -->

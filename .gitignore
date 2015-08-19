@@ -1,1 +1,5 @@
 *.zip
+.DS_Store
+.idea/*
+src/inject/tmp.js
+bower_components/*
