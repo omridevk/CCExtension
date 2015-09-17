@@ -1,6 +1,6 @@
 {
   "name": "Kaltura Custom Extension",
-  "version": "0.0.29",
+  "version": "0.0.32",
   "manifest_version": 2,
   "description": "This extension was created to maximize efficiency within the Customer Care team, created by Omri Katz.",
   "homepage_url": "https://github.com/omridevk/CCExtension",
@@ -19,12 +19,16 @@
     "default_title": "Kaltura Customer Care's extension",
     "default_popup": "src/browser_action/browser_action.html"
   },
+  "options_page": "src/options_custom/index.html",
 
   "commands": {
     "toggle-feature": {
-      "suggested_key": { "default": "Ctrl+Shift+A" },
-      "description": "Send a 'toggle-feature' event to the extension"
-    },
+      "suggested_key": {
+        "windows": "Ctrl+Shift+D",
+        "mac": "Ctrl+Shift+D"
+      },
+    "description": "Send a 'toggle-feature' event to the extension"
+     },
     "_execute_browser_action": {
       "suggested_key": {
         "default": "Ctrl+Shift+A",
@@ -42,7 +46,7 @@
     "clipboardWrite",
     "tabs"
   ],
-  "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'",
+  "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
   "content_scripts": [
     {
       "matches": [

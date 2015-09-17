@@ -21,88 +21,144 @@ chrome.contextMenus.create({
   contexts: ['link'],
 });
 
-myApp.controller('customerCareCtrl', function ($scope) {
+myApp.controller('customerCareCtrl', function ($scope, $mdDialog, $timeout) {
 
-    Foundation.global.namespace = '';
-    $scope.activeFoundation = $(document).foundation();
-    $(function () {
-        $('[data-toggle="popover"]').popover()
-    });
 
-    $scope.popUp = {
+    $scope.status = '  ';
+    $scope.notInTabs = {
 
-        getKs: function() {
-            var that = this;
-            //send message from browser_action(popup window) to content_script(inject.js) to display prompt with the ks.
-            chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-                chrome.tabs.sendMessage(tabs[0].id, {action: "getKs"}, function(response) {
-                    $scope.$apply(function() {
-                        if (response)
-                            that.ks = response.ks["kmc.vars.ks"];
-                        // $("#joyrideDiv").foundation('joyride', 'start');
-
+        displayQRCode: {
+            'buttonName': 'Current URL to QR',
+            'action': function(ev) {
+                var that = this;
+                chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+                    $scope.qrCodeURL = 'http://chart.googleapis.com/chart?cht=qr&chs=300x300&choe=UTF-8&chld=H&chl=' + encodeURIComponent(tabs[0].url);
+                    $scope.$apply();
+                    $mdDialog.show({
+                        controller: that.DialogController,
+                        templateUrl: 'dialog.tmpl.html',
+                        parent: angular.element(document.querySelector('#popupContainer')),
+                        targetEvent: ev,
+                        clickOutsideToClose:true
                     });
-                    $('#ks-input-box').select();
-                    document.execCommand('copy');
-
                 });
-            });
-        },
-        openSalesforce: function() {
-            if (typeof this.salesForce !== 'undefined') {
-                var url = 'https://na5.salesforce.com/_ui/search/ui/UnifiedSearchResults?searchType=2&sen=a1d&sen=a0S&sen=00a&sen=005&sen=001&sen=500&sen=003&str=' + this.salesForce;
-                window.open(url, '_blank');
+
+            },
+            'DialogController': function($scope, $mdDialog) {
+                chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+                    $scope.qrCodeURL = 'http://chart.googleapis.com/chart?cht=qr&chs=300x300&choe=UTF-8&chld=H&chl=' + encodeURIComponent(tabs[0].url);
+                });
+                $scope.hide = function() {
+                    $mdDialog.hide();
+                };
+                $scope.cancel = function() {
+                    $mdDialog.cancel();
+                };
+                $scope.answer = function(answer) {
+                    $mdDialog.hide(answer);
+                };
             }
         },
-        openJira: function() {
-            if (typeof this.jira !== 'undefined') {
-                var url = 'https://kaltura.atlassian.net/browse/' + this.jira;
-                window.open(url, '_blank');
-
-            }
-        },
-        convertEpoch: function() {
-            var utcSeconds = this.epochInput;
-            var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-            d.setUTCSeconds(utcSeconds);
-            this.epochOutput = d;
-        },
-        displayURLQRCode: function() {
-            document.getElementById('spinner').style.display = 'block';
-            chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-                document.getElementById('spinner').style.display = 'none';
-                $scope.qrCodeImgSrc = 'http://chart.googleapis.com/chart?cht=qr&chs=300x300&choe=UTF-8&chld=H&chl=' + encodeURIComponent(tabs[0].url);
-                $scope.$apply();
-            });
-        },
-        getPlayerInfo: function() {
-            chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-                chrome.tabs.sendMessage(tabs[0].id, {action: "getPlayerInfo"}, function(response) {});
-            });
-            this.tabsContent.openJira.action();
-        },
-        tabsContent:  {
-            openJira: {
-                name: 'Open Jira',
-                action: function() {
-                }
-            },
-            openSalesforce: {
-
-            },
-            getKs: {
-
-            },
-            convertEpoch: {
-
+        getPlayerInfo: {
+            'buttonName': 'Get Player Info',
+            'action': function() {
+                chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+                    chrome.tabs.sendMessage(tabs[0].id, {action: "getPlayerInfo"}, function(response) {});
+                });
             }
         }
-
     }
+    $scope.tabs = {
+        titles: ['Tickets', 'Scripts'],
+        salesForce: {
+            'text': 'Open Salesforce Ticket',
+            'buttonName': 'SF',
+            'appearsInTab': 1,
+            'model': '',
+            'action': function() {
+                if (typeof this.model !== 'undefined') {
+                    var url = 'https://na5.salesforce.com/_ui/search/ui/UnifiedSearchResults?searchType=2&sen=a1d&sen=a0S&sen=00a&sen=005&sen=001&sen=500&sen=003&str=' + this.model;
+                    window.open(url, '_blank');
+                }
+            },
+        },
+        openJira: {
+            'text': 'Search for a JIRA ticket',
+            'buttonName': "JIRA",
+            'appearsInTab': 0,
+            'model': '',
+            'action': function() {
+                if (typeof this.model !== 'undefined') {
+                    var url = 'https://kaltura.atlassian.net/browse/' + this.model;
+                    window.open(url, '_blank');
+
+                }
+            },
+        },
+        convertEpoch: {
+            'text': "Convert UNIX to GMT",
+            'appearsInTab': 1,
+            'buttonName': 'Convert',
+            'model': '',
+            'action': function() {
+                var utcSeconds = this.model;
+                var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+                d.setUTCSeconds(utcSeconds);
+                this.model = d;
+            }
+        },
+        getKs: {
+            'text': "Grab KS From KMC",
+            'appearsInTab': 0,
+            'buttonName': 'KS',
+            'model': '',
+            'action': function() {
+                var that = this;
+                var id = '#' + this.buttonName;
+                var el = angular.element($(id));
+
+                //send message from browser_action(popup window) to content_script(inject.js) to display prompt with the ks.
+                chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+                    chrome.tabs.sendMessage(tabs[0].id, {action: "getKs"}, function(response) {
+                        $scope.$apply(function() {
+                            if (response)
+                                that.model = response.ks["kmc.vars.ks"];
+                        });
+                        $(el).select();
+                        document.execCommand('copy');
+                    });
+                });
+            }
+        }
+    };
 });
 
 
 
+
+	/**
+ 11	 * Below is a modified version of the Google Analytics asynchronous tracking
+ 12	 * code snippet.  It has been modified to pull the HTTPS version of ga.js
+ 13	 * instead of the default HTTP version.  It is recommended that you use this
+ 14	 * snippet instead of the standard tracking snippet provided when setting up
+ 15	 * a Google Analytics account.
+ 16
+
+var _AnalyticsCode = 'UA-66560568-1';
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', _AnalyticsCode]);
+_gaq.push(['_trackPageview']);
+
+(function() {
+var ga = document.createElement('script');
+ga.type = 'text/javascript';
+ga.async = true;
+ga.src = 'https://ssl.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(ga, s);
+})();
+
+     */
 
 myApp.directive('myEnter', function () { //directive that listen to "Enter" keypress
     return function (scope, element, attrs) {
@@ -121,6 +177,6 @@ myApp.directive('myEnter', function () { //directive that listen to "Enter" keyp
 
 document.addEventListener('DOMContentLoaded', function() {
     var scope = angular.element($("body")).scope();
-    scope.popUp.getKs();
+    scope.tabs.getKs.action();
 });
 
