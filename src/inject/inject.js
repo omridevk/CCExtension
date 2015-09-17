@@ -19,10 +19,22 @@
         
 
 
+
+
 	
 	var CCEXT = {
 
 		init: function() {
+		// 	var map = []; // Or you could call it "key"
+		// 	onkeydown = onkeyup = function(e){
+  //   		e = e || event; // to deal with IE
+
+  //   		map[e.keyCode] = e.type == 'keydown';
+  //   		if (map[91] && map[16] && map[68]) {
+  //   			console.log('clicked three correct buttons');
+  //   		}
+  //   		console.log(map);
+		// }
 			var _this = this;
 			this.addListeners();
 			this.autoFillJira();

@@ -21,7 +21,7 @@ chrome.contextMenus.create({
   contexts: ['link'],
 });
 
-myApp.controller('customerCareCtrl', function ($scope, $mdDialog) {
+myApp.controller('customerCareCtrl', function ($scope, $mdDialog, $timeout) {
 
 
     $scope.status = '  ';
@@ -32,12 +32,10 @@ myApp.controller('customerCareCtrl', function ($scope, $mdDialog) {
             'action': function(ev) {
                 var that = this;
                 chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
-                    //console.log($scope.qrCodeImgSrc);
                     $scope.qrCodeURL = 'http://chart.googleapis.com/chart?cht=qr&chs=300x300&choe=UTF-8&chld=H&chl=' + encodeURIComponent(tabs[0].url);
                     $scope.$apply();
-                    console.log($scope.qrCodeURL);
                     $mdDialog.show({
-                        controller: 'customerCareCtrl',
+                        controller: that.DialogController,
                         templateUrl: 'dialog.tmpl.html',
                         parent: angular.element(document.querySelector('#popupContainer')),
                         targetEvent: ev,
@@ -46,6 +44,20 @@ myApp.controller('customerCareCtrl', function ($scope, $mdDialog) {
                 });
 
             },
+            'DialogController': function($scope, $mdDialog) {
+                chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+                    $scope.qrCodeURL = 'http://chart.googleapis.com/chart?cht=qr&chs=300x300&choe=UTF-8&chld=H&chl=' + encodeURIComponent(tabs[0].url);
+                });
+                $scope.hide = function() {
+                    $mdDialog.hide();
+                };
+                $scope.cancel = function() {
+                    $mdDialog.cancel();
+                };
+                $scope.answer = function(answer) {
+                    $mdDialog.hide(answer);
+                };
+            }
         },
         getPlayerInfo: {
             'buttonName': 'Get Player Info',
@@ -89,10 +101,10 @@ myApp.controller('customerCareCtrl', function ($scope, $mdDialog) {
             'buttonName': 'Convert',
             'model': '',
             'action': function() {
-                var utcSeconds = this.epochInput;
+                var utcSeconds = this.model;
                 var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
                 d.setUTCSeconds(utcSeconds);
-                this.epochOutput = d;
+                this.model = d;
             }
         },
         getKs: {
@@ -102,19 +114,18 @@ myApp.controller('customerCareCtrl', function ($scope, $mdDialog) {
             'model': '',
             'action': function() {
                 var that = this;
+                var id = '#' + this.buttonName;
+                var el = angular.element($(id));
+
                 //send message from browser_action(popup window) to content_script(inject.js) to display prompt with the ks.
                 chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
                     chrome.tabs.sendMessage(tabs[0].id, {action: "getKs"}, function(response) {
                         $scope.$apply(function() {
-                            console.log(response);
                             if (response)
                                 that.model = response.ks["kmc.vars.ks"];
-                            // $("#joyrideDiv").foundation('joyride', 'start');
-
                         });
-                        $('#ks-input-box').select();
+                        $(el).select();
                         document.execCommand('copy');
-
                     });
                 });
             }
@@ -124,6 +135,30 @@ myApp.controller('customerCareCtrl', function ($scope, $mdDialog) {
 
 
 
+
+	/**
+ 11	 * Below is a modified version of the Google Analytics asynchronous tracking
+ 12	 * code snippet.  It has been modified to pull the HTTPS version of ga.js
+ 13	 * instead of the default HTTP version.  It is recommended that you use this
+ 14	 * snippet instead of the standard tracking snippet provided when setting up
+ 15	 * a Google Analytics account.
+ 16
+
+var _AnalyticsCode = 'UA-66560568-1';
+var _gaq = _gaq || [];
+_gaq.push(['_setAccount', _AnalyticsCode]);
+_gaq.push(['_trackPageview']);
+
+(function() {
+var ga = document.createElement('script');
+ga.type = 'text/javascript';
+ga.async = true;
+ga.src = 'https://ssl.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0];
+s.parentNode.insertBefore(ga, s);
+})();
+
+     */
 
 myApp.directive('myEnter', function () { //directive that listen to "Enter" keypress
     return function (scope, element, attrs) {

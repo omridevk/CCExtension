@@ -1,13 +1,31 @@
 
 chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
-      console.log(sender.tab ?
-      "from a content script:" + sender.tab.url :
-          "from the extension");
       if (request.greeting == "hello")
         sendResponse({farewell: "goodbye"});
     });
 
+chrome.commands.onCommand.addListener(function(command) {
+ chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+  chrome.tabs.create({
+    url: tabs[0].url,
+    index: tabs[0].index +1
+  });
+});
+});
+function updateAddress(tabId) {
+  chrome.tabs.sendRequest(tabId, {}, function(address) {
+    addresses[tabId] = address;
+    if (!address) {
+      chrome.pageAction.hide(tabId);
+    } else {
+      chrome.pageAction.show(tabId);
+      if (selectedId == tabId) {
+        updateSelected(tabId);
+      }
+    }
+  });
+}
 
 var requestFilter = {
     urls: [ "https://*.salesforce.com/*" ],
@@ -37,7 +55,6 @@ chrome.contextMenus.create({
     "title": "Player Stats",
     "contexts": ["video", "frame"],
     "onclick" : function(info,tab) {
-      console.log('Select link: ' + info.selectionText);
       chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
            chrome.tabs.sendMessage(tabs[0].id, {action: "getPlayerInfo"}, function(response) {});  
         });

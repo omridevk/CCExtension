@@ -39,11 +39,11 @@
                     <div class="small-8 columns" >
                         <md-input-container>
                             <label> {{tab.text}} </label>
-                            <input my-enter="tab.action()" ng-model="tab.model">
+                            <input my-enter="tab.action(event)" id='{{tab.buttonName}}'ng-model="tab.model">
                         </md-input-container>
                     </div>
                     <div class="small-4 columns">
-                        <md-button ng-click="value.action()" class="md-raised md-primary">{{tab.buttonName}}
+                        <md-button ng-click="tab.action(event)" class="md-raised md-primary">{{tab.buttonName}}
                         </md-button>
                     </div>
                 </div>
@@ -53,26 +53,13 @@
 
 <div class="md-padding" layout="row" layout-sm="column" layout-align="left center"
      style="padding-top: 0;">
-        <div ng-repeat="button in notInTabs">
-            <md-button ng-click="button.action($event)" class="md-raised">{{button.buttonName}}</md-button>
-        </div>
-        <md-button data-reveal-id="myModal" ng-click="popUp.displayURLQRCode($event)" class="md-raised">Display QR Code
-        </md-button>
-    </div>
+            <md-button ng-repeat="button in notInTabs" ng-click="button.action($event)" class="md-raised">{{button.buttonName}}</md-button>
 </div>
 </md-content>
-<div id="myModal" class="reveal-modal" data-reveal style="max-height:200px;">
-    <img id="spinner" ng-src="/img/spinner.gif" style="display:none;">
-    <img ng-src="{{qrCodeImgSrc}}"/>
-    <a class="close-reveal-modal">&#215;</a>
-</div>
-
-<div id="joyrideDiv">
-    <ol class="joyride-list" data-joyride>
-        <li data-id="ks-input-box"><p>Here's the explanation</p></li>
-    </ol>
-</div>
 
 </body>
+
+
+
 </html>
 
