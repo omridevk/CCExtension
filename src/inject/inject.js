@@ -16,25 +16,12 @@
 	// Type of tickets to add href to. 
 	var options = ["SUP-", "PLAT-", "FEC-", "SUPPS-", "KMS-", "F-CS"];
 
-        
-
-
-
 
 	
 	var CCEXT = {
 
-		init: function() {
-		// 	var map = []; // Or you could call it "key"
-		// 	onkeydown = onkeyup = function(e){
-  //   		e = e || event; // to deal with IE
 
-  //   		map[e.keyCode] = e.type == 'keydown';
-  //   		if (map[91] && map[16] && map[68]) {
-  //   			console.log('clicked three correct buttons');
-  //   		}
-  //   		console.log(map);
-		// }
+		init: function() {
 			var _this = this;
 			this.addListeners();
 			this.autoFillJira();
@@ -46,6 +33,28 @@
 				
 			});
 		},
+		addTemplate: function(template) {
+			template = this.replaceCustomerName(template);
+			var textArea = document.getElementById('pg:addCommentF:addCommentPB:rptOrder:0:addCommentPBS:addCommentPBSI:Comment_TextArea');
+			$(textArea).val(template);
+		},
+		replaceCustomerName: function(template) {
+			var customerName = this.getCustomerNameFromPage();
+			return template.replace(/{(client)}/, customerName);
+		},
+		getCustomerNameFromPage: function() {
+			var el = document.getElementById('pg:addCommentF:addCommentPB:rptOrder:2:emailCustomerPBS:emailCustomerPBSI:j_id87');
+			if (el === null) {
+				return '';
+			}
+			var customerName = el.innerText.split(' ');
+			if (customerName[0].length === 0) {
+				return customerName[1];
+			}
+			return customerName[0];
+
+
+		},
         commentSize: 30,
 		
 
@@ -53,6 +62,9 @@
 			var _this = this;
 
 			chrome.extension.onMessage.addListener(function(msg, sender, sendResponse) {
+				if (msg.action === 'add-template') {
+					return _this.addTemplate(msg.template);
+				}
 				if (msg.action === 'getKs' && (location.host === "kmc.kaltura.com")) {
 					var windowVariables = _this.retrieveWindowVariables(["kmc.vars.ks"]);
 					sendResponse({ks: windowVariables});
@@ -125,16 +137,16 @@
 
 				function getIframe(activeTab) 
 				{
-					// the id of the active tab contains the name of the div that contains the iframe.
-					// using this information to set the root document based on the active tab.
-					if (typeof(activeTab) !== 'undefined') {
-						var iframeDivId = activeTab.id.substring(activeTab.id.lastIndexOf("_") + 1 );
-						var iframe = $('#' + iframeDivId).find('iframe')[0];
+					var tab = {};
+					var containers = $('.sd_secondary_container');
+					$.each(containers, function(key, value) {
+						if (! $(value).hasClass('x-hide-display')) {
+							tab = value;
+						}
+					});
 
-						return _this.innerDoc = iframe.contentDocument || iframe.contentWindow.document;
-						
-					}
-					setButtonsLayOut();
+
+					//setButtonsLayOut();
 					return _this.innerDoc = document;
 				}
 				function setButtonsLayOut() {
@@ -566,10 +578,10 @@
 
 	CCEXT.init();
 
-
-	
-
 })();
+
+
+
 
 
 /*! jQuery v2.0.0 | (c) 2005, 2013 jQuery Foundation, Inc. | jquery.org/license

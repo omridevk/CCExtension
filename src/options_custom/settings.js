@@ -1,11 +1,36 @@
+angular.module('options',['ngMaterial', 'LocalStorageModule']).config(function($mdThemingProvider) {
+    $mdThemingProvider.theme('default')
+        .primaryPalette('blue')
+        .accentPalette('orange');
+});
+
+
+
 window.addEvent("domready", function () {
-    // Option 1: Use the manifest:
+
+
+
+    var settings = new Store('settings'),
+        fancySettings = {};
+    console.log(settings.get('template'));
     new FancySettings.initWithManifest(function (settings) {
-        settings.manifest.myButton.addEvent("action", function () {
+        fancySettings = settings;
+        settings.manifest.addTemplate.addEvent("action", function () {
+            settings.create({
+                "tab": i18n.get("templates"),
+                "group": i18n.get("templates"),
+                "name": "template_2",
+                "type": "textarea",
+                "text": i18n.get("template_text")
+            });
+            test();
             console.log(settings);
         });
     });
-    
+    function test() {
+        console.log(settings);
+    }
+
     // Option 2: Do everything manually:
     /*
     var settings = new FancySettings("My Extension", "icon.png");

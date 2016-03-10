@@ -136,29 +136,19 @@ myApp.controller('customerCareCtrl', function ($scope, $mdDialog, $timeout) {
 
 
 
-	/**
- 11	 * Below is a modified version of the Google Analytics asynchronous tracking
- 12	 * code snippet.  It has been modified to pull the HTTPS version of ga.js
- 13	 * instead of the default HTTP version.  It is recommended that you use this
- 14	 * snippet instead of the standard tracking snippet provided when setting up
- 15	 * a Google Analytics account.
- 16
 
-var _AnalyticsCode = 'UA-66560568-1';
 var _gaq = _gaq || [];
-_gaq.push(['_setAccount', _AnalyticsCode]);
+_gaq.push(['_setAccount', 'UA-74364367-2']);
 _gaq.push(['_trackPageview']);
 
 (function() {
-var ga = document.createElement('script');
-ga.type = 'text/javascript';
-ga.async = true;
-ga.src = 'https://ssl.google-analytics.com/ga.js';
-var s = document.getElementsByTagName('script')[0];
-s.parentNode.insertBefore(ga, s);
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = 'https://ssl.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 })();
 
-     */
+
+
 
 myApp.directive('myEnter', function () { //directive that listen to "Enter" keypress
     return function (scope, element, attrs) {

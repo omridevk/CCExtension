@@ -1,6 +1,6 @@
 {
   "name": "Kaltura Custom Extension",
-  "version": "0.0.33",
+  "version": "0.0.39",
   "manifest_version": 2,
   "description": "This extension was created to maximize efficiency within the Customer Care team, created by Omri Katz.",
   "homepage_url": "https://github.com/omridevk/CCExtension",
@@ -22,17 +22,24 @@
   "options_page": "src/options_custom/index.html",
 
   "commands": {
-    "toggle-feature": {
+    "duplicate-tab": {
       "suggested_key": {
         "windows": "Ctrl+Shift+D",
-        "mac": "Ctrl+Shift+D"
+        "mac": "MacCtrl+Shift+D"
       },
-    "description": "Send a 'toggle-feature' event to the extension"
+    "description": "Duplicate the current tab."
      },
+    "add-template": {
+      "suggested_key": {
+        "windows": "Ctrl+Shift+A",
+        "mac": "MacCtrl+Shift+A"
+      },
+      "description": "Attach the template to the page."
+    },
     "_execute_browser_action": {
       "suggested_key": {
-        "default": "Ctrl+Shift+A",
-        "mac": "MacCtrl+Shift+A"
+        "default": "Ctrl+Shift+E",
+        "mac": "MacCtrl+Shift+E"
       }
     }
   },
@@ -44,14 +51,14 @@
     "storage",
     "clipboardRead",
     "clipboardWrite",
-    "tabs"
+    "tabs",
+    "activeTab"
   ],
   "content_security_policy": "script-src 'self' https://ssl.google-analytics.com; object-src 'self'",
   "content_scripts": [
     {
       "matches": [
-        "https://*/*",
-        "http://*/*"
+        "<all_urls>"
       ],
       "js": [
         "js/jquery/jquery.min.js",
@@ -59,6 +66,8 @@
         "js/autolinker/Autolinker.js",
         "src/inject/inject.js"
       ],
+      "run_at": "document_end",
+      "all_frames": true,
       "css": [
         "css/injectStyles.css"
       ]

@@ -59,7 +59,7 @@
         
         "set": function (value, noChangeEvent) {
             this.element.set("value", value);
-            
+
             if (noChangeEvent !== true) {
                 this.element.fireEvent("change");
             }
