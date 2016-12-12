@@ -253,11 +253,15 @@
 			saveTicketInformation: function(btnId) {
 				var caseData = {};
 				caseData.caseURL = this.innerDoc.getElementById('00N70000003iS5n_ileinner').innerText;
-				
+
 
 				caseData.div = $(this.innerDoc).find('#cas2_ileinner');
 				chrome.storage.local.clear();
-				caseData.caseNumber = caseData.div[0].innerHTML;
+				caseData.caseNumber = $(this.innerDoc).find(".efhpCenterValue>span").attr("title");
+                if (typeof(caseData.caseNumber) === 'undefined') {
+                    // non breakspace (&nbsp) is "\xa0".
+                    caseData.caseNumber = caseData.div.text().split("\xa0")[0];
+                }
 				caseData.btnId = btnId;
 				caseData.accountName = $(this.innerDoc).find('#cas4_ileinner')[0].innerText; 
 				caseData.priority = $(this.innerDoc).find('#cas8_ileinner')[0].innerText;
