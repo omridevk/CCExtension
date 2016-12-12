@@ -1,5 +1,5 @@
 *.zip
 .DS_Store
-.idea/*
+.idea/
 src/inject/tmp.js
 bower_components/*
