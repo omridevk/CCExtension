@@ -232,10 +232,8 @@
 			},
 			buttonsAdded: function()
 			{
-				if ($(this.innerDoc).find('.extensionBtn1').length > 0) {
-					return true;
-				}
-				return false;
+				return $(this.innerDoc).find('.extensionBtn1').length > 0;
+
 			},
 			addListeners: function()
 			{
@@ -300,7 +298,7 @@
             var _this = this;
 
 			for (var i = 0; i < options.length; i++) {
-				$(this.CustomButtons.innerDoc).find('div:contains("' + options[i] + '")').each(function () {
+				$(this.CustomButtons.innerDoc).find('*:contains("' + options[i] + '")').each(function () {
 					if (!$(this).find('a').length) {
                         if (_this.commentFieldSize(this, _this.commentSize)) {
                             var jiraNumber = this.innerText;
@@ -332,11 +330,8 @@
 
         commentFieldSize: function(el, commentSize) {
 
-            if (el.innerHTML.length < commentSize)
-            {
-                return true;
-            }
-            return false;
+            return el.innerHTML.length < commentSize;
+
             /* check if length of the element is less than 20 - selected a small number like 20
                 this will ensure that we only replacing the JIRA field, since I am looking for any field that has SUP
                 inside it, some the parents are also returned, thus need to make sure that we only replace the child element
