@@ -1,0 +1,101 @@
+<!--
+// Copyright (c) 2011 Frank Kohlhepp
+// https://github.com/frankkohlhepp/fancy-settings
+// License: LGPL v2.1
+-->
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title id="title"></title>
+        
+        <!-- Stylesheets -->
+        <link id="favicon" rel="icon" href="">
+        <link rel="stylesheet" href="lib/default.css" media="screen">
+        <link rel="stylesheet" href="css/main.css" media="screen">
+        <link rel="stylesheet" href="css/setting.css" media="screen">
+        <link rel="stylesheet" href="custom.css" media="screen">
+        <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" media="screen">
+
+        <!-- JavaScripts -->
+        <script src="lib/mootools-core.js"></script>
+        <script src="lib/store.js"></script>
+        <script src="js/classes/tab.js"></script>
+        <script src="js/classes/setting.js"></script>
+        <script src="js/classes/search.js"></script>
+        <script src="js/classes/fancy-settings.js"></script>
+        <script src="/bower_components/angular/angular.js"></script>
+        <script src="/bower_components/angular-aria/angular-aria.js"></script>
+        <script src="/bower_components/angular-animate/angular-animate.js"></script>
+        <script src="/bower_components/angular-material/angular-material.js"></script>
+        <script src="/bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+        <script src="i18n.js"></script>
+        <script src="js/i18n.js"></script>
+        <script src="manifest.js"></script>
+        <script src="settings.js"></script>
+        <script src="controller.js"></script>
+    </head>
+    <body class="no-select" layout="row" ng-controller="Options as options">
+        <div id="sidebar" class="fancy">
+            <img id="icon" src="" alt=""><h1 id="settings-label"></h1>
+            <div id="tab-container">
+                <div id="search-container" class="tab">
+                    <input id="search" type="search" placeholder="">
+                </div>
+            </div>
+        </div>
+        <div id="content">
+            <div id="search-result-container" class="tab-content">
+                <h2 id="search-label"></h2>
+            </div>
+        </div>
+        <!--<md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"-->
+                    <!--md-component-id="left"-->
+                    <!--ng-click="ul.toggleList()" aria-label="Show User List"-->
+                    <!--md-is-locked-open="$mdMedia('gt-sm')">-->
+
+            <!--<md-toolbar class="md-whiteframe-z1">-->
+                <!--<h3>Settings</h3>-->
+            <!--</md-toolbar>-->
+
+        <!--</md-sidenav>-->
+
+
+        <!--<div flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">-->
+
+            <!--<md-toolbar layout="row" class="md-whiteframe-z1">-->
+                <!--<md-button id="main" class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">-->
+                    <!--<md-icon md-svg-icon="menu" ></md-icon>-->
+                <!--</md-button>-->
+                <!--<h3>Kaltura Customer Care Extension Settings</h3>-->
+            <!--</md-toolbar>-->
+
+            <!--<md-content class="md-padding" layout-xs="column">-->
+                <!--<div flex-xs flex-gt-xs="50" layout="column">-->
+                    <!--<md-card>-->
+                        <!--<md-card-title>-->
+                            <!--<md-card-title-text>-->
+                            <!--</md-card-title-text>-->
+                            <!--<md-card-title-media>-->
+                                <!--<div class="md-media-lg card-media"></div>-->
+                            <!--</md-card-title-media>-->
+                        <!--</md-card-title>-->
+                        <!--<div layout-gt-xs="row">-->
+                            <!--<md-input-container class="md-block md-padding">-->
+                                <!--<label>Company (Disabled)</label>-->
+                                <!--<input ng-model="user.company">-->
+                            <!--</md-input-container>-->
+                            <!--<md-datepicker ng-model="user.submissionDate" md-placeholder="Enter date">-->
+                            <!--</md-datepicker>-->
+                        <!--</div>-->
+                        <!--<md-card-actions layout="row" layout-align="end center">-->
+                            <!--<md-button>Action 1</md-button>-->
+                            <!--<md-button>Action 2</md-button>-->
+                        <!--</md-card-actions>-->
+                    <!--</md-card>-->
+                <!--</div>-->
+            <!--</md-content>-->
+
+        </div>
+    </body>
+</html>

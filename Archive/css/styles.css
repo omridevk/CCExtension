@@ -1,0 +1,57 @@
+@import url('/css/foundation.css');
+
+@import url('/css/responsive-tabs.css');
+
+html {
+  max-height: 400px;
+}
+
+.tabs dd > a, .tabs .tab-title > a {
+  padding: 0.60rem 1.2rem;
+}
+
+
+.button, .tabs-content{
+  margin:0;
+}
+
+body .md-button {
+  color: #FFF6BF;
+  background-color: rgb(46, 151, 234);
+  margin: 16px 8px;
+}
+.mainPage md-tab-content:nth-child(1) {
+  background-color: #42A5F5;
+}
+.mainPage md-tab-content:nth-child(2) {
+  background-color: #689F38;
+}
+.mainpage md-tab-content:nth-child(3) {
+  background-color: #26C6DA;
+}
+
+#wrapper {
+  height:auto;
+  min-width: 300px;
+  margin: 0px 0px 12px 10px;
+}
+html body {
+  overflow:hidden;
+  /*background: url("/img/bg-texture-01.jpg");*/
+  /*font-family: "Segoe UI", "Lucida Grande", Tahoma, sans-serif;*/
+  font-family: 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 100%;
+
+}
+#status {
+  /* avoid an excessively wide status text */
+  white-space: pre;
+  text-overflow: ellipsis;
+  overflow: hidden;
+
+}
+#logo {
+  margin: 10px 0px -12px 0px;
+  width:80px;
+  height:50px;
+}
