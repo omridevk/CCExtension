@@ -1,6 +1,6 @@
 {
   "name": "Kaltura Custom Extension",
-  "version": "0.0.43",
+  "version": "0.0.44",
   "manifest_version": 2,
   "description": "This extension was created to maximize efficiency within the Customer Care team, created by Omri Katz.",
   "homepage_url": "https://github.com/omridevk/CCExtension",
@@ -59,7 +59,7 @@
     {
       "matches": [
         "*://kaltura.atlassian.net/*",
-        "*://na5.salesforce.com/*",
+        "*://*.salesforce.com/*",
         "*://*.force.com/*",
         "*://kmc.kaltura.com/*"
       ],
