@@ -104,14 +104,17 @@
 				buttonsData: {
 					"open_jira": {
 						url: "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=10200&issuetype=9",
-						text: "Open Jira",
+						text: "Open Jira"
 					},
-
 					"open_supps":{
 						url: "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=12201&issuetype=9",
 						text: "Open SUPPS"
-					}, 
-					"open_akamai":{
+					},
+                    "open_psvamb":{
+                        url: "https://kaltura.atlassian.net/secure/CreateIssueDetails!init.jspa?pid=20900&issuetype=11904",
+                        text: "Open PS-VAMB"
+                    },
+                    "open_akamai":{
 						url: "https://control.akamai.com/resolve/charaka/CharakaServlet?action=open&requestType=nonPS&category=Technical%20Support_technical.support",
 						text: "Open Akamai Ticket"
 					},

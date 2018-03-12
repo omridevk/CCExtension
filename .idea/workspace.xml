@@ -2,575 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8da63126-5d7b-4cd9-bc8a-ab880158f545" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/Chrome Extension/.idea/scopes/scope_settings.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/Chrome Extension/.idea/workspace.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/_locales/en/messages.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/app.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-animate/.bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-animate/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-animate/angular-animate.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-animate/angular-animate.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-animate/angular-animate.min.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-animate/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-animate/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-animate/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-aria/.bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-aria/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-aria/angular-aria.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-aria/angular-aria.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-aria/angular-aria.min.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-aria/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-aria/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-aria/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-local-storage/.bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-local-storage/.bowerrc" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-local-storage/.editorconfig" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-local-storage/.gitattributes" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-local-storage/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-local-storage/.travis.yml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-local-storage/CHANGELOG.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-local-storage/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-local-storage/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-local-storage/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-local-storage/demo/demo-app.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-local-storage/demo/demo-style.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-local-storage/demo/demo.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-local-storage/dist/angular-local-storage.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-local-storage/dist/angular-local-storage.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-local-storage/dist/angular-local-storage.min.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-local-storage/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-local-storage/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/.bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/CHANGELOG.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/LICENSE" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/angular-material-mocks.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/angular-material.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/angular-material.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/angular-material.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/angular-material.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/bottomSheet/demoBasicUsage/img/icons/copy.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/bottomSheet/demoBasicUsage/img/icons/copy2.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/bottomSheet/demoBasicUsage/img/icons/facebook.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/bottomSheet/demoBasicUsage/img/icons/hangout.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/bottomSheet/demoBasicUsage/img/icons/mail.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/bottomSheet/demoBasicUsage/img/icons/message.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/bottomSheet/demoBasicUsage/img/icons/print.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/bottomSheet/demoBasicUsage/img/icons/share-arrow.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/bottomSheet/demoBasicUsage/img/icons/twitter.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/bottomSheet/demoBasicUsage/img/icons/upload.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/chips/demoBasicUsage/style.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/chips/demoContactChips/style.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/gridList/demoBasicUsage/style.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/gridList/demoDynamicTiles/style.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/gridList/demoResponsiveUsage/style.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/icon/demoLoadSvgIconsFromUrl/img/icons/addShoppingCart.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/icon/demoLoadSvgIconsFromUrl/img/icons/android.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/icon/demoLoadSvgIconsFromUrl/img/icons/cake.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/icon/demoSvgIconSets/assets/cake.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/icon/demoSvgIconSets/assets/core-icons.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/icon/demoSvgIconSets/assets/social-icons.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/icon/demoSvgIconsFromURL/img/icons/addShoppingCart.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/icon/demoSvgIconsFromURL/img/icons/android.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/icon/demoSvgIconsFromURL/img/icons/cake.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/icon/demoUsingTemplateCache/assets/android.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/icon/demoUsingTemplateCache/assets/cake.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/icon/demoUsingTemplateCache/assets/core-icons.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/input/demoIcons/icons/ic_email_24px.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/input/demoIcons/icons/ic_person_24px.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/input/demoIcons/icons/ic_phone_24px.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/input/demoIcons/icons/ic_place_24px.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/input/demoIcons/style.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/list/demoListControls/img/100-0.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/list/demoListControls/img/100-1.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/list/demoListControls/img/100-2.jpeg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/tabs/demoDynamicHeight/style.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/tabs/demoDynamicTabs/style.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/tabs/demoStaticTabs/style.scss" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/toolbar/demoBasicUsage/img/icons/favorite.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/toolbar/demoBasicUsage/img/icons/menu.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/demos/toolbar/demoBasicUsage/img/icons/more_vert.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/autocomplete/autocomplete-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/autocomplete/autocomplete.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/autocomplete/autocomplete.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/backdrop/backdrop-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/backdrop/backdrop.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/backdrop/backdrop.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/bottomSheet/bottomSheet-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/bottomSheet/bottomSheet.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/bottomSheet/bottomSheet.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/button/button-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/button/button.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/button/button.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/card/card-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/card/card.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/card/card.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/checkbox/checkbox-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/checkbox/checkbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/checkbox/checkbox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/chips/chips-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/chips/chips.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/chips/chips.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/content/content-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/content/content.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/content/content.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/core/core.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/core/core.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/core/default-theme.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/dialog/dialog-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/dialog/dialog.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/dialog/dialog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/divider/divider-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/divider/divider.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/divider/divider.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/gridList/gridList-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/gridList/gridList.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/gridList/gridList.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/icon/icon-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/icon/icon.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/icon/icon.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/input/input-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/input/input.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/input/input.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/list/list-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/list/list.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/list/list.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/menu/menu.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/menu/menu.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/progressCircular/progressCircular-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/progressCircular/progressCircular.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/progressCircular/progressCircular.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/progressLinear/progressLinear-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/progressLinear/progressLinear.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/progressLinear/progressLinear.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/radioButton/radioButton-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/radioButton/radioButton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/radioButton/radioButton.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/select/select-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/select/select.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/select/select.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/sidenav/sidenav-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/sidenav/sidenav.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/sidenav/sidenav.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/slider/slider-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/slider/slider.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/slider/slider.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/sticky/sticky.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/sticky/sticky.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/subheader/subheader-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/subheader/subheader.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/subheader/subheader.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/swipe/swipe.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/switch/switch-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/switch/switch.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/switch/switch.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/tabs/tabs-arrow.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/tabs/tabs-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/tabs/tabs.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/tabs/tabs.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/textField/textField-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/textField/textField.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/textField/textField.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/toast/toast-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/toast/toast.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/toast/toast.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/toolbar/toolbar-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/toolbar/toolbar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/toolbar/toolbar.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/tooltip/tooltip-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/tooltip/tooltip.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/tooltip/tooltip.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/whiteframe/whiteframe.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/closure/whiteframe/whiteframe.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/css/angular-material-layout.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/autocomplete/autocomplete-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/autocomplete/autocomplete-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/autocomplete/autocomplete.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/autocomplete/autocomplete.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/autocomplete/autocomplete.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/autocomplete/autocomplete.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/autocomplete/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/backdrop/backdrop-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/backdrop/backdrop-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/backdrop/backdrop.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/backdrop/backdrop.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/backdrop/backdrop.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/backdrop/backdrop.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/backdrop/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/bottomSheet/bottomSheet-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/bottomSheet/bottomSheet-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/bottomSheet/bottomSheet.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/bottomSheet/bottomSheet.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/bottomSheet/bottomSheet.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/bottomSheet/bottomSheet.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/bottomSheet/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/button/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/button/button-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/button/button-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/button/button.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/button/button.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/button/button.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/button/button.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/card/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/card/card-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/card/card-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/card/card.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/card/card.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/card/card.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/card/card.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/checkbox/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/checkbox/checkbox-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/checkbox/checkbox-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/checkbox/checkbox.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/checkbox/checkbox.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/checkbox/checkbox.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/checkbox/checkbox.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/chips/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/chips/chips-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/chips/chips-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/chips/chips.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/chips/chips.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/chips/chips.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/chips/chips.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/content/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/content/content-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/content/content-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/content/content.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/content/content.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/content/content.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/content/content.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/core/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/core/core.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/core/core.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/core/core.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/core/core.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/core/default-theme.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/dialog/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/dialog/dialog-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/dialog/dialog-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/dialog/dialog.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/dialog/dialog.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/dialog/dialog.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/dialog/dialog.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/divider/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/divider/divider-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/divider/divider-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/divider/divider.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/divider/divider.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/divider/divider.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/divider/divider.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/gridList/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/gridList/gridList.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/gridList/gridList.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/gridList/gridList.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/gridList/gridList.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/icon/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/icon/icon-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/icon/icon-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/icon/icon.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/icon/icon.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/icon/icon.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/icon/icon.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/input/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/input/input-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/input/input-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/input/input.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/input/input.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/input/input.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/input/input.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/list/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/list/list-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/list/list-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/list/list.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/list/list.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/list/list.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/list/list.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/menu/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/menu/menu.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/menu/menu.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/menu/menu.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/menu/menu.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/progressCircular/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/progressCircular/progressCircular-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/progressCircular/progressCircular-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/progressCircular/progressCircular.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/progressCircular/progressCircular.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/progressCircular/progressCircular.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/progressCircular/progressCircular.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/progressLinear/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/progressLinear/progressLinear-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/progressLinear/progressLinear-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/progressLinear/progressLinear.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/progressLinear/progressLinear.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/progressLinear/progressLinear.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/progressLinear/progressLinear.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/radioButton/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/radioButton/radioButton-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/radioButton/radioButton-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/radioButton/radioButton.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/radioButton/radioButton.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/radioButton/radioButton.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/radioButton/radioButton.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/select/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/select/select-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/select/select-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/select/select.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/select/select.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/select/select.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/select/select.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/sidenav/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/sidenav/sidenav-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/sidenav/sidenav-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/sidenav/sidenav.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/sidenav/sidenav.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/sidenav/sidenav.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/sidenav/sidenav.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/slider/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/slider/slider-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/slider/slider-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/slider/slider.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/slider/slider.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/slider/slider.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/slider/slider.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/sticky/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/sticky/sticky.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/sticky/sticky.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/sticky/sticky.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/sticky/sticky.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/subheader/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/subheader/subheader-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/subheader/subheader-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/subheader/subheader.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/subheader/subheader.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/subheader/subheader.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/subheader/subheader.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/swipe/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/swipe/swipe.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/swipe/swipe.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/switch/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/switch/switch-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/switch/switch-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/switch/switch.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/switch/switch.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/switch/switch.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/switch/switch.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/tabs/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/tabs/tabs-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/tabs/tabs-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/tabs/tabs.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/tabs/tabs.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/tabs/tabs.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/tabs/tabs.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/textField/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/textField/textField-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/textField/textField-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/textField/textField.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/textField/textField.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/textField/textField.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/textField/textField.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/toast/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/toast/toast-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/toast/toast-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/toast/toast.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/toast/toast.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/toast/toast.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/toast/toast.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/toolbar/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/toolbar/toolbar-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/toolbar/toolbar-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/toolbar/toolbar.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/toolbar/toolbar.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/toolbar/toolbar.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/toolbar/toolbar.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/tooltip/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/tooltip/tooltip-default-theme.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/tooltip/tooltip-default-theme.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/tooltip/tooltip.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/tooltip/tooltip.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/tooltip/tooltip.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/tooltip/tooltip.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/whiteframe/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/whiteframe/whiteframe.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/whiteframe/whiteframe.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/whiteframe/whiteframe.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/modules/js/whiteframe/whiteframe.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular-material/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular/.bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular/angular-csp.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular/angular.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular/angular.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular/angular.min.js.gzip" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular/angular.min.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular/index.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/angular/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/.bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/MIT-LICENSE.txt" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/dist/jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/dist/jquery.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/dist/jquery.min.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/ajax.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/ajax/jsonp.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/ajax/load.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/ajax/parseJSON.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/ajax/parseXML.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/ajax/script.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/ajax/var/nonce.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/ajax/var/rquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/ajax/xhr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/attributes.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/attributes/attr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/attributes/classes.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/attributes/prop.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/attributes/support.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/attributes/val.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/callbacks.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/core.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/core/access.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/core/init.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/core/parseHTML.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/core/ready.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/core/var/rsingleTag.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/css.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/css/addGetHookIf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/css/curCSS.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/css/defaultDisplay.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/css/hiddenVisibleSelectors.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/css/support.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/css/swap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/css/var/cssExpand.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/css/var/getStyles.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/css/var/isHidden.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/css/var/rmargin.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/css/var/rnumnonpx.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/data.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/data/Data.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/data/accepts.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/data/var/data_priv.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/data/var/data_user.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/deferred.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/deprecated.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/dimensions.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/effects.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/effects/Tween.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/effects/animatedSelector.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/event.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/event/ajax.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/event/alias.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/event/support.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/exports/amd.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/exports/global.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/intro.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/manipulation.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/manipulation/_evalUrl.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/manipulation/support.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/manipulation/var/rcheckableType.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/offset.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/outro.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/queue.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/queue/delay.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/selector-native.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/selector-sizzle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/selector.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/serialize.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/sizzle/dist/sizzle.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/sizzle/dist/sizzle.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/sizzle/dist/sizzle.min.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/traversing.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/traversing/findFilter.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/traversing/var/rneedsContext.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/var/arr.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/var/class2type.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/var/concat.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/var/hasOwn.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/var/indexOf.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/var/pnum.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/var/push.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/var/rnotwhite.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/var/slice.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/var/strundefined.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/var/support.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/var/toString.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/bower_components/jquery/src/wrap.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/css/bootstrap.min.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/css/fonts/css.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/css/fonts/font.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/css/fonts/font1.woff2" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/css/foundation.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/css/injectStyles.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/css/responsive-tabs.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/css/styles.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/icons/Kaltura-Sun.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/icons/icon128.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/icons/icon16(a).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/icons/icon16.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/icons/icon19(a).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/icons/icon19.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/icons/icon48(a).png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/icons/icon48.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/img/Kaltura.svg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/img/Kaltura.svg.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/img/bg-texture-01.jpg" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/img/spinner.gif" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/angular/angular.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/angular/angular.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/angular/component.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/autolinker/Autolinker.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/bootstrap/bootstrap.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/foundation/foundation.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/foundation/foundation.tab.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/foundation/foundation.tooltip.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/jquery.cookie/jquery.cookie.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/jquery.responsiveTabs/jquery.responsiveTabs.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/jquery.zclip/ZeroClipboard.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/jquery.zclip/ZeroClipboard.swf" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/jquery.zclip/jquery.zclip.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/jquery.zclip/ngClip.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/jquery/.gitignore" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/jquery/README.md" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/jquery/bower.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/jquery/component.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/jquery/composer.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/jquery/jquery.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/jquery/jquery.min.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/js/jquery/package.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/manifest.json" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/bg/background.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/bg/background.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/browser_action/browser_action.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/browser_action/dialog.tmpl.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/inject/inject.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/inject/tmp.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/options_custom/README.md.old" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/options_custom/controller.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/options_custom/css/main.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/options_custom/css/setting.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/options_custom/custom.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/options_custom/i18n.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/options_custom/icon.png" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/options_custom/index.html" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/options_custom/js/classes/fancy-settings.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/options_custom/js/classes/search.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/options_custom/js/classes/setting.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/options_custom/js/classes/tab.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/options_custom/js/i18n.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/options_custom/lib/default.css" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/options_custom/lib/mootools-core.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/options_custom/lib/store.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/options_custom/manifest.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/options_custom/service.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/Archive/src/options_custom/settings.js" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/manifest.json" afterPath="$PROJECT_DIR$/manifest.json" />
+      <change beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/CCExtension.iml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/scopes/scope_settings.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/src/inject/inject.js" afterPath="$PROJECT_DIR$/src/inject/inject.js" />
     </list>
     <ignored path="CCExtension.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -584,7 +27,6 @@
   <component name="CreatePatchCommitExecutor">
     <option name="PATCH_PATH" value="" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FavoritesManager">
     <favorites_list name="CCExtension" />
   </component>
@@ -593,8 +35,8 @@
       <file leaf-file-name="manifest.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/options_custom/manifest.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="405">
-              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state relative-caret-position="729">
+              <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -603,8 +45,8 @@
       <file leaf-file-name="settings.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/options_custom/settings.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+            <state relative-caret-position="135">
+              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -613,18 +55,18 @@
       <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/options_custom/index.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+            <state relative-caret-position="378">
+              <caret line="14" column="20" lean-forward="false" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="inject.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="inject.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="31" column="24" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
+            <state relative-caret-position="336">
+              <caret line="114" column="39" lean-forward="false" selection-start-line="114" selection-start-column="39" selection-end-line="114" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -633,8 +75,8 @@
       <file leaf-file-name="browser_action.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="915">
-              <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+            <state relative-caret-position="1647">
+              <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -643,8 +85,8 @@
       <file leaf-file-name="bower.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/bower.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+            <state relative-caret-position="378">
+              <caret line="14" column="11" lean-forward="false" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -653,8 +95,8 @@
       <file leaf-file-name="controller.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/options_custom/controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+            <state relative-caret-position="432">
+              <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
               <folding>
                 <element signature="e#0#40#0" expanded="false" />
               </folding>
@@ -662,11 +104,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
+      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.gitignore">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+            <state relative-caret-position="135">
+              <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -675,8 +117,8 @@
       <file leaf-file-name="manifest.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/manifest.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="480">
-              <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
+            <state relative-caret-position="864">
+              <caret line="32" column="20" lean-forward="false" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
               <folding />
             </state>
           </provider>
@@ -685,8 +127,8 @@
       <file leaf-file-name="service.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/options_custom/service.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="23" column="63" selection-start-line="23" selection-start-column="63" selection-end-line="23" selection-end-column="63" />
+            <state relative-caret-position="567">
+              <caret line="23" column="63" lean-forward="false" selection-start-line="23" selection-start-column="63" selection-end-line="23" selection-end-column="63" />
               <folding>
                 <element signature="e#0#40#0" expanded="false" />
               </folding>
@@ -704,6 +146,11 @@
         <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>open_psvamb</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -736,9 +183,9 @@
         <option value="$PROJECT_DIR$/src/options_custom/service.js" />
         <option value="$PROJECT_DIR$/src/options_custom/index.html" />
         <option value="$PROJECT_DIR$/src/options_custom/manifest.js" />
-        <option value="$PROJECT_DIR$/src/inject/inject.js" />
         <option value="$PROJECT_DIR$/manifest.json" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/src/inject/inject.js" />
       </list>
     </option>
   </component>
@@ -748,20 +195,11 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="22" />
-    <option name="width" value="1080" />
-    <option name="height" value="1898" />
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="false">
-    <OptionsSetting value="true" id="Add" />
-    <OptionsSetting value="true" id="Remove" />
-    <OptionsSetting value="true" id="Checkout" />
-    <OptionsSetting value="true" id="Update" />
-    <OptionsSetting value="true" id="Status" />
-    <OptionsSetting value="true" id="Edit" />
-    <ConfirmationsSetting value="0" id="Add" />
-    <ConfirmationsSetting value="0" id="Remove" />
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="1680" />
+    <option name="y" value="23" />
+    <option name="width" value="1920" />
+    <option name="height" value="1057" />
   </component>
   <component name="ProjectView">
     <navigator currentView="ProjectPane" proportions="" version="1">
@@ -782,86 +220,13 @@
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CCExtension" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CCExtension" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CCExtension" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CCExtension" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CCExtension" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CCExtension" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CCExtension" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="inject" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CCExtension" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CCExtension" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="browser_action" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CCExtension" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="CCExtension" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="js" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
+          <expand>
+            <path>
+              <item name="CCExtension" type="b2602c69:ProjectViewProjectNode" />
+              <item name="CCExtension" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
         </subPane>
       </pane>
     </panes>
@@ -875,11 +240,24 @@
     <property name="DefaultHtmlFileTemplate" value="Html5" />
     <property name="FullScreen" value="false" />
     <property name="js-jscs-nodeInterpreter" value="/usr/local/bin/node" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/options_custom" />
     </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
   </component>
   <component name="RunManager">
     <configuration default="true" type="DartCommandLineRunConfigurationType" factoryName="Dart Command Line Application">
@@ -906,16 +284,6 @@
       <option name="filePath" />
       <method />
     </configuration>
-    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
-      <node-interpreter>project</node-interpreter>
-      <node-options />
-      <gulpfile />
-      <tasks />
-      <arguments />
-      <pass-parent-envs>true</pass-parent-envs>
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.npm" factoryName="npm">
       <command value="run-script" />
       <scripts />
@@ -936,6 +304,15 @@
       <recursive>false</recursive>
       <method />
     </configuration>
+    <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile />
+      <tasks />
+      <arguments />
+      <pass-parent-envs>true</pass-parent-envs>
+      <envs />
+    </configuration>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -952,6 +329,7 @@
       <updated>1423224880902</updated>
       <workItem from="1481536262560" duration="414000" />
       <workItem from="1481536980290" duration="1600000" />
+      <workItem from="1520421734543" duration="2159000" />
     </task>
     <task id="LOCAL-00001" summary="Merge remote-tracking branch 'origin/master'&#10;&#10;Conflicts:&#10;&#9;src/bg/background.js&#10;">
       <created>1423244217866</created>
@@ -964,21 +342,25 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2171000" />
+    <option name="totallyTimeSpent" value="4330000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="22" width="1080" height="1898" extended-state="6" />
-    <editor active="false" />
+    <frame x="1680" y="23" width="1920" height="1057" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.15606937" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08785942" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Docker" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32824427" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289256" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -986,12 +368,12 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32824427" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.UiProperties">
     <option name="RECENTLY_FILTERED_USER_GROUPS">
@@ -1016,14 +398,14 @@
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="140" column="22" selection-start-line="140" selection-start-column="22" selection-end-line="140" selection-end-column="22" />
+          <caret line="140" column="22" lean-forward="false" selection-start-line="140" selection-start-column="22" selection-end-line="140" selection-end-column="22" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/options_custom/manifest.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1031,14 +413,14 @@
     <entry file="file://$PROJECT_DIR$/src/browser_action/dialog.tmpl.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="30" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
+          <caret line="0" column="30" lean-forward="false" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+          <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -1046,14 +428,14 @@
     <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bower.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+          <caret line="14" column="11" lean-forward="false" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -1061,21 +443,21 @@
     <entry file="file://$PROJECT_DIR$/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+          <caret line="5" column="20" lean-forward="false" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/options_custom/manifest.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1083,14 +465,14 @@
     <entry file="file://$PROJECT_DIR$/src/browser_action/dialog.tmpl.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="30" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
+          <caret line="0" column="30" lean-forward="false" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="4" column="18" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
+          <caret line="4" column="18" lean-forward="false" selection-start-line="4" selection-start-column="18" selection-end-line="4" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -1098,14 +480,14 @@
     <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bower.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+          <caret line="14" column="11" lean-forward="false" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
           <folding />
         </state>
       </provider>
@@ -1113,70 +495,64 @@
     <entry file="file://$PROJECT_DIR$/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+          <caret line="5" column="20" lean-forward="false" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="37" column="8" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="8" />
+          <caret line="37" column="8" lean-forward="false" selection-start-line="37" selection-start-column="8" selection-end-line="37" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js" />
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="25" column="45" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
+          <caret line="25" column="45" lean-forward="false" selection-start-line="25" selection-start-column="45" selection-end-line="25" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="53" column="14" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
+          <caret line="53" column="14" lean-forward="false" selection-start-line="53" selection-start-column="14" selection-end-line="53" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+          <caret line="10" column="14" lean-forward="false" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/js/autolinker/Autolinker.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="50" />
+          <caret line="23" column="7" lean-forward="false" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/foundation.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="1143" column="0" selection-start-line="1143" selection-start-column="0" selection-end-line="1323" selection-end-column="15" />
+          <caret line="1143" column="0" lean-forward="false" selection-start-line="1143" selection-start-column="0" selection-end-line="1323" selection-end-column="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bg/background.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+          <caret line="4" column="0" lean-forward="false" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/manifest.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="5" column="31" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
+          <caret line="5" column="31" lean-forward="false" selection-start-line="5" selection-start-column="31" selection-end-line="5" selection-end-column="31" />
           <folding />
         </state>
       </provider>
@@ -1184,63 +560,51 @@
     <entry file="file://$PROJECT_DIR$/js/autolinker/Autolinker.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="23" column="7" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="50" />
+          <caret line="23" column="7" lean-forward="false" selection-start-line="23" selection-start-column="7" selection-end-line="23" selection-end-column="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/css/foundation.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="1143" column="0" selection-start-line="1143" selection-start-column="0" selection-end-line="1323" selection-end-column="15" />
+          <caret line="1143" column="0" lean-forward="false" selection-start-line="1143" selection-start-column="0" selection-end-line="1323" selection-end-column="15" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="1003" column="2" selection-start-line="1003" selection-start-column="2" selection-end-line="1003" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="jar://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/lib/JavaScriptLanguage.jar!/com/intellij/lang/javascript/index/predefined/DHTML.js" />
     <entry file="file://$PROJECT_DIR$/css/styles.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="5" column="20" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
+          <caret line="5" column="20" lean-forward="false" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/browser_action/dialog.tmpl.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="30" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
+          <caret line="0" column="30" lean-forward="false" selection-start-line="0" selection-start-column="30" selection-end-line="0" selection-end-column="30" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/options_custom/README.md.old">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inject/tmp.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="27" column="22" selection-start-line="27" selection-start-column="22" selection-end-line="27" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inject/tmp.js" />
     <entry file="file://$PROJECT_DIR$/src/options_custom/js/i18n.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/browser_action/browser_action.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="915">
-          <caret line="61" column="0" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
+        <state relative-caret-position="1647">
+          <caret line="61" column="0" lean-forward="false" selection-start-line="61" selection-start-column="0" selection-end-line="61" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1248,77 +612,77 @@
     <entry file="file://$PROJECT_DIR$/src/bg/background.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="91" selection-end-column="5" />
+          <caret line="83" column="0" lean-forward="false" selection-start-line="83" selection-start-column="0" selection-end-line="91" selection-end-column="5" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/options_custom/i18n.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="35" column="29" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
+          <caret line="35" column="29" lean-forward="false" selection-start-line="35" selection-start-column="29" selection-end-line="35" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/options_custom/lib/store.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="5" column="14" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
+          <caret line="5" column="14" lean-forward="false" selection-start-line="5" selection-start-column="14" selection-end-line="5" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/options_custom/lib/mootools-core.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/options_custom/js/classes/setting.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="47" column="53" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
+          <caret line="47" column="53" lean-forward="false" selection-start-line="47" selection-start-column="53" selection-end-line="47" selection-end-column="53" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/options_custom/js/classes/fancy-settings.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="29" column="45" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="45" />
+          <caret line="29" column="45" lean-forward="false" selection-start-line="29" selection-start-column="43" selection-end-line="29" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/bg/background.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
+          <caret line="6" column="0" lean-forward="false" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/options_custom/lib/default.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/options_custom/custom.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3248">
-          <caret line="116" column="1" selection-start-line="116" selection-start-column="1" selection-end-line="116" selection-end-column="1" />
+          <caret line="116" column="1" lean-forward="false" selection-start-line="116" selection-start-column="1" selection-end-line="116" selection-end-column="1" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="56">
-          <caret line="11" column="31" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
+          <caret line="11" column="31" lean-forward="false" selection-start-line="11" selection-start-column="31" selection-end-line="11" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/options_custom/service.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="23" column="63" selection-start-line="23" selection-start-column="63" selection-end-line="23" selection-end-column="63" />
+        <state relative-caret-position="567">
+          <caret line="23" column="63" lean-forward="false" selection-start-line="23" selection-start-column="63" selection-end-line="23" selection-end-column="63" />
           <folding>
             <element signature="e#0#40#0" expanded="false" />
           </folding>
@@ -1327,66 +691,66 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/options_custom/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="20" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
+        <state relative-caret-position="378">
+          <caret line="14" column="20" lean-forward="false" selection-start-line="14" selection-start-column="20" selection-end-line="14" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/options_custom/settings.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+        <state relative-caret-position="135">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/options_custom/manifest.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="405">
-          <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+        <state relative-caret-position="729">
+          <caret line="27" column="0" lean-forward="false" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/bower.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="11" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+        <state relative-caret-position="378">
+          <caret line="14" column="11" lean-forward="false" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/options_custom/controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="18" column="0" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
+        <state relative-caret-position="432">
+          <caret line="18" column="0" lean-forward="false" selection-start-line="18" selection-start-column="0" selection-end-line="18" selection-end-column="0" />
           <folding>
             <element signature="e#0#40#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="31" column="24" selection-start-line="31" selection-start-column="24" selection-end-line="31" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/manifest.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="20" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
+        <state relative-caret-position="864">
+          <caret line="32" column="20" lean-forward="false" selection-start-line="32" selection-start-column="20" selection-end-line="32" selection-end-column="20" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="30">
-          <caret line="2" column="7" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
+        <state relative-caret-position="135">
+          <caret line="5" column="0" lean-forward="false" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/inject/inject.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="114" column="39" lean-forward="false" selection-start-line="114" selection-start-column="39" selection-end-line="114" selection-end-column="39" />
           <folding />
         </state>
       </provider>
